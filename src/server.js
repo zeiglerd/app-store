@@ -1,12 +1,13 @@
-const express = require('express');
-const app = express();
-
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.json({"healthy": true});
+const express = require('express');
+const body_parser = require('body-parser');
+const app = express();
+
+app.use('/api', require('../routes/api.js')(express));
+
+const server = app.listen(port, () => {
+  console.log('Running on Port:', port);
 });
 
-app.listen(port, () => {
-  console.log('Our Server is Running on Port', port);
-});
+module.exports = server;
