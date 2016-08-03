@@ -15,8 +15,10 @@ const example_data = {
   }
 };
 
+// Create api.js as module
 module.exports = (express) => {
 
+  // Define express router
   const router = express.Router();
 
   // GET /api/v1/apps
@@ -35,10 +37,12 @@ module.exports = (express) => {
 
     let app = {};
 
+    // Check that required params/body is met
     if ( ! req.params.id) {
       return res.status(400).json(app);
     }
 
+    // Check that a app exists with the incoming id
     if (example_data.id !== req.params.id) {
       return res.status(404).json(app);
     }
@@ -65,10 +69,12 @@ module.exports = (express) => {
 
     let user = {};
 
+    // Check that required params/body is met
     if ( ! req.params.id) {
       return res.status(400).json(user);
     }
 
+    // Check that a userexists with the incoming id
     if (example_data.user.id !== req.params.id) {
       return res.status(404).json(user);
     }
