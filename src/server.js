@@ -1,11 +1,11 @@
 const port = process.env.PORT || 3000;
 
 const express = require('express');
-const body_parser = require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
 
-app.user(bodyParser.json());
-app.user(bodyParser.urlencoded({
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
 }));
 
