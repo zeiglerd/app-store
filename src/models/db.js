@@ -14,6 +14,15 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   'logging': false,
 });
 
+const app = sequelize.define('app', {
+  'name': {
+    'type': Sequelize.STRING,
+  },
+  'code': {
+    'type': Sequelize.STRING,
+  }
+});
+
 const user = sequelize.define('user', {
   'name': {
     'type': Sequelize.STRING,
@@ -26,21 +35,12 @@ const user = sequelize.define('user', {
   }
 });
 
-const course = sequelize.define('course', {
-  'name': {
-    'type': Sequelize.STRING,
-  },
-  'code': {
-    'type': Sequelize.STRING,
-  }
-});
-
-course.hasMany(user, {
-  'foreignKey': 'courseId'
+app.hasMany(user, {
+  'foreignKey': 'appId'
 });
 
 sequelize.sync();
-
 exports.sequelize = sequelize;
+
+exports.app = app;
 exports.user = user;
-exports.course = course;
