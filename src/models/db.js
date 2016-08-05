@@ -17,20 +17,11 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 const app = sequelize.define('app', {
   'name': {
     'type': Sequelize.STRING,
-  },
-  'code': {
-    'type': Sequelize.STRING,
   }
 });
 
 const user = sequelize.define('user', {
   'name': {
-    'type': Sequelize.STRING,
-  },
-  'age': {
-    'type': Sequelize.INTEGER,
-  },
-  'hobby': {
     'type': Sequelize.STRING,
   }
 });

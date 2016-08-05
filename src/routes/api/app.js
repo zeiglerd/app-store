@@ -8,29 +8,44 @@ module.exports = (express) => {
     app.create(req.body, (err) => {
       res.status(500).json(err);
     }, (data) => {
-      res.status(200).json(data);
+
+      if (results) {
+        res.status(201).json(data);
+      }
+      res.status(404).json(data);
     });
   });
 
   router.get('/apps/:id', (req, res) => {
-    req.body.id = req.params.id;
-    app.find(req.body, (err) => {
+
+    if ( ! req.params.id) {
+    let status = 404;
+    res.status(status).json({
+      'devMessage': data,
+      'status': status
+    });
+    }
+
+    app.find(req.params, (err) => {
+      res.status(500).json(err);
+    }, (data) => {
+
+
+
+    });
+
+  });
+
+  router.get('/users/:id/apps', (req, res) => {
+    app.findAll((err) => {
       res.status(500).json(err);
     }, (data) => {
       res.status(200).json(data);
     });
   });
 
-  router.get('/users/:id/apps', (req, res) => {
-    app.find_all((err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-    });
-  });
-  
   router.get('/apps', (req, res) => {
-    app.find_all((err) => {
+    app.findAll((err) => {
       res.status(500).json(err);
     }, (data) => {
       res.status(200).json(data);

@@ -1,83 +1,62 @@
-Description:
-  - Display All Apps Info
-Outputs:
-  - [
-    {
-      id: "0032c47b-4a7b-4232-9cc3-6af718244ea8",
-      title: "Best App Ever",
-      description: "A fast paced side scrolling shooter",
-      artAssets: [
-        {
-          title: "Splash Screen",
-          srcLink: "http://i.imgur.com/5e5Ihb6.jpg"
-        },
-        {
-          title: "Cut Scene",
-          srcLink: "http://i.imgur.com/QQ3O6PO.jpg"
-        }
-      ],
-      releaseDate: "2016-06-15T22:29:20.000Z",
-      createdAt: "2016-05-15T22:29:20.000Z",
-      updatedAt: "2016-05-15T22:29:20.000Z",
-      user: {
-      id: "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
-      name: "Chapman"
-      }
-    }
-  ]
-Route:
-  - GET /api/v1/apps
------
+## Installation
 
-Description:
-  - Display Single App Info
-Outputs:
-  - {
-    id: "0032c47b-4a7b-4232-9cc3-6af718244ea8",
-    title: "Best App Ever",
-    description: "A fast paced side scrolling shooter",
-    artAssets: [
-      {
-        title: "Splash Screen",
-        srcLink: "http://i.imgur.com/5e5Ihb6.jpg"
-      },
-      {
-        title: "Cut Scene",
-        srcLink: "http://i.imgur.com/QQ3O6PO.jpg"
-      }
-    ],
-    releaseDate: "2016-06-15T22:29:20.000Z",
-    createdAt: "2016-05-15T22:29:20.000Z",
-    updatedAt: "2016-05-15T22:29:20.000Z",
-    user: {
-      id: "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
-      name: "Chapman"
-    }
-  }
-Route:
-  - GET /api/v1/apps/:id
------
+Install all dependencies
+```
+npm i
+```
 
-Description:
-  - Display All Users Info
-Outputs:
-  - [
-    {
-      id: "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
-      name: "Chapman"
-    }
-  ]
-Route:
-  - GET /api/v1/users
------
+Install all command line tools
+```
+npm i -g nodemon mocha
+```
 
-Description:
-  - Display Single User Info
-Outputs:
-  - {
-    id: "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
-    name: "Chapman"
-  }
-Route:
-  - GET /api/v1/users/:id
------
+
+---
+
+
+## Start the server
+To run the server with default settings return
+```
+npm start
+```
+
+
+---
+
+
+## Run the unit tests
+To run the unit test
+```
+npm test
+```
+
+
+---
+
+
+## Routes
+
+
+#### ToC
+| Link | Method | Route |
+|---|---|---|---|
+| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Apps](#apps)
+
+
+#### Apps
+###### Description
+Display All Apps Info
+###### Response
+```
+
+```
+</a>
+
+
+#### GET /api/v1/apps/:id
+###### Description
+Display All Apps Info
+###### Response
+```
+
+```
