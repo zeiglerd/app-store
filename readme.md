@@ -1,10 +1,15 @@
-## Installation
+## Semantic Versioning
+http://semver.org/
 
+
+---
+
+
+## Installation
 Install all dependencies
 ```
 npm i
 ```
-
 Install all command line tools
 ```
 npm i -g nodemon mocha
@@ -40,119 +45,157 @@ npm test
 #### ToC
 | Link | Method | Route | Response |
 |---|---|---|---|
-| http://localhost:3000/api/v1/apps | POST | /api/v1/apps | [Response](#post-apps)
-| http://localhost:3000/api/v1/apps/:id | GET | /api/v1/apps/:id | [Response](#get-appsid)
-| http://localhost:3000/api/v1/users/:id/apps | GET | /api/v1/users/:id/apps | [Response](#get-usersidapps)
-| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Response](#get-apps)
-| http://localhost:3000/api/v1/apps/:id | POST | /api/v1/apps/:id | [Response](#post-appsid)
-| http://localhost:3000/api/v1/apps/:id | DELETE | /api/v1/apps/:id | [Response](#delete-appsid)
+| http://localhost:3000/api/v1/apps | POST | /api/v1/apps | [Response](#post-apps) |
+| http://localhost:3000/api/v1/apps/:id | GET | /api/v1/apps/:id | [Response](#get-appsid) |
+| http://localhost:3000/api/v1/users/:id/apps | GET | /api/v1/users/:id/apps | [Response](#get-usersidapps) |
+| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Response](#get-apps) |
+| http://localhost:3000/api/v1/apps/:id | POST | /api/v1/apps/:id | [Response](#post-appsid) |
+| http://localhost:3000/api/v1/apps/:id | DELETE | /api/v1/apps/:id | [Response](#delete-appsid) |
+| http://localhost:3000/api/v1/users | POST | /api/v1/users | [Response](#post-users) |
+| http://localhost:3000/api/v1/users | GET | /api/v1/users | [Response](#get-users) |
+| http://localhost:3000/api/v1/users/:id | GET | /api/v1/users/:id | [Response](#get-usersid) |
+| http://localhost:3000/api/v1/users/:id | POST | /api/v1/users/:id | [Response](#post-usersid) |
+| http://localhost:3000/api/v1/users/:id | DELETE | /api/v1/users/:id | [Response](#delete-usersid) |
+
+
+---
 
 
 #### POST /apps
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### GET /apps/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### GET /users/:id/apps
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### GET /apps
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### POST /apps/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### DELETE /apps/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### POST /users
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### GET /users
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### GET /users/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### POST /users/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
+
+
+---
 
 
 #### DELETE /users/:id
 [Back to ToC](#toc)
 ###### Description
-...
+.
 ###### Response
 ```
-...
+.
 ```
