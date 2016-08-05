@@ -40,10 +40,10 @@ npm test
 #### ToC
 | Link | Method | Route | Response |
 |---|---|---|---|
-| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Apps](#apps)
+| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Apps](#get-/api/v1/apps)
 
 
-#### Apps
+#### GET /api/v1/apps
 ###### Description
 Display All Apps Info
 ###### Response
