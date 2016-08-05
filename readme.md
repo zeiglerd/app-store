@@ -38,7 +38,7 @@ npm test
 
 
 #### ToC
-| Link | Method | Route |
+| Link | Method | Route | Response |
 |---|---|---|---|
 | http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Apps](#apps)
 
