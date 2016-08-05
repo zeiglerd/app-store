@@ -40,23 +40,119 @@ npm test
 #### ToC
 | Link | Method | Route | Response |
 |---|---|---|---|
-| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Apps](#get-/api/v1/apps)
+| http://localhost:3000/api/v1/apps | POST | /api/v1/apps | [Response](#post-apps)
+| http://localhost:3000/api/v1/apps/:id | GET | /api/v1/apps/:id | [Response](#get-appsid)
+| http://localhost:3000/api/v1/users/:id/apps | GET | /api/v1/users/:id/apps | [Response](#get-usersidapps)
+| http://localhost:3000/api/v1/apps | GET | /api/v1/apps | [Response](#get-apps)
+| http://localhost:3000/api/v1/apps/:id | POST | /api/v1/apps/:id | [Response](#post-appsid)
+| http://localhost:3000/api/v1/apps/:id | DELETE | /api/v1/apps/:id | [Response](#delete-appsid)
 
 
-#### GET /api/v1/apps
+- #### POST /apps
+[Back to ToC](#toc)
 ###### Description
-Display All Apps Info
+...
 ###### Response
 ```
-
+...
 ```
-</a>
 
 
-#### GET /api/v1/apps/:id
+- #### GET /apps/:id
+[Back to ToC](#toc)
 ###### Description
-Display All Apps Info
+...
 ###### Response
 ```
+...
+```
 
+
+- #### GET /users/:id/apps
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### GET /apps
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### POST /apps/:id
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### DELETE /apps/:id
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### POST /users
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### GET /users
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### GET /users/:id
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### POST /users/:id
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
+```
+
+
+- #### DELETE /users/:id
+[Back to ToC](#toc)
+###### Description
+...
+###### Response
+```
+...
 ```
