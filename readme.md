@@ -48,7 +48,7 @@ npm test
 | http://localhost:3000/api/v1/apps/:id | DELETE | /api/v1/apps/:id | [Response](#delete-appsid)
 
 
-- #### POST /apps
+#### POST /apps
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -58,7 +58,7 @@ npm test
 ```
 
 
-- #### GET /apps/:id
+#### GET /apps/:id
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -68,7 +68,7 @@ npm test
 ```
 
 
-- #### GET /users/:id/apps
+#### GET /users/:id/apps
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -78,7 +78,7 @@ npm test
 ```
 
 
-- #### GET /apps
+#### GET /apps
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -88,7 +88,7 @@ npm test
 ```
 
 
-- #### POST /apps/:id
+#### POST /apps/:id
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -98,7 +98,7 @@ npm test
 ```
 
 
-- #### DELETE /apps/:id
+#### DELETE /apps/:id
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -108,7 +108,7 @@ npm test
 ```
 
 
-- #### POST /users
+#### POST /users
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -118,7 +118,7 @@ npm test
 ```
 
 
-- #### GET /users
+#### GET /users
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -128,7 +128,7 @@ npm test
 ```
 
 
-- #### GET /users/:id
+#### GET /users/:id
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -138,7 +138,7 @@ npm test
 ```
 
 
-- #### POST /users/:id
+#### POST /users/:id
 [Back to ToC](#toc)
 ###### Description
 ...
@@ -148,7 +148,7 @@ npm test
 ```
 
 
-- #### DELETE /users/:id
+#### DELETE /users/:id
 [Back to ToC](#toc)
 ###### Description
 ...
