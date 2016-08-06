@@ -14,6 +14,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   'logging': false
 });
 
+// App schema
 const app = sequelize.define('app', {
   'id': {
     'allowNull': false,
@@ -36,6 +37,7 @@ const app = sequelize.define('app', {
   }
 });
 
+// User schema
 const user = sequelize.define('user', {
   'id': {
     'allowNull': false,
@@ -45,33 +47,35 @@ const user = sequelize.define('user', {
   },
   'name': {
     'allowNull': false,
-    'type': Sequelize.STRING,
-    'unique': true
+    'type': Sequelize.STRING
   }
 });
-
+// User relations
 app.hasMany(user, {
   'foreignKey': 'appId'
 });
 
+// Art assets schema
 const artAsset = sequelize.define('artAsset', {
   'title': {
     'allowNull': false,
-    'type': Sequelize.STRING,
-    'unique': true
+    'type': Sequelize.STRING
   },
   'srcLink': {
     'allowNull': false,
     'type': Sequelize.STRING
   }
 });
-
+// Art assets relations
 app.hasMany(artAsset, {
   'foreignKey': 'appId'
 });
 
+// Build dbs
 sequelize.sync();
+
 exports.sequelize = sequelize;
 
 exports.app = app;
+exports.artAsset = artAsset;
 exports.user = user;

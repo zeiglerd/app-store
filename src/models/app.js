@@ -5,6 +5,7 @@ exports.create = (payload, success, error) => {
   db.app.create(payload).then(success).catch(error);
 };
 
+// Delete app by id
 exports.destroy = (payload, success, error) => {
   db.app.destroy({
     'where': {
@@ -35,6 +36,7 @@ exports.findAll = (success, error) => {
   }).then(success).catch(error);
 };
 
+// Update app by id
 exports.update = (payload, success, error) => {
   db.app.find({
     'where': {

@@ -1,12 +1,12 @@
 const db = require('./db');
 
+// Create user
 exports.create = (payload, success, error) => {
-  // Create user
   db.user.create(payload).then(success).catch(error);
 };
 
+// Destroy user by id
 exports.destroy = (payload, success, error) => {
-  // Destroy user by id
   db.user.destroy({
     'where': {
       'id': payload.id
@@ -14,8 +14,8 @@ exports.destroy = (payload, success, error) => {
   }).then(success).catch(error);
 };
 
+// Find user by id
 exports.find = (payload, success, error) => {
-  // Find user by id
   db.user.find({
     'where': {
       'id': payload.id
@@ -23,11 +23,12 @@ exports.find = (payload, success, error) => {
   }).then(success).catch(error);
 };
 
+// Find all users
 exports.findAll = (success, error) => {
-  // Find all users
   db.user.findAll().then(success).catch(error);
 };
 
+// Update user by id
 exports.update = (payload, success, error) => {
   // Check user exists by id
   db.user.find({
@@ -35,7 +36,6 @@ exports.update = (payload, success, error) => {
       'id': payload.id
     }
   }).then( (existingData) => {
-    // Update user by id
     existingData.updateAttributes(payload).then(success).catch(error);
   }).catch(error);
 };
