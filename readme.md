@@ -71,15 +71,15 @@ Display all Apps
   "data": [
     {
       "id": 1,
-      "name": "App Title 1",
-      "createdAt": "2016-08-06T04:56:28.000Z",
-      "updatedAt": "2016-08-06T04:56:28.000Z"
+      "name": "App 1",
+      "createdAt": "2016-08-06T05:16:19.000Z",
+      "updatedAt": "2016-08-06T05:16:19.000Z"
     },
     {
       "id": 2,
-      "name": "App Title 2",
-      "createdAt": "2016-08-06T04:56:54.000Z",
-      "updatedAt": "2016-08-06T04:56:54.000Z"
+      "name": "App 2",
+      "createdAt": "2016-08-06T05:16:22.000Z",
+      "updatedAt": "2016-08-06T05:16:22.000Z"
     }
   ],
   "status": 200
@@ -98,10 +98,10 @@ Create an App
 ```
 {
   "data": {
-    "id": 1,
-    "name": "App Title 2",
-    "updatedAt": "2016-08-06T04:53:03.000Z",
-    "createdAt": "2016-08-06T04:53:03.000Z"
+    "id": 3,
+    "name": "App 3",
+    "updatedAt": "2016-08-06T05:16:52.000Z",
+    "createdAt": "2016-08-06T05:16:52.000Z"
   },
   "status": 200
 }
@@ -135,10 +135,10 @@ Display App based upon id
 ```
 {
   "data": {
-    "id": 1,
-    "name": "App Title 1",
-    "createdAt": "2016-08-06T04:53:03.000Z",
-    "updatedAt": "2016-08-06T04:53:03.000Z",
+    "id": 2,
+    "name": "App 2",
+    "createdAt": "2016-08-06T05:16:22.000Z",
+    "updatedAt": "2016-08-06T05:16:22.000Z",
     "users": []
   },
   "status": 200
@@ -157,10 +157,10 @@ Update App based upon id
 ```
 {
   "data": {
-    "id": 1,
-    "name": "App Title",
-    "createdAt": "2016-08-06T04:53:03.000Z",
-    "updatedAt": "2016-08-06T04:55:11.000Z"
+    "id": 2,
+    "name": "App 4",
+    "createdAt": "2016-08-06T05:16:22.000Z",
+    "updatedAt": "2016-08-06T05:17:37.000Z"
   },
   "status": 200
 }
@@ -183,52 +183,55 @@ Update App based upon id
 ---
 
 
-#### POST /users
-[Back to ToC](#toc)
-###### Description
-.
-###### Example Response
-```
-.
-```
-
-
----
-
-
 #### GET /users
 [Back to ToC](#toc)
 ###### Description
-.
+Display all Users
 ###### Example Response
 ```
-.
+{
+  "data": [
+    {
+      "id": 1,
+      "email": "user1@email.com",
+      "name": "User 1",
+      "createdAt": "2016-08-06T05:09:21.000Z",
+      "updatedAt": "2016-08-06T05:09:21.000Z",
+      "appId": null
+    },
+    {
+      "id": 2,
+      "email": "user2@email.com",
+      "name": "User 2",
+      "createdAt": "2016-08-06T05:09:35.000Z",
+      "updatedAt": "2016-08-06T05:09:35.000Z",
+      "appId": null
+    }
+  ],
+  "status": 200
+}
 ```
 
 
 ---
 
 
-#### GET /users/:id
+#### POST /users
 [Back to ToC](#toc)
 ###### Description
-.
+Create a User
 ###### Example Response
 ```
-.
-```
-
-
----
-
-
-#### POST /users/:id
-[Back to ToC](#toc)
-###### Description
-.
-###### Example Response
-```
-.
+{
+  "data": {
+    "id": 3,
+    "email": "user3@email.com",
+    "name": "User 3",
+    "updatedAt": "2016-08-06T05:09:46.000Z",
+    "createdAt": "2016-08-06T05:09:46.000Z"
+  },
+  "status": 200
+}
 ```
 
 
@@ -238,8 +241,57 @@ Update App based upon id
 #### DELETE /users/:id
 [Back to ToC](#toc)
 ###### Description
-.
+Delete User based upon id
 ###### Example Response
 ```
-.
+{
+  "data": 1,
+  "status": 200
+}
+```
+
+
+---
+
+
+#### GET /users/:id
+[Back to ToC](#toc)
+###### Description
+Display User based upon id
+###### Example Response
+```
+{
+  "data": {
+    "id": 2,
+    "email": "user2@email.com",
+    "name": "User 2",
+    "createdAt": "2016-08-06T05:09:35.000Z",
+    "updatedAt": "2016-08-06T05:09:35.000Z",
+    "appId": null
+  },
+  "status": 200
+}
+```
+
+
+---
+
+
+#### POST /users/:id
+[Back to ToC](#toc)
+###### Description
+Update User based upon id
+###### Example Response
+```
+{
+  "data": {
+    "id": 2,
+    "email": "user4@email.com",
+    "name": "User 4",
+    "createdAt": "2016-08-06T05:09:35.000Z",
+    "updatedAt": "2016-08-06T05:15:25.000Z",
+    "appId": null
+  },
+  "status": 200
+}
 ```
