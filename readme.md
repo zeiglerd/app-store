@@ -61,13 +61,66 @@ npm test
 ---
 
 
+#### GET /apps
+[Back to ToC](#toc)
+###### Description
+Display all Apps
+###### Example Response
+```
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "App Title 1",
+      "createdAt": "2016-08-06T04:56:28.000Z",
+      "updatedAt": "2016-08-06T04:56:28.000Z"
+    },
+    {
+      "id": 2,
+      "name": "App Title 2",
+      "createdAt": "2016-08-06T04:56:54.000Z",
+      "updatedAt": "2016-08-06T04:56:54.000Z"
+    }
+  ],
+  "status": 200
+}
+```
+
+
+---
+
+
 #### POST /apps
 [Back to ToC](#toc)
 ###### Description
-.
-###### Response
+Create an App
+###### Example Response
 ```
-.
+{
+  "data": {
+    "id": 1,
+    "name": "App Title 2",
+    "updatedAt": "2016-08-06T04:53:03.000Z",
+    "createdAt": "2016-08-06T04:53:03.000Z"
+  },
+  "status": 200
+}
+```
+
+
+---
+
+
+#### DELETE /apps/:id
+[Back to ToC](#toc)
+###### Description
+Delete App based upon id
+###### Example Response
+```
+{
+  "data": 1,
+  "status": 200
+}
 ```
 
 
@@ -77,10 +130,40 @@ npm test
 #### GET /apps/:id
 [Back to ToC](#toc)
 ###### Description
-.
-###### Response
+Display App based upon id
+###### Example Response
 ```
-.
+{
+  "data": {
+    "id": 1,
+    "name": "App Title 1",
+    "createdAt": "2016-08-06T04:53:03.000Z",
+    "updatedAt": "2016-08-06T04:53:03.000Z",
+    "users": []
+  },
+  "status": 200
+}
+```
+
+
+---
+
+
+#### POST /apps/:id
+[Back to ToC](#toc)
+###### Description
+Update App based upon id
+###### Example Response
+```
+{
+  "data": {
+    "id": 1,
+    "name": "App Title",
+    "createdAt": "2016-08-06T04:53:03.000Z",
+    "updatedAt": "2016-08-06T04:55:11.000Z"
+  },
+  "status": 200
+}
 ```
 
 
@@ -91,46 +174,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
-```
-.
-```
-
-
----
-
-
-#### GET /apps
-[Back to ToC](#toc)
-###### Description
-.
-###### Response
-```
-.
-```
-
-
----
-
-
-#### POST /apps/:id
-[Back to ToC](#toc)
-###### Description
-.
-###### Response
-```
-.
-```
-
-
----
-
-
-#### DELETE /apps/:id
-[Back to ToC](#toc)
-###### Description
-.
-###### Response
+###### Example Response
 ```
 .
 ```
@@ -143,7 +187,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
+###### Example Response
 ```
 .
 ```
@@ -156,7 +200,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
+###### Example Response
 ```
 .
 ```
@@ -169,7 +213,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
+###### Example Response
 ```
 .
 ```
@@ -182,7 +226,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
+###### Example Response
 ```
 .
 ```
@@ -195,7 +239,7 @@ npm test
 [Back to ToC](#toc)
 ###### Description
 .
-###### Response
+###### Example Response
 ```
 .
 ```

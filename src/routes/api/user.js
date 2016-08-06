@@ -35,7 +35,7 @@ module.exports = (express) => {
   });
 
   /**
-   * Create an User
+   * Create a User
    */
   router.post('/users', (req, res) => {
     let status = 200;
