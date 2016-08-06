@@ -41,7 +41,6 @@ describe('App Routes', () => {
         expect(app).to.have.property('id')
         expect(app).to.have.property('title')
         expect(app).to.have.property('description')
-        expect(app).to.have.property('releaseDate')
       })
       .end(done)
   });

@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-require('dotenv').config();
+require('dotenv').config()
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   'host': process.env.DB_HOST,
@@ -12,35 +12,66 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     'idle': 10000,
   },
   'logging': false
-});
+})
 
 const app = sequelize.define('app', {
-  'name': {
+  'id': {
+    'allowNull': false,
+    'primaryKey': true,
+    'type': Sequelize.STRING,
+    'unique': true
+  },
+  'title': {
     'allowNull': false,
     'type': Sequelize.STRING,
     'unique': true
+  },
+  "description": {
+    'type': Sequelize.STRING
+  },
+  "releaseDate": {
+    'allowNull': false,
+    'defaultValue': Sequelize.NOW,
+    'type': Sequelize.DATE
   }
-});
+})
 
 const user = sequelize.define('user', {
-  'email': {
+  'id': {
     'allowNull': false,
+    'primaryKey': true,
     'type': Sequelize.STRING,
     'unique': true
   },
   'name': {
     'allowNull': false,
-    'required': true,
-    'type': Sequelize.STRING
+    'type': Sequelize.STRING,
+    'unique': true
   }
-});
+})
 
 app.hasMany(user, {
   'foreignKey': 'appId'
-});
+})
 
-sequelize.sync();
-exports.sequelize = sequelize;
+const artAsset = sequelize.define('artAsset', {
+  'title': {
+    'allowNull': false,
+    'type': Sequelize.STRING,
+    'unique': true
+  },
+  'srcLink': {
+    'allowNull': false,
+    'type': Sequelize.STRING
+  }
+})
 
-exports.app = app;
-exports.user = user;
+app.hasMany(artAsset, {
+  'foreignKey': 'appId'
+})
+
+sequelize.sync()
+exports.sequelize = sequelize
+
+exports.app = app
+exports.user = user
