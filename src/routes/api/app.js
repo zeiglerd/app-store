@@ -36,26 +36,36 @@ module.exports = (express) => {
    */
   router.post('/apps', (req, res) => {
     let status = 200;
-    // Can check here if all fields are met
-    app.create(req.body, (data) => {
-      if (data) {
-        res.status(status).json({
-          'data': data,
-          'status': status
-        });
-      } else {
+    if (
+      req.body.name &&
+      req.body.name.length > 0
+    ) {
+      app.create(req.body, (data) => {
+        if (data) {
+          res.status(status).json({
+            'data': data,
+            'status': status
+          });
+        } else {
+          status = 500;
+          res.status(status).json({
+            'status': status
+          });
+        }
+      }, (error) => {
         status = 500;
         res.status(status).json({
+          'developerMessage': error,
           'status': status
         });
-      }
-    }, (error) => {
-      status = 500;
+      });
+    } else {
+      status = 422;
       res.status(status).json({
-        'developerMessage': error,
+        'developerMessage': 'App must have a name.',
         'status': status
       });
-    });
+    }
   });
 
   /**
@@ -86,6 +96,7 @@ module.exports = (express) => {
     } else {
       status = 422;
       res.status(status).json({
+        'developerMessage': 'Id must be a number.',
         'status': status
       });
     }
@@ -119,6 +130,7 @@ module.exports = (express) => {
     } else {
       status = 422;
       res.status(status).json({
+        'developerMessage': 'Id must be a number.',
         'status': status
       });
     }
@@ -129,38 +141,49 @@ module.exports = (express) => {
    */
   router.post('/apps/:id', (req, res) => {
     let status = 200;
-    // Can check here if all fields are met
-    if (functions.isNumber(req.params.id)) {
-      req.body.id = req.params.id;
-      app.update(req.body, (data) => {
-        if (data) {
+    if (
+      req.body.name &&
+      req.body.name.length > 0
+    ) {
+      if (functions.isNumber(req.params.id)) {
+        req.body.id = req.params.id;
+        app.update(req.body, (data) => {
+          if (data) {
+            res.status(status).json({
+              'data': data,
+              'status': status
+            });
+          } else {
+            status = 404;
+            res.status(status).json({
+              'status': status
+            });
+          }
+        }, (error) => {
+          status = 500;
           res.status(status).json({
-            'data': data,
+            'developerMessage': error,
             'status': status
           });
-        } else {
-          status = 404;
-          res.status(status).json({
-            'status': status
-          });
-        }
-      }, (error) => {
-        status = 500;
+        });
+      } else {
+        status = 422;
         res.status(status).json({
-          'developerMessage': error,
+          'developerMessage': 'Id must be a number.',
           'status': status
         });
-      });
+      }
     } else {
       status = 422;
       res.status(status).json({
+        'developerMessage': 'App must have a name.',
         'status': status
       });
     }
   });
 
   /**
-   * Display all App from specific appId
+   * Display all App from specific userId
    */
   // router.get('/apps/:id/apps', (req, res) => {
   //   let status = 200;

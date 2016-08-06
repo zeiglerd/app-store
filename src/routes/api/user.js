@@ -36,26 +36,38 @@ module.exports = (express) => {
    */
   router.post('/users', (req, res) => {
     let status = 200;
-    // Can check here if all fields are met
-    user.create(req.body, (data) => {
-      if (data) {
-        res.status(status).json({
-          'data': data,
-          'status': status
-        });
-      } else {
+    if (
+      req.body.email &&
+      req.body.email.length > 0 &&
+      req.body.name &&
+      req.body.name.length > 0
+    ) {
+      user.create(req.body, (data) => {
+        if (data) {
+          res.status(status).json({
+            'data': data,
+            'status': status
+          });
+        } else {
+          status = 500;
+          res.status(status).json({
+            'status': status
+          });
+        }
+      }, (error) => {
         status = 500;
         res.status(status).json({
+          'developerMessage': error,
           'status': status
         });
-      }
-    }, (error) => {
-      status = 500;
+      });
+    } else {
+      status = 422;
       res.status(status).json({
-        'developerMessage': error,
+        'developerMessage': 'User must have an email and name.',
         'status': status
       });
-    });
+    }
   });
 
   /**
@@ -129,31 +141,43 @@ module.exports = (express) => {
    */
   router.post('/users/:id', (req, res) => {
     let status = 200;
-    // Can check here if all fields are met
-    if (functions.isNumber(req.params.id)) {
-      req.body.id = req.params.id;
-      user.update(req.body, (data) => {
-        if (data) {
+    if (
+      req.body.email &&
+      req.body.email.length > 0 &&
+      req.body.name &&
+      req.body.name.length > 0
+    ) {
+      if (functions.isNumber(req.params.id)) {
+        req.body.id = req.params.id;
+        user.update(req.body, (data) => {
+          if (data) {
+            res.status(status).json({
+              'data': data,
+              'status': status
+            });
+          } else {
+            status = 404;
+            res.status(status).json({
+              'status': status
+            });
+          }
+        }, (error) => {
+          status = 500;
           res.status(status).json({
-            'data': data,
+            'developerMessage': error,
             'status': status
           });
-        } else {
-          status = 404;
-          res.status(status).json({
-            'status': status
-          });
-        }
-      }, (error) => {
-        status = 500;
+        });
+      } else {
+        status = 422;
         res.status(status).json({
-          'developerMessage': error,
           'status': status
         });
-      });
+      }
     } else {
       status = 422;
       res.status(status).json({
+        'developerMessage': 'User must have an email and name.',
         'status': status
       });
     }
