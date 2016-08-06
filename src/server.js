@@ -6,11 +6,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  'extended': true
 }));
 
+// Require routes, pass express
 app.use('/', require('./routes')(express));
 
+// Start server
 exports.server = app.listen(port, () => {
   console.log('Running on Port:', port);
 });

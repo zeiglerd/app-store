@@ -1,8 +1,5 @@
 const user = require('../../models/user');
-
-function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-}
+const functions = require('../../shared/functions');
 
 module.exports = (express) => {
 
@@ -66,7 +63,7 @@ module.exports = (express) => {
    */
   router.delete('/users/:id', (req, res) => {
     let status = 200;
-    if (isNumber(req.params.id)) {
+    if (functions.isNumber(req.params.id)) {
       user.destroy(req.params, (data) => {
         if (data) {
           res.status(status).json({
@@ -99,7 +96,7 @@ module.exports = (express) => {
    */
   router.get('/users/:id', (req, res) => {
     let status = 200;
-    if (isNumber(req.params.id)) {
+    if (functions.isNumber(req.params.id)) {
       user.find(req.params, (data) => {
         if (data) {
           res.status(status).json({
@@ -133,7 +130,7 @@ module.exports = (express) => {
   router.post('/users/:id', (req, res) => {
     let status = 200;
     // Can check here if all fields are met
-    if (isNumber(req.params.id)) {
+    if (functions.isNumber(req.params.id)) {
       req.body.id = req.params.id;
       user.update(req.body, (data) => {
         if (data) {
