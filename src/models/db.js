@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   'host': process.env.DB_HOST,
@@ -12,7 +12,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     'idle': 10000,
   },
   'logging': false
-})
+});
 
 const app = sequelize.define('app', {
   'id': {
@@ -34,7 +34,7 @@ const app = sequelize.define('app', {
     'defaultValue': Sequelize.NOW,
     'type': Sequelize.DATE
   }
-})
+});
 
 const user = sequelize.define('user', {
   'id': {
@@ -48,11 +48,11 @@ const user = sequelize.define('user', {
     'type': Sequelize.STRING,
     'unique': true
   }
-})
+});
 
 app.hasMany(user, {
   'foreignKey': 'appId'
-})
+});
 
 const artAsset = sequelize.define('artAsset', {
   'title': {
@@ -64,14 +64,14 @@ const artAsset = sequelize.define('artAsset', {
     'allowNull': false,
     'type': Sequelize.STRING
   }
-})
+});
 
 app.hasMany(artAsset, {
   'foreignKey': 'appId'
-})
+});
 
-sequelize.sync()
-exports.sequelize = sequelize
+sequelize.sync();
+exports.sequelize = sequelize;
 
-exports.app = app
-exports.user = user
+exports.app = app;
+exports.user = user;
