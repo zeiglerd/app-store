@@ -1,14 +1,14 @@
 const db = require('./db');
 
-exports.create = (payload, err, success) => {
-  db.user.create(payload).then(success).catch(err);
+exports.create = (payload, success, error) => {
+  db.user.create(payload).then(success).catch(error);
 };
 
-exports.findAll = (err, success) => {
-  db.user.findAll().then(success).catch(err);
+exports.findAll = (success, error) => {
+  db.user.findAll().then(success).catch(error);
 };
 
-exports.find = (payload, err, success) => {
+exports.find = (payload, success, error) => {
   db.user.find({
     'where': {
       'id': payload.id,
@@ -18,23 +18,23 @@ exports.find = (payload, err, success) => {
       'all': true,
       'nested': true,
     }],
-  }).then(success).catch(err);
+  }).then(success).catch(error);
 };
 
-exports.update = (payload, err, success) => {
+exports.update = (payload, success, error) => {
   db.user.find({
     'where': {
       'id': payload.id,
     },
   }).then( (existingData) => {
-    existingData.updateAttributes(payload).then(success).catch(err);
-  }).catch(err);
+    existingData.updateAttributes(payload).then(success).catch(error);
+  }).catch(error);
 };
 
-exports.destroy = (payload, err, success) => {
+exports.destroy = (payload, success, error) => {
   db.user.destroy({
     'where': {
       'id': payload.id,
     },
-  }).then(success).catch(err);
+  }).then(success).catch(error);
 };

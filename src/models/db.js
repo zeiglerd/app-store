@@ -11,18 +11,23 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     'min': 0,
     'idle': 10000,
   },
-  'logging': false,
+  'logging': false
 });
 
 const app = sequelize.define('app', {
   'name': {
     'type': Sequelize.STRING,
+    'unique': true
   }
 });
 
 const user = sequelize.define('user', {
-  'name': {
+  'email': {
     'type': Sequelize.STRING,
+    'unique': true
+  },
+  'name': {
+    'type': Sequelize.STRING
   }
 });
 
