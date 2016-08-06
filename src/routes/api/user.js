@@ -75,18 +75,18 @@ module.exports = (express) => {
       status = 422;
       // Respond with JSON
       res.status(status).json({
-        'developerMessage': 'user must have a name.',
+        'developerMessage': 'User must have a name.',
         'status': status
       });
     }
   });
 
-  // Find user by id
   router.delete('/users/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
     // If id is a number
     if (functions.isNumber(req.params.id)) {
+      // Delete user by id
       user.destroy(req.params, (data) => {
         // If data exists
         if (data) {
@@ -123,12 +123,12 @@ module.exports = (express) => {
     }
   });
 
-  // Display user by id
   router.get('/users/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
     // If id is a number
     if (functions.isNumber(req.params.id)) {
+      // Find user by id
       user.find(req.params, (data) => {
         // If data exists
         if (data) {
@@ -165,7 +165,6 @@ module.exports = (express) => {
     }
   });
 
-  // Update user by id
   router.post('/users/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
@@ -177,6 +176,7 @@ module.exports = (express) => {
       // If id is a number
       if (functions.isNumber(req.params.id)) {
         req.body.id = req.params.id;
+        // Update user by id
         user.update(req.body, (data) => {
           // If data exists
           if (data) {
@@ -216,7 +216,7 @@ module.exports = (express) => {
       status = 422;
       // Respond with JSON
       res.status(status).json({
-        'developerMessage': 'user must have a name.',
+        'developerMessage': 'User must have a name.',
         'status': status
       });
     }

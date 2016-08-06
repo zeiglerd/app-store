@@ -81,12 +81,12 @@ module.exports = (express) => {
     }
   });
 
-  // Find app by id
   router.delete('/apps/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
     // If id is a number
     if (functions.isNumber(req.params.id)) {
+      // Delete app by id
       app.destroy(req.params, (data) => {
         // If data exists
         if (data) {
@@ -123,12 +123,12 @@ module.exports = (express) => {
     }
   });
 
-  // Display app by id
   router.get('/apps/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
     // If id is a number
     if (functions.isNumber(req.params.id)) {
+      // Find app by id
       app.find(req.params, (data) => {
         // If data exists
         if (data) {
@@ -165,7 +165,6 @@ module.exports = (express) => {
     }
   });
 
-  // Update app by id
   router.post('/apps/:id', (req, res) => {
     // Status is a HTTP response code, default OK
     let status = 200;
@@ -177,6 +176,7 @@ module.exports = (express) => {
       // If id is a number
       if (functions.isNumber(req.params.id)) {
         req.body.id = req.params.id;
+        // Update app by id
         app.update(req.body, (data) => {
           // If data exists
           if (data) {
