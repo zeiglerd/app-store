@@ -12,27 +12,25 @@ module.exports = (express) => {
    * Display all Apps
    */
   router.get('/apps', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
+    let status = 200;
     app.findAll( (data) => {
       if (data && data.length > 0) {
-        out.data = data;
-        res.status(out.status).json(out);
+        res.status(status).json({
+          'data': data,
+          'status': status
+        });
       } else {
-        out.status = 404;
-        out.success = false;
-        res.status(out.status).json(out);
+        status = 404;
+        res.status(status).json({
+          'status': status
+        });
       }
     }, (error) => {
-      out.devMessage = error;
-      out.status = 500;
-      out.success = false;
-      res.status(out.status).json(out);
+      status = 500;
+      res.status(status).json({
+        'developerMessage': error,
+        'status': status
+      });
     });
   });
 
@@ -40,28 +38,26 @@ module.exports = (express) => {
    * Create an App
    */
   router.post('/apps', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
+    let status = 200;
     // Can check here if all fields are met
     app.create(req.body, (data) => {
-      if (data/* && data.length > 0*/) {
-        out.data = data;
-        res.status(out.status).json(out);
+      if (data) {
+        res.status(status).json({
+          'data': data,
+          'status': status
+        });
       } else {
-        out.status = 500;
-        out.success = false;
-        res.status(out.status).json(out);
+        status = 500;
+        res.status(status).json({
+          'status': status
+        });
       }
     }, (error) => {
-      out.devMessage = error;
-      out.status = 500;
-      out.success = false;
-      res.status(out.status).json(out);
+      status = 500;
+      res.status(status).json({
+        'developerMessage': error,
+        'status': status
+      });
     });
   });
 
@@ -69,33 +65,32 @@ module.exports = (express) => {
    * Delete App based upon id
    */
   router.delete('/apps/:id', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
+    let status = 200;
     if (isNumber(req.params.id)) {
       app.destroy(req.params, (data) => {
-          if (data/* && data.length > 0*/) {
-            out.data = data;
-            res.status(out.status).json(out);
-          } else {
-            out.status = 500;
-            out.success = false;
-            res.status(out.status).json(out);
-          }
+        if (data) {
+          res.status(status).json({
+            'data': data,
+            'status': status
+          });
+        } else {
+          status = 404;
+          res.status(status).json({
+            'status': status
+          });
+        }
       }, (error) => {
-        out.devMessage = error;
-        out.status = 500;
-        out.success = false;
-        res.status(out.status).json(out);
+        status = 500;
+        res.status(status).json({
+          'developerMessage': error,
+          'status': status
+        });
       });
     } else {
-      out.status = 422;
-      out.success = false;
-      res.status(out.status).json(out);
+      status = 422;
+      res.status(status).json({
+        'status': status
+      });
     }
   });
 
@@ -103,33 +98,32 @@ module.exports = (express) => {
    * Display App based upon id
    */
   router.get('/apps/:id', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
+    let status = 200;
     if (isNumber(req.params.id)) {
       app.find(req.params, (data) => {
-          if (data/* && data.length > 0*/) {
-            out.data = data;
-            res.status(out.status).json(out);
-          } else {
-            out.status = 404;
-            out.success = false;
-            res.status(out.status).json(out);
-          }
+        if (data) {
+          res.status(status).json({
+            'data': data,
+            'status': status
+          });
+        } else {
+          status = 404;
+          res.status(status).json({
+            'status': status
+          });
+        }
       }, (error) => {
-        out.devMessage = error;
-        out.status = 500;
-        out.success = false;
-        res.status(out.status).json(out);
+        status = 500;
+        res.status(status).json({
+          'developerMessage': error,
+          'status': status
+        });
       });
     } else {
-      out.status = 422;
-      out.success = false;
-      res.status(out.status).json(out);
+      status = 422;
+      res.status(status).json({
+        'status': status
+      });
     }
   });
 
@@ -137,71 +131,69 @@ module.exports = (express) => {
    * Update App based upon id
    */
   router.post('/apps/:id', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
+    let status = 200;
     // Can check here if all fields are met
     if (isNumber(req.params.id)) {
       req.body.id = req.params.id;
       app.update(req.body, (data) => {
-          if (data/* && data.length > 0*/) {
-            out.data = data;
-            res.status(out.status).json(out);
-          } else {
-            out.status = 404;
-            out.success = false;
-            res.status(out.status).json(out);
-          }
+        if (data) {
+          res.status(status).json({
+            'data': data,
+            'status': status
+          });
+        } else {
+          status = 404;
+          res.status(status).json({
+            'status': status
+          });
+        }
       }, (error) => {
-        out.devMessage = error;
-        out.status = 500;
-        out.success = false;
-        res.status(out.status).json(out);
+        status = 500;
+        res.status(status).json({
+          'developerMessage': error,
+          'status': status
+        });
       });
     } else {
-      out.status = 422;
-      out.success = false;
-      res.status(out.status).json(out);
+      status = 422;
+      res.status(status).json({
+        'status': status
+      });
     }
   });
 
   /**
-   * Display all App from specific userId
+   * Display all App from specific appId
    */
-  router.get('/users/:id/apps', (req, res) => {
-    let out = {
-      'data': [],
-      'devMessage': '',
-      'message': '',
-      'status': 200,
-      'success': true
-    };
-    if (isNumber(req.params.id)) {
-      app.find(req.params, (data) => {
-          if (data/* && data.length > 0*/) {
-            out.data = data;
-            res.status(out.status).json(out);
-          } else {
-            out.status = 404;
-            out.success = false;
-            res.status(out.status).json(out);
-          }
-      }, (error) => {
-        out.devMessage = error;
-        out.status = 500;
-        out.success = false;
-        res.status(out.status).json(out);
-      });
-    } else {
-      out.status = 422;
-      out.success = false;
-      res.status(out.status).json(out);
-    }
-  });
+  // router.get('/apps/:id/apps', (req, res) => {
+  //   let status = 200;
+  //   if (isNumber(req.params.id)) {
+  //     app.find(req.params, (data) => {
+  //       if (data/* && data.length > 0*/) {
+  //         res.status(status).json({
+  //           'data': data,
+  //           'status': status
+  //         });
+  //       } else {
+  //         status = 404;
+  //         res.status(status).json({
+  //           'status': status
+  //         });
+  //       }
+  //     }, (error) => {
+  //       status = 500;
+  //       res.status(status).json({
+  //         'developerMessage': error,
+  //         'status': status
+  //       });
+  //     });
+  //   } else {
+  //     status = 422;
+  //     res.status(status).json({
+  //       'status': status
+  //     });
+  //   }
+  // });
 
   return router;
 

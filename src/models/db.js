@@ -16,6 +16,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 
 const app = sequelize.define('app', {
   'name': {
+    'allowNull': false,
     'type': Sequelize.STRING,
     'unique': true
   }
@@ -23,10 +24,13 @@ const app = sequelize.define('app', {
 
 const user = sequelize.define('user', {
   'email': {
+    'allowNull': false,
     'type': Sequelize.STRING,
     'unique': true
   },
   'name': {
+    'allowNull': false,
+    'required': true,
     'type': Sequelize.STRING
   }
 });
