@@ -6,261 +6,134 @@ module.exports = (express) => {
   const router = express.Router();
 
   router.get('/apps', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
     // Find all apps
     app.findAll( (data) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
-        // Respond with JSON
-        res.status(status).json({
-          'data': data,
-          'status': status
-        });
+        // Respond with JSON, status OK
+        res.status(200).json(data);
       } else {
-        // Change status to Not Found
-        status = 404;
-        // Respond with JSON
-        res.status(status).json({
-          'status': status
-        });
+        // Respond with JSON, status Not Found
+        res.status(404).json();
       }
     }, (error) => {
-      // Change status to Internal Server Error
-      status = 500;
-      // Respond with JSON
-      res.status(status).json({
-        'developerMessage': error,
-        'status': status
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        'developerMessage': error
       });
     });
   });
 
   router.post('/apps', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
     // If app required data is set
-    if (
-      req.body.title &&
-      req.body.title.length > 0
-    ) {
+    if (req.body.title && req.body.title.length > 0) {
       // Create app
       app.create(req.body, (data) => {
         // If data exists
         if (data) {
-          // Respond with JSON
-          res.status(status).json({
-            'data': data,
-            'status': status
-          });
+          // Respond with JSON, status OK
+          res.status(200).json(data);
         } else {
-          // Change status to Internal Server Error
-          status = 500;
-          // Respond with JSON
-          res.status(status).json({
-            'status': status
-          });
+          // Respond with JSON, status Internal Server Error
+          res.status(500).json();
         }
       }, (error) => {
-        // Change status to Internal Server Error
-        status = 500;
-        // Respond with JSON
-        res.status(status).json({
-          'developerMessage': error,
-          'status': status
+        // Respond with JSON, status Internal Server Error
+        res.status(500).json({
+          'developerMessage': error
         });
       });
     } else {
-      // Change status to Unprocessable Entity
-      status = 422;
-      // Respond with JSON
-      res.status(status).json({
-        'developerMessage': 'App must have a name.',
-        'status': status
+      // Respond with JSON, status Unprocessable Entity
+      res.status(422).json({
+        'developerMessage': 'App must have a name.'
       });
     }
   });
 
   router.delete('/apps/:id', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
-    // If id is a number
-    if (functions.isNumber(req.params.id)) {
-      // Delete app by id
-      app.destroy(req.params, (data) => {
-        // If data exists
-        if (data) {
-          // Respond with JSON
-          res.status(status).json({
-            'data': data,
-            'status': status
-          });
-        } else {
-          // Change status to Not Found
-          status = 404;
-          // Respond with JSON
-          res.status(status).json({
-            'status': status
-          });
-        }
-      }, (error) => {
-        // Change status to Internal Server Error
-        status = 500;
-        // Respond with JSON
-        res.status(status).json({
-          'developerMessage': error,
-          'status': status
-        });
+    // Delete app by id
+    app.destroy(req.params, (data) => {
+      // If data exists
+      if (data) {
+        // Respond with JSON, status OK
+        res.status(200).json(data);
+      } else {
+        // Respond with JSON, status Not Found
+        res.status(404).json();
+      }
+    }, (error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        'developerMessage': error
       });
-    } else {
-      // Change status to Unprocessable Entity
-      status = 422;
-      // Respond with JSON
-      res.status(status).json({
-        'developerMessage': 'Id must be a number.',
-        'status': status
-      });
-    }
+    });
   });
 
   router.get('/apps/:id', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
-    // If id is a number
-    if (functions.isNumber(req.params.id)) {
-      // Find app by id
-      app.find(req.params, (data) => {
-        // If data exists
-        if (data) {
-          // Respond with JSON
-          res.status(status).json({
-            'data': data,
-            'status': status
-          });
-        } else {
-          // Change status to Not Found
-          status = 404;
-          // Respond with JSON
-          res.status(status).json({
-            'status': status
-          });
-        }
-      }, (error) => {
-        // Change status to Internal Server Error
-        status = 500;
-        // Respond with JSON
-        res.status(status).json({
-          'developerMessage': error,
-          'status': status
-        });
+    // Find app by id
+    app.find(req.params, (data) => {
+      // If data exists
+      if (data) {
+        // Respond with JSON, status OK
+        res.status(200).json(data);
+      } else {
+        // Respond with JSON, status Not Found
+        res.status(404).json();
+      }
+    }, (error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        'developerMessage': error
       });
-    } else {
-      // Change status to Unprocessable Entity
-      status = 422;
-      // Respond with JSON
-      res.status(status).json({
-        'developerMessage': 'Id must be a number.',
-        'status': status
-      });
-    }
+    });
   });
 
   router.post('/apps/:id', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
     // If app required data is set
-    if (
-      req.body.title &&
-      req.body.title.length > 0
-    ) {
-      // If id is a number
-      if (functions.isNumber(req.params.id)) {
-        req.body.id = req.params.id;
-        // Update app by id
-        app.update(req.body, (data) => {
-          // If data exists
-          if (data) {
-            // Respond with JSON
-            res.status(status).json({
-              'data': data,
-              'status': status
-            });
-          } else {
-            // Change status to Not Found
-            status = 404;
-            // Respond with JSON
-            res.status(status).json({
-              'status': status
-            });
-          }
-        }, (error) => {
-          // Change status to Internal Server Error
-          status = 500;
-          // Respond with JSON
-          res.status(status).json({
-            'developerMessage': error,
-            'status': status
-          });
+    if (req.body.title && req.body.title.length > 0) {
+      req.body.id = req.params.id;
+      // Update app by id
+      app.update(req.body, (data) => {
+        // If data exists
+        if (data) {
+          // Respond with JSON, status OK
+          res.status(200).json(data);
+        } else {
+          // Respond with JSON, status Not Found
+          res.status(404).json();
+        }
+      }, (error) => {
+        // Respond with JSON, status Internal Server Error
+        res.status(500).json({
+          'developerMessage': error
         });
-      } else {
-        // Change status to Unprocessable Entity
-        status = 422;
-        // Respond with JSON
-        res.status(status).json({
-          'developerMessage': 'Id must be a number.',
-          'status': status
-        });
-      }
+      });
     } else {
-      // Change status to Unprocessable Entity
-      status = 422;
-      // Respond with JSON
-      res.status(status).json({
-        'developerMessage': 'App must have a name.',
-        'status': status
+      // Respond with JSON, status Unprocessable Entity
+      res.status(422).json({
+        'developerMessage': 'App must have a name.'
       });
     }
   });
 
   router.get('/apps/:id/apps', (req, res) => {
-    // Status is a HTTP response code, default OK
-    let status = 200;
-    // If id is a number
-    if (functions.isNumber(req.params.id)) {
-      // Find all apps for a userId
-      app.find(req.params, (data) => {
-        // If data exists
-        if (data) {
-          // Respond with JSON
-          res.status(status).json({
-            'data': data,
-            'status': status
-          });
-        } else {
-          // Change status to Not Found
-          status = 404;
-          // Respond with JSON
-          res.status(status).json({
-            'status': status
-          });
-        }
-      }, (error) => {
-        // Change status to Internal Server Error
-        status = 500;
-        // Respond with JSON
-        res.status(status).json({
-          'developerMessage': error,
-          'status': status
-        });
+    // Find all apps for a userId
+    app.find(req.params, (data) => {
+      // If data exists
+      if (data) {
+        // Respond with JSON, status OK
+        res.status(200).json(data);
+      } else {
+        // Respond with JSON, status Not Found
+        res.status(404).json();
+      }
+    }, (error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        'developerMessage': error
       });
-    } else {
-      // Change status to Unprocessable Entity
-      status = 422;
-      // Respond with JSON
-      res.status(status).json({
-        'status': status
-      });
-    }
+    });
   });
 
   return router;
