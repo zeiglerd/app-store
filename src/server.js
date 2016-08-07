@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({
 app.use('/', require('./routes')(express));
 
 // Start server
-exports.server = app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Running on Port:', port);
 });
+
+module.exports = server;

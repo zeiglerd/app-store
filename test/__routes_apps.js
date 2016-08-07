@@ -13,8 +13,6 @@ describe('App Routes', () => {
     server.close();
   });
 
-  return;
-
   // Test for Multiple Apps
   it('GET /api/v1/apps returns multiple apps', (done) => {
     request(server)

@@ -7,7 +7,7 @@ module.exports = (express) => {
 
   router.get('/users', (req, res) => {
     // Find all users
-    user.findAll( (data) => {
+    user.all( (data) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
         // Respond with JSON, status OK
@@ -26,7 +26,7 @@ module.exports = (express) => {
 
   router.post('/users', (req, res) => {
     // If user required data is set
-    if (req.body.name && req.body.name.length > 0) {
+    if (req.body.title && req.body.title.length > 0) {
       // Create user
       user.add(req.body, (data) => {
         // If data exists
@@ -53,7 +53,7 @@ module.exports = (express) => {
 
   router.delete('/users/:id', (req, res) => {
     // Delete user by id
-    user.destroy(req.params, (data) => {
+    user.remove(req.params, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
@@ -72,7 +72,7 @@ module.exports = (express) => {
 
   router.get('/users/:id', (req, res) => {
     // Find user by id
-    user.find(req.params, (data) => {
+    user.one(req.params, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
@@ -91,7 +91,7 @@ module.exports = (express) => {
 
   router.post('/users/:id', (req, res) => {
     // If user required data is set
-    if (req.body.name && req.body.name.length > 0) {
+    if (req.body.title && req.body.title.length > 0) {
       req.body.id = req.params.id;
       // Update user by id
       user.update(req.body, (data) => {
