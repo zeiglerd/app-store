@@ -2,12 +2,12 @@ const db = require('./db');
 
 // Create app
 exports.create = (payload, success, error) => {
-  db.app.create(payload).then(success).catch(error);
+  db.App.create(payload).then(success).catch(error);
 };
 
 // Delete app by id
-exports.destroy = (payload, success, error) => {
-  db.app.destroy({
+exports.remove = (payload, success, error) => {
+  db.App.destroy({
     'where': {
       'id': payload.id
     }
@@ -15,8 +15,8 @@ exports.destroy = (payload, success, error) => {
 };
 
 // Find app by id
-exports.find = (payload, success, error) => {
-  db.app.find({
+exports.one = (payload, success, error) => {
+  db.App.find({
     'where': {
       'id': payload.id
     }, 'include': [{
@@ -27,8 +27,8 @@ exports.find = (payload, success, error) => {
 };
 
 // Find all apps
-exports.findAll = (success, error) => {
-  db.app.findAll({
+exports.all = (success, error) => {
+  db.App.findAll({
     'include': [{
       'all': true,
       'nested': true
@@ -38,7 +38,7 @@ exports.findAll = (success, error) => {
 
 // Update app by id
 exports.update = (payload, success, error) => {
-  db.app.find({
+  db.App.find({
     'where': {
       'id': payload.id
     }

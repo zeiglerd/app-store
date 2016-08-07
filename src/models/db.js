@@ -15,11 +15,12 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 
 // App schema
-const app = sequelize.define('app', {
+const App = sequelize.define('app', {
   'id': {
     'allowNull': false,
+    'defaultValue': Sequelize.UUIDV4,
     'primaryKey': true,
-    'type': Sequelize.STRING,
+    'type': Sequelize.UUID,
     'unique': true
   },
   'title': {
@@ -38,11 +39,12 @@ const app = sequelize.define('app', {
 });
 
 // User schema
-const user = sequelize.define('user', {
+const User = sequelize.define('user', {
   'id': {
     'allowNull': false,
+    'defaultValue': Sequelize.UUIDV4,
     'primaryKey': true,
-    'type': Sequelize.STRING,
+    'type': Sequelize.UUID,
     'unique': true
   },
   'name': {
@@ -51,12 +53,12 @@ const user = sequelize.define('user', {
   }
 });
 // User relations
-app.hasMany(user, {
+App.hasMany(User, {
   'foreignKey': 'appId'
 });
 
-// Art assets schema
-const artAsset = sequelize.define('artAsset', {
+// Art Assets schema
+const ArtAsset = sequelize.define('artAsset', {
   'title': {
     'allowNull': false,
     'type': Sequelize.STRING
@@ -66,8 +68,8 @@ const artAsset = sequelize.define('artAsset', {
     'type': Sequelize.STRING
   }
 });
-// Art assets relations
-app.hasMany(artAsset, {
+// Art Assets relations
+App.hasMany(ArtAsset, {
   'foreignKey': 'appId'
 });
 
@@ -76,6 +78,6 @@ sequelize.sync();
 
 exports.sequelize = sequelize;
 
-exports.app = app;
-exports.artAsset = artAsset;
-exports.user = user;
+exports.App = App;
+exports.ArtAsset = ArtAsset;
+exports.User = User;

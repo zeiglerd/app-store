@@ -4,111 +4,86 @@ const faker = require('faker');
 const App = require('../src/models/app');
 
 describe('App Model', () => {
-  var server;
-  var testApps;
-  var tempApp;
 
+  // Hold test data throughout
+  let tempApp;
+  let testApp;
 
-  // Test for all Apps
-  it('Gets All', (done) => {
-    App.all(
-      (err) => {
-        throw new Error(err);
-      },
-      (apps) => {
-        this.testApps = apps;
-        expect(this.testApps.length).to.be.above(0);
-        done();
-      }
-    );
+  // Find all apps
+  it('GET /api/v1/apps - Find all apps', (done) => {
+    App.all( (apps) => {
+      // Apps (Array) should be a length greater than 0
+      expect(apps.length).to.be.above(0);
+      // Save the returned data for later use in tests
+      this.testApp = apps[0].dataValues;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Add a App
-  it('Adds a new App', (done) => {
-
-    // Generate a fake App with a random title
-    const fakeApp = { title: faker.name.firstName() };
-
+  // Create app
+  it('POST /api/v1/apps - Create app', (done) => {
+    // Generate a fake app with a random title
+    const fakeApp = { 'title': faker.name.firstName() };
     // Call app model for adding
-    App.add(fakeApp,
-      (err) => {
-        throw new Error(err);
-      },
-      (app) => {
-
-        // Save the returned data for later use in tests
-        this.tempApp = app.dataValues;
-
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(fakeApp.title);
-        done();
-      }
-    );
+    App.create(fakeApp, (app) => {
+      app = app.dataValues;
+      // App.title should match fakeApp.title
+      expect(app.title).to.be.equal(fakeApp.title);
+      // Save the returned data for later use in tests
+      this.tempApp = app;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Find a App
-  it('Find a App', (done) => {
-
-    // Generate a fake App with a random title
-    const targetApp = this.testApps[0];
-
+  // Find app by id
+  it('GET /api/v1/apps/:id - Find app by id', (done) => {
     // Call app model for finding
-    App.one(targetApp,
-      (err) => {
-        throw new Error(err);
-      },
-      (app) => {
-
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(targetApp.title);
-        done();
-      }
-    );
+    App.one(this.testApp, (app) => {
+      app = app.dataValues;
+      // App.title should match fakeApp.title
+      expect(app.title).to.be.equal(this.testApp.title);
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
   // Update a App
-  it('Update a App', (done) => {
-
-    // Load in the info for an existing app
-    var updateApp = this.tempApp;
-
-    // Generate a new title for hte app
-    updateApp.title = 'Not A Real Name';
-
+  it('POST /api/v1/apps/:id - Update a App', (done) => {
+    // Update the title of the app
+    this.tempApp.title = 'Not A Real Name';
     // Call app model for updating
-    App.update(updateApp,
-      (err) => {
-        throw new Error(err);
-      },
-      (app) => {
-        // Save the returned data for later use in tests
-        this.tempApp = app;
-        // App.title returned from model should match app.title supplied
-        expect(app.title).to.be.equal(updateApp.title);
-        done();
-      }
-    );
+    App.update(this.tempApp, (app) => {
+      app = app.dataValues;
+      // App.title should match tempApp.title
+      expect(app.title).to.be.equal(this.tempApp.title);
+      // Save the returned data for later use in tests
+      this.tempApp = app;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Remove a App
-  it('Remove a App', (done) => {
+  // Delete app by id
+  it('DELETE /api/v1/apps/:id - Delete app by id', (done) => {
 
-    // Load in the info for an existing app
-    var removeApp = this.tempApp;
-    removeApp.force = true;
+    // Let Sequelize know to forcefully remove the value, if paranoid.
+    this.tempApp.force = true;
 
     // Call app model for updating
-    App.remove(removeApp,
-      (err) => {
-        throw new Error(err);
-      },
-      (response) => {
+    App.remove(this.tempApp, (response) => {
 
-        // if successfully removed a 1 should be returned
-        expect(response).to.be.equal(1);
-        done();
-      }
-    );
+      // if successfully removed a 1 should be returned
+      expect(response).to.be.equal(1);
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
 });

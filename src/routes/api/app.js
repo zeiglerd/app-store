@@ -7,7 +7,7 @@ module.exports = (express) => {
 
   router.get('/apps', (req, res) => {
     // Find all apps
-    app.findAll( (data) => {
+    app.all( (data) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
         // Respond with JSON, status OK
@@ -53,7 +53,7 @@ module.exports = (express) => {
 
   router.delete('/apps/:id', (req, res) => {
     // Delete app by id
-    app.destroy(req.params, (data) => {
+    app.remove(req.params, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
@@ -72,7 +72,7 @@ module.exports = (express) => {
 
   router.get('/apps/:id', (req, res) => {
     // Find app by id
-    app.find(req.params, (data) => {
+    app.one(req.params, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK

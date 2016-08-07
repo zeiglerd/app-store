@@ -4,111 +4,86 @@ const faker = require('faker');
 const User = require('../src/models/user');
 
 describe('User Model', () => {
-  var server;
-  var testUsers;
-  var tempUser;
 
+  // Hold test data throughout
+  let tempUser;
+  let testUser;
 
-  // Test for all Users
-  it('Gets All', (done) => {
-    User.all(
-      (err) => {
-        throw new Error(err);
-      },
-      (users) => {
-        this.testUsers = users;
-        expect(this.testUsers.length).to.be.above(0);
-        done();
-      }
-    );
+  // Find all users
+  it('GET /api/v1/users - Find all users', (done) => {
+    User.all( (users) => {
+      // Users (Array) should be a length greater than 0
+      expect(users.length).to.be.above(0);
+      // Save the returned data for later use in tests
+      this.testUser = users[0].dataValues;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Add a User
-  it('Adds a new User', (done) => {
-
-    // Generate a fake User with a random name
-    const fakeUser = { name: faker.name.firstName() };
-
+  // Create user
+  it('POST /api/v1/users - Create user', (done) => {
+    // Generate a fake user with a random name
+    const fakeUser = { 'name': faker.name.firstName() };
     // Call user model for adding
-    User.add(fakeUser,
-      (err) => {
-        throw new Error(err);
-      },
-      (user) => {
-
-        // Save the returned data for later use in tests
-        this.tempUser = user.dataValues;
-
-        // User.name returned from model should match user.name supplied
-        expect(user.name).to.be.equal(fakeUser.name);
-        done();
-      }
-    );
+    User.create(fakeUser, (user) => {
+      user = user.dataValues;
+      // User.name should match fakeUser.name
+      expect(user.name).to.be.equal(fakeUser.name);
+      // Save the returned data for later use in tests
+      this.tempUser = user;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Find a User
-  it('Find a User', (done) => {
-
-    // Generate a fake User with a random name
-    const targetUser = this.testUsers[0];
-
+  // Find user by id
+  it('GET /api/v1/users/:id - Find user by id', (done) => {
     // Call user model for finding
-    User.one(targetUser,
-      (err) => {
-        throw new Error(err);
-      },
-      (user) => {
-
-        // User.name returned from model should match user.name supplied
-        expect(user.name).to.be.equal(targetUser.name);
-        done();
-      }
-    );
+    User.one(this.testUser, (user) => {
+      user = user.dataValues;
+      // User.name should match fakeUser.name
+      expect(user.name).to.be.equal(this.testUser.name);
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
   // Update a User
-  it('Update a User', (done) => {
-
-    // Load in the info for an existing user
-    var updateUser = this.tempUser;
-
-    // Generate a new name for hte user
-    updateUser.name = 'Not A Real Name';
-
+  it('POST /api/v1/users/:id - Update a User', (done) => {
+    // Update the name of the user
+    this.tempUser.name = 'Not A Real Name';
     // Call user model for updating
-    User.update(updateUser,
-      (err) => {
-        throw new Error(err);
-      },
-      (user) => {
-        // Save the returned data for later use in tests
-        this.tempUser = user;
-        // User.name returned from model should match user.name supplied
-        expect(user.name).to.be.equal(updateUser.name);
-        done();
-      }
-    );
+    User.update(this.tempUser, (user) => {
+      user = user.dataValues;
+      // User.name should match tempUser.name
+      expect(user.name).to.be.equal(this.tempUser.name);
+      // Save the returned data for later use in tests
+      this.tempUser = user;
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
-  // Remove a User
-  it('Remove a User', (done) => {
+  // Delete user by id
+  it('DELETE /api/v1/users/:id - Delete user by id', (done) => {
 
-    // Load in the info for an existing user
-    var removeUser = this.tempUser;
-    removeUser.force = true;
+    // Let Sequelize know to forcefully remove the value, if paranoid.
+    this.tempUser.force = true;
 
     // Call user model for updating
-    User.remove(removeUser,
-      (err) => {
-        throw new Error(err);
-      },
-      (response) => {
+    User.remove(this.tempUser, (response) => {
 
-        // if successfully removed a 1 should be returned
-        expect(response).to.be.equal(1);
-        done();
-      }
-    );
+      // if successfully removed a 1 should be returned
+      expect(response).to.be.equal(1);
+      done();
+    }, (error) => {
+      throw new Error(error);
+    });
   });
 
 });
