@@ -1,7 +1,7 @@
 const db = require('./db');
 
 // Create user
-exports.create = (payload, success, error) => {
+exports.add = (payload, success, error) => {
   db.User.create(payload).then(success).catch(error);
 };
 

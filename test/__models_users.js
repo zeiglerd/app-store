@@ -27,7 +27,7 @@ describe('User Model', () => {
     // Generate a fake user with a random name
     const fakeUser = { 'name': faker.name.firstName() };
     // Call user model for adding
-    User.create(fakeUser, (user) => {
+    User.add(fakeUser, (user) => {
       user = user.dataValues;
       // User.name should match fakeUser.name
       expect(user.name).to.be.equal(fakeUser.name);

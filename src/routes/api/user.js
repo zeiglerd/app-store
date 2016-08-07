@@ -28,7 +28,7 @@ module.exports = (express) => {
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
       // Create user
-      user.create(req.body, (data) => {
+      user.add(req.body, (data) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK

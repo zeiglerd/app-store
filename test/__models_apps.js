@@ -27,7 +27,7 @@ describe('App Model', () => {
     // Generate a fake app with a random title
     const fakeApp = { 'title': faker.name.firstName() };
     // Call app model for adding
-    App.create(fakeApp, (app) => {
+    App.add(fakeApp, (app) => {
       app = app.dataValues;
       // App.title should match fakeApp.title
       expect(app.title).to.be.equal(fakeApp.title);

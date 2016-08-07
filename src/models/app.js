@@ -1,7 +1,7 @@
 const db = require('./db');
 
 // Create app
-exports.create = (payload, success, error) => {
+exports.add = (payload, success, error) => {
   db.App.create(payload).then(success).catch(error);
 };
 

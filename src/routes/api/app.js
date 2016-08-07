@@ -28,7 +28,7 @@ module.exports = (express) => {
     // If app required data is set
     if (req.body.title && req.body.title.length > 0) {
       // Create app
-      app.create(req.body, (data) => {
+      app.add(req.body, (data) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK
@@ -117,7 +117,7 @@ module.exports = (express) => {
     }
   });
 
-  router.get('/apps/:id/apps', (req, res) => {
+  router.get('/users/:id/apps', (req, res) => {
     // Find all apps for a userId
     app.find(req.params, (data) => {
       // If data exists
