@@ -15,7 +15,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -36,7 +36,7 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Internal Server Error
-          res.status(500).json();
+          res.status(500).json(0);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
@@ -61,7 +61,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -80,7 +80,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -102,7 +102,7 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Not Found
-          res.status(404).json();
+          res.status(404).json(0);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
@@ -120,14 +120,14 @@ module.exports = (express) => {
 
   router.get('/users/:id/apps', (req, res) => {
     // Find apps by userId
-    app.allByUserId(req.params.id, (data) => {
+    app.allByUserId(req.params, (data) => {
       // If data exists
-      if (data) {
+      if (data && data.length > 0) {
         // Respond with JSON, status OK
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error

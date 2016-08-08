@@ -14,7 +14,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -35,7 +35,7 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Internal Server Error
-          res.status(500).json();
+          res.status(500).json(0);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
@@ -60,7 +60,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -79,7 +79,7 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json();
+        res.status(404).json(0);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -101,7 +101,7 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Not Found
-          res.status(404).json();
+          res.status(404).json(0);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error

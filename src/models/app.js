@@ -39,8 +39,9 @@ exports.all = (success, error) => {
 // Find all apps by userId
 exports.allByUserId = (payload, success, error) => {
   db.App.findAll({
-    'userId': payload.id,
-    'include': [{
+    'where': {
+      'userId': payload.id
+    }, 'include': [{
       'all': true,
       'nested': true
     }]
