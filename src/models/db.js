@@ -28,10 +28,10 @@ const App = sequelize.define('app', {
     'type': Sequelize.STRING,
     'unique': true
   },
-  "description": {
+  'description': {
     'type': Sequelize.STRING
   },
-  "releaseDate": {
+  'releaseDate': {
     'allowNull': false,
     'defaultValue': Sequelize.NOW,
     'type': Sequelize.DATE
@@ -52,10 +52,11 @@ const User = sequelize.define('user', {
     'type': Sequelize.STRING
   }
 });
-// User relations
-App.hasMany(User, {
-  'foreignKey': 'appId'
+// App/User relations
+User.hasMany(App, {
+  'foreignKey': 'userId'
 });
+App.belongsTo(User);
 
 // Art Assets schema
 const ArtAsset = sequelize.define('artAsset', {
@@ -68,7 +69,7 @@ const ArtAsset = sequelize.define('artAsset', {
     'type': Sequelize.STRING
   }
 });
-// Art Assets relations
+// App/Art Assets relations
 App.hasMany(ArtAsset, {
   'foreignKey': 'appId'
 });

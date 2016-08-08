@@ -19,21 +19,13 @@ exports.one = (payload, success, error) => {
   db.User.find({
     'where': {
       'id': payload.id
-    }, 'include': [{
-      'all': true,
-      'nested': true
-    }]
+    }
   }).then(success).catch(error);
 };
 
 // Find all users
 exports.all = (success, error) => {
-  db.User.findAll({
-    'include': [{
-      'all': true,
-      'nested': true
-    }]
-  }).then(success).catch(error);
+  db.User.findAll().then(success).catch(error);
 };
 
 // Update user by id

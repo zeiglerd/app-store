@@ -119,33 +119,12 @@ module.exports = (express) => {
   });
 
   router.get('/users/:id/apps', (req, res) => {
-    // Find all users for a userId
-    user.one(req.params, (data) => {
+    // Find apps by userId
+    app.allByUserId(req.params.id, (data) => {
       // If data exists
       if (data) {
-        let tempApp = {
-          'id': data.appId
-        };
-        // Find app by id
-        app.one(tempApp, (data) => {
-          // If data exists
-          if (data) {
-            let tempApps = [
-              data
-            ];
-            console.log(tempApps);
-            // Respond with JSON, status OK
-            res.status(200).json(tempApps);
-          } else {
-            // Respond with JSON, status Not Found
-            res.status(404).json();
-          }
-        }, (error) => {
-          // Respond with JSON, status Internal Server Error
-          res.status(500).json({
-            'developerMessage': error
-          });
-        });
+        // Respond with JSON, status OK
+        res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
         res.status(404).json();

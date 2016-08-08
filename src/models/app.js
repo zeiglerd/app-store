@@ -36,6 +36,17 @@ exports.all = (success, error) => {
   }).then(success).catch(error);
 };
 
+// Find all apps by userId
+exports.allByUserId = (payload, success, error) => {
+  db.App.findAll({
+    'userId': payload.id,
+    'include': [{
+      'all': true,
+      'nested': true
+    }]
+  }).then(success).catch(error);
+};
+
 // Update app by id
 exports.update = (payload, success, error) => {
   db.App.find({
