@@ -119,7 +119,7 @@ module.exports = (express) => {
   });
 
   router.get('/users/:id/apps', (req, res) => {
-    // Find apps by userId
+    // Find all apps for userId
     app.allByUserId(req.params, (data) => {
       // If data exists
       if (data && data.length > 0) {

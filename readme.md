@@ -173,10 +173,44 @@ Update App based upon id
 #### GET /users/:id/apps
 [Back to ToC](#toc)
 ###### Description
-.
+Find all apps for userId
 ###### Example Response
 ```
-.
+[
+  {
+    "id": "0032c47b-4a7b-4232-9cc3-6af718244ea8",
+    "title": "Best App Ever",
+    "description": "A fast paced side scrolling shooter",
+    "releaseDate": "2016-05-15T22:29:20.000Z",
+    "createdAt": "2016-05-15T22:29:20.000Z",
+    "updatedAt": "2016-05-15T22:29:20.000Z",
+    "userId": "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
+    "user": {
+      "id": "ae25e5a4-73db-4969-9f6c-acf8246b7faa",
+      "name": "Chapman",
+      "createdAt": "2016-05-15T22:29:20.000Z",
+      "updatedAt": "2016-05-15T22:29:20.000Z"
+    },
+    "artAssets": [
+      {
+        "id": 1,
+        "title": "Splash Screen",
+        "srcLink": "http://i.imgur.com/5e5Ihb6.jpg",
+        "createdAt": "2016-05-15T22:29:20.000Z",
+        "updatedAt": "2016-05-15T22:29:20.000Z",
+        "appId": "0032c47b-4a7b-4232-9cc3-6af718244ea8"
+      },
+      {
+        "id": 2,
+        "title": "Cut Scene",
+        "srcLink": "http://i.imgur.com/QQ3O6PO.jpg",
+        "createdAt": "2016-05-15T22:29:20.000Z",
+        "updatedAt": "2016-05-15T22:29:20.000Z",
+        "appId": "0032c47b-4a7b-4232-9cc3-6af718244ea8"
+      }
+    ]
+  }
+]
 ```
 
 
