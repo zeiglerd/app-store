@@ -1,3 +1,5 @@
+const functions = require('../shared/functions');
+
 module.exports = (express) => {
 
   const router = express.Router();
@@ -9,6 +11,7 @@ module.exports = (express) => {
   // Default route
   router.use((req, res) => {
     // Set a JSON response with a defined status
+    functions.log('test', {});
     let status = 404;
     res.status(status).json({
       'devMessage': 'Invalid route.',
