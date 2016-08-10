@@ -6,13 +6,23 @@ http://semver.org/
 
 
 ## Installation
-Install all dependencies
+1. Install all dependencies
 ```
 npm i
 ```
-Install all command line tools
+- Install all command line tools
 ```
 npm i -g nodemon mocha
+```
+- Define all environment variables
+  - .env
+```
+DB_HOST=localhost
+DB_NAME=appStore
+DB_PASS=root
+DB_PORT=8889
+DB_SCHEMA=mysql
+DB_USER=root
 ```
 
 
