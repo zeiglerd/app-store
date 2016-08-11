@@ -1,4 +1,4 @@
-const functions = require('../shared/functions');
+const utilities = require('../utilities');
 
 module.exports = (express) => {
 
@@ -11,7 +11,7 @@ module.exports = (express) => {
   // Default route
   router.use((req, res) => {
     // Set a JSON response with a defined status
-    functions.debug('test', {});
+    utilities.log('test', {'asd':'asdf','asdf':true});
     res.status(404).json({
       'developerMessage': 'Invalid route.'
     });

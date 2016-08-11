@@ -1,5 +1,5 @@
 const user = require('../../models/user');
-const functions = require('../../shared/functions');
+const utilities = require('../../utilities');
 
 module.exports = (express) => {
 

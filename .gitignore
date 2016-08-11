@@ -3,6 +3,3 @@ node_modules
 *.log
 *.logs
 .env
-.env.json
-out
-build
