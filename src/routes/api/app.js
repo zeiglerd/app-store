@@ -16,20 +16,14 @@ module.exports = (express) => {
         res.json(data);
       } else {
         // Respond with JSON, status Not Found
-        let status = 404,
-            msg = 'No apps exist';
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(404).json({
+          'developerMessage': 'No apps exist'
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      let status = 500,
-          msg = error;
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(500).json({
+        'developerMessage': error
       });
     });
   });
@@ -46,29 +40,20 @@ module.exports = (express) => {
           res.json(data);
         } else {
           // Respond with JSON, status Internal Server Error
-          let status = 500,
-              msg = 'The app could not be created';
-          // utilities.debug(msg, null, status);
-          res.status(status).json({
-            'developerMessage': msg
+          res.status(500).json({
+            'developerMessage': 'The app could not be created'
           });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
-        let status = 500,
-            msg = error;
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(500).json({
+          'developerMessage': error
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
-      let status = 422,
-          msg = 'The app must have a name';
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(422).json({
+        'developerMessage': 'The app must have a name'
       });
     }
   });
@@ -83,20 +68,14 @@ module.exports = (express) => {
         res.json(data);
       } else {
         // Respond with JSON, status Not Found
-        let status = 404,
-            msg = 'The app does not exist';
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(404).json({
+          'developerMessage': 'The app does not exist'
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      let status = 500,
-          msg = error;
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(500).json({
+        'developerMessage': error
       });
     });
   });
@@ -111,20 +90,14 @@ module.exports = (express) => {
         res.json(data);
       } else {
         // Respond with JSON, status Not Found
-        let status = 404,
-            msg = 'The app does not exist';
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(404).json({
+          'developerMessage': 'The app does not exist'
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      let status = 500,
-          msg = error;
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(500).json({
+        'developerMessage': error
       });
     });
   });
@@ -142,29 +115,20 @@ module.exports = (express) => {
           res.json(data);
         } else {
           // Respond with JSON, status Not Found
-          let status = 404,
-              msg = 'The app does not exist or could not be updated';
-          // utilities.debug(msg, null, status);
-          res.status(status).json({
-            'developerMessage': msg
+          res.status(404).json({
+            'developerMessage': 'The app does not exist or could not be updated'
           });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
-        let status = 500,
-            msg = error;
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(500).json({
+          'developerMessage': error
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
-      let status = 422,
-          msg = 'The app must have a name';
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(422).json({
+        'developerMessage': 'The app must have a name'
       });
     }
   });
@@ -179,20 +143,14 @@ module.exports = (express) => {
         res.json(data);
       } else {
         // Respond with JSON, status Not Found
-        let status = 404,
-            msg = 'The user has no apps';
-        // utilities.debug(msg, null, status);
-        res.status(status).json({
-          'developerMessage': msg
+        res.status(404).json({
+          'developerMessage': 'The user has no apps'
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      let status = 500,
-          msg = error;
-      // utilities.debug(msg, null, status);
-      res.status(status).json({
-        'developerMessage': msg
+      res.status(500).json({
+        'developerMessage': error
       });
     });
   });

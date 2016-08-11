@@ -1,4 +1,5 @@
 const db = require('./db');
+const utilities = require('../lib/utilities');
 
 // Create app
 exports.add = (payload, success, error) => {
