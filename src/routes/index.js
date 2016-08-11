@@ -11,9 +11,11 @@ module.exports = (express) => {
   // Default route
   router.use((req, res) => {
     // Set a JSON response with a defined status
-    utilities.log('test', {'asd':'asdf','asdf':true});
-    res.status(404).json({
-      'developerMessage': 'Invalid route.'
+    let status = 404,
+        developerMessage = 'Not a valid route';
+    utilities.log(developerMessage, null, status);
+    res.status(status).json({
+      'developerMessage': developerMessage
     });
   });
 

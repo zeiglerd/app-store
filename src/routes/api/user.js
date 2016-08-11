@@ -14,12 +14,20 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json(0);
+        let status = 404,
+            msg = 'No users exist';
+        utilities.log(msg, null, status);
+        res.status(status).json({
+          'developerMessage': msg
+        });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        'developerMessage': error
+      let status = 500,
+          msg = error;
+      utilities.log(msg, null, status);
+      res.status(status).json({
+        'developerMessage': msg
       });
     });
   });
@@ -35,18 +43,27 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Internal Server Error
-          res.status(500).json(0);
+          let status = 500,
+              msg = 'The user could not be added';
+          utilities.log(msg, null, status);
+          res.status(status).json(msg);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
-        res.status(500).json({
-          'developerMessage': error
+        let status = 500,
+            msg = error;
+        utilities.log(msg, null, status);
+        res.status(status).json({
+          'developerMessage': msg
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
-      res.status(422).json({
-        'developerMessage': 'User must have a name.'
+      let status = 422,
+          msg = 'The user must have a name';
+      utilities.log(msg, null, status);
+      res.status(status).json({
+        'developerMessage': msg
       });
     }
   });
@@ -60,12 +77,18 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json(0);
+        let status = 404,
+            msg = 'The user does not exist';
+        utilities.log(msg, null, status);
+        res.status(status).json(msg);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        'developerMessage': error
+      let status = 500,
+          msg = error;
+      utilities.log(msg, null, status);
+      res.status(status).json({
+        'developerMessage': msg
       });
     });
   });
@@ -79,12 +102,18 @@ module.exports = (express) => {
         res.status(200).json(data);
       } else {
         // Respond with JSON, status Not Found
-        res.status(404).json(0);
+        let status = 404,
+            msg = 'The user does not exist';
+        utilities.log(msg, null, status);
+        res.status(status).json(msg);
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        'developerMessage': error
+      let status = 500,
+          msg = error;
+      utilities.log(msg, null, status);
+      res.status(status).json({
+        'developerMessage': msg
       });
     });
   });
@@ -101,18 +130,27 @@ module.exports = (express) => {
           res.status(200).json(data);
         } else {
           // Respond with JSON, status Not Found
-          res.status(404).json(0);
+          let status = 404,
+              msg = 'The user does not exist or could not be updated';
+          utilities.log(msg, null, status);
+          res.status(status).json(msg);
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
-        res.status(500).json({
-          'developerMessage': error
+        let status = 500,
+            msg = error;
+        utilities.log(msg, null, status);
+        res.status(status).json({
+          'developerMessage': msg
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
-      res.status(422).json({
-        'developerMessage': 'User must have a name.'
+      let status = 422,
+          msg = 'The user must have a name';
+      utilities.log(msg, null, status);
+      res.status(status).json({
+        'developerMessage': msg
       });
     }
   });
