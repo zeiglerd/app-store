@@ -1,5 +1,5 @@
 const user = require('../../models/user');
-const utilities = require('../../utilities');
+const utilities = require('../../lib/utilities');
 
 module.exports = (express) => {
 
