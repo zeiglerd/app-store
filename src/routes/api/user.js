@@ -11,7 +11,7 @@ module.exports = (express) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
         // Respond with JSON, status OK
-        res.status(200).json(data);
+        res.json(data);
       } else {
         // Respond with JSON, status Not Found
         let status = 404,
@@ -40,13 +40,15 @@ module.exports = (express) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK
-          res.status(200).json(data);
+          res.json(data);
         } else {
           // Respond with JSON, status Internal Server Error
           let status = 500,
               msg = 'The user could not be added';
           utilities.log(msg, null, status);
-          res.status(status).json(msg);
+          res.status(status).json({
+            'developerMessage': msg
+          });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
@@ -74,13 +76,15 @@ module.exports = (express) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
-        res.status(200).json(data);
+        res.json(data);
       } else {
         // Respond with JSON, status Not Found
         let status = 404,
             msg = 'The user does not exist';
         utilities.log(msg, null, status);
-        res.status(status).json(msg);
+        res.status(status).json({
+          'developerMessage': msg
+        });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -99,13 +103,15 @@ module.exports = (express) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
-        res.status(200).json(data);
+        res.json(data);
       } else {
         // Respond with JSON, status Not Found
         let status = 404,
             msg = 'The user does not exist';
         utilities.log(msg, null, status);
-        res.status(status).json(msg);
+        res.status(status).json({
+          'developerMessage': msg
+        });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
@@ -127,13 +133,15 @@ module.exports = (express) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK
-          res.status(200).json(data);
+          res.json(data);
         } else {
           // Respond with JSON, status Not Found
           let status = 404,
               msg = 'The user does not exist or could not be updated';
           utilities.log(msg, null, status);
-          res.status(status).json(msg);
+          res.status(status).json({
+            'developerMessage': msg
+          });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
