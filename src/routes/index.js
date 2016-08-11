@@ -1,3 +1,5 @@
+const utilities = require('../lib/utilities');
+
 module.exports = (express) => {
 
   const router = express.Router();
@@ -9,10 +11,10 @@ module.exports = (express) => {
   // Default route
   router.use((req, res) => {
     // Set a JSON response with a defined status
-    let status = 404;
-    res.status(status).json({
-      'devMessage': 'Invalid route.',
-      'status': status
+    let msg = 'Route does not exist';
+    utilities.debug(msg);
+    res.status(404).json({
+      'developerMessage': msg
     });
   });
 

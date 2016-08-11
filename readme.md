@@ -8,11 +8,11 @@ http://semver.org/
 ## Installation
 1. Install all dependencies
 ```
-npm i
+$ npm i
 ```
 - Install all command line tools
 ```
-npm i -g nodemon mocha
+$ npm i -g nodemon mocha
 ```
 - Define all environment variables
   - .env
@@ -29,10 +29,19 @@ DB_USER=root
 ---
 
 
-## Start the server
-To run the server with default settings return
+## Usage
+
+#### Run the server in the default state
+- Suppress debug messages
 ```
-npm start
+$ npm start
+```
+
+#### Run the server for development and debugging
+- Displays debug messages in the console
+- Logs debug messages to /logs/console.log
+```
+$ DEBUG=true nodemon ./src/server.js
 ```
 
 
@@ -42,7 +51,7 @@ npm start
 ## Run the unit tests
 To run the unit test
 ```
-npm test
+$ npm test
 ```
 
 
