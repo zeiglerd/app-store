@@ -36,7 +36,7 @@ module.exports = (express) => {
   router.post('/users', (req, res) => {
     utilities.debug('POST - /api/v1/users');
     // If user required data is set
-    if (req.body.title && req.body.title.length > 0) {
+    if (req.body.name && req.body.name.length > 0) {
       // Create user
       user.add(req.body, (data) => {
         // If data exists
@@ -131,7 +131,7 @@ module.exports = (express) => {
   router.post('/users/:id', (req, res) => {
     utilities.debug('POST - /api/v1/users/' + req.params.id);
     // If user required data is set
-    if (req.body.title && req.body.title.length > 0) {
+    if (req.body.name && req.body.name.length > 0) {
       req.body.id = req.params.id;
       // Update user by id
       user.update(req.body, (data) => {

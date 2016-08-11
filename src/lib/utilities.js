@@ -17,7 +17,7 @@ module.exports = {
       console.log();
       console.log(chalk.bgBlue(chalk.dim(date)));
       console.log(chalk.bgRed((status ? status + ' - ' : '') + chalk.bold(msg)));
-      if (obj) {
+      if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {
         console.log(chalk.bgYellow(chalk.black(JSON.stringify(obj, null, 2))));
       }
       console.log();
