@@ -6,6 +6,7 @@ module.exports = (express) => {
   const router = express.Router();
 
   router.get('/users', (req, res) => {
+    utilities.debug('GET - /api/v1/users');
     // Find all users
     user.all( (data) => {
       // If data exists and data (array) is longer than 0
@@ -16,7 +17,7 @@ module.exports = (express) => {
         // Respond with JSON, status Not Found
         let status = 404,
             msg = 'No users exist';
-        utilities.log(msg, null, status);
+        // utilities.debug(msg, null, status);
         res.status(status).json({
           'developerMessage': msg
         });
@@ -25,7 +26,7 @@ module.exports = (express) => {
       // Respond with JSON, status Internal Server Error
       let status = 500,
           msg = error;
-      utilities.log(msg, null, status);
+      // utilities.debug(msg, null, status);
       res.status(status).json({
         'developerMessage': msg
       });
@@ -33,6 +34,7 @@ module.exports = (express) => {
   });
 
   router.post('/users', (req, res) => {
+    utilities.debug('POST - /api/v1/users');
     // If user required data is set
     if (req.body.title && req.body.title.length > 0) {
       // Create user
@@ -45,7 +47,7 @@ module.exports = (express) => {
           // Respond with JSON, status Internal Server Error
           let status = 500,
               msg = 'The user could not be added';
-          utilities.log(msg, null, status);
+          // utilities.debug(msg, null, status);
           res.status(status).json({
             'developerMessage': msg
           });
@@ -54,7 +56,7 @@ module.exports = (express) => {
         // Respond with JSON, status Internal Server Error
         let status = 500,
             msg = error;
-        utilities.log(msg, null, status);
+        // utilities.debug(msg, null, status);
         res.status(status).json({
           'developerMessage': msg
         });
@@ -63,7 +65,7 @@ module.exports = (express) => {
       // Respond with JSON, status Unprocessable Entity
       let status = 422,
           msg = 'The user must have a name';
-      utilities.log(msg, null, status);
+      // utilities.debug(msg, null, status);
       res.status(status).json({
         'developerMessage': msg
       });
@@ -71,6 +73,7 @@ module.exports = (express) => {
   });
 
   router.delete('/users/:id', (req, res) => {
+    utilities.debug('DELETE - /api/v1/users/' + req.params.id);
     // Delete user by id
     user.remove(req.params, (data) => {
       // If data exists
@@ -81,7 +84,7 @@ module.exports = (express) => {
         // Respond with JSON, status Not Found
         let status = 404,
             msg = 'The user does not exist';
-        utilities.log(msg, null, status);
+        // utilities.debug(msg, null, status);
         res.status(status).json({
           'developerMessage': msg
         });
@@ -90,7 +93,7 @@ module.exports = (express) => {
       // Respond with JSON, status Internal Server Error
       let status = 500,
           msg = error;
-      utilities.log(msg, null, status);
+      // utilities.debug(msg, null, status);
       res.status(status).json({
         'developerMessage': msg
       });
@@ -98,6 +101,7 @@ module.exports = (express) => {
   });
 
   router.get('/users/:id', (req, res) => {
+    utilities.debug('GET - /api/v1/users/' + req.params.id);
     // Find user by id
     user.one(req.params, (data) => {
       // If data exists
@@ -108,7 +112,7 @@ module.exports = (express) => {
         // Respond with JSON, status Not Found
         let status = 404,
             msg = 'The user does not exist';
-        utilities.log(msg, null, status);
+        // utilities.debug(msg, null, status);
         res.status(status).json({
           'developerMessage': msg
         });
@@ -117,7 +121,7 @@ module.exports = (express) => {
       // Respond with JSON, status Internal Server Error
       let status = 500,
           msg = error;
-      utilities.log(msg, null, status);
+      // utilities.debug(msg, null, status);
       res.status(status).json({
         'developerMessage': msg
       });
@@ -125,6 +129,7 @@ module.exports = (express) => {
   });
 
   router.post('/users/:id', (req, res) => {
+    utilities.debug('POST - /api/v1/users/' + req.params.id);
     // If user required data is set
     if (req.body.title && req.body.title.length > 0) {
       req.body.id = req.params.id;
@@ -138,7 +143,7 @@ module.exports = (express) => {
           // Respond with JSON, status Not Found
           let status = 404,
               msg = 'The user does not exist or could not be updated';
-          utilities.log(msg, null, status);
+          // utilities.debug(msg, null, status);
           res.status(status).json({
             'developerMessage': msg
           });
@@ -147,7 +152,7 @@ module.exports = (express) => {
         // Respond with JSON, status Internal Server Error
         let status = 500,
             msg = error;
-        utilities.log(msg, null, status);
+        // utilities.debug(msg, null, status);
         res.status(status).json({
           'developerMessage': msg
         });
@@ -156,7 +161,7 @@ module.exports = (express) => {
       // Respond with JSON, status Unprocessable Entity
       let status = 422,
           msg = 'The user must have a name';
-      utilities.log(msg, null, status);
+      // utilities.debug(msg, null, status);
       res.status(status).json({
         'developerMessage': msg
       });

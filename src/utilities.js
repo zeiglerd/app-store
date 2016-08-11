@@ -8,7 +8,7 @@ module.exports = {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
 
-  'log': (msg, obj = null, status = null) => {
+  'debug': (msg, obj = null, status = null) => {
     if (process.env.DEBUG) {
       let date = new Date(),
           d = date.getDate(),

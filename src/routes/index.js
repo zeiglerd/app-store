@@ -13,7 +13,7 @@ module.exports = (express) => {
     // Set a JSON response with a defined status
     let status = 404,
         developerMessage = 'Not a valid route';
-    utilities.log(developerMessage, null, status);
+    // utilities.debug(developerMessage, null, status);
     res.status(status).json({
       'developerMessage': developerMessage
     });
