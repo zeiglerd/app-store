@@ -46,18 +46,18 @@ $ DEBUG=true nodemon src/server.js
 
 #### Expected Debug Output
 
-###### Models
-- <timestamp>
-- <message>
-- <object>
+- ###### Models
+  - [timestamp]
+  - [message]
+  - [object]
 
-###### Routes
-- <timestamp>
-- <message>
+- ###### Routes
+  - [timestamp]
+  - [message]
 
-###### Runtime
-- <timestamp>
-- <message/port>
+- ###### Runtime
+  - [timestamp]
+  - [message/port]
 
 
 ---
