@@ -8,21 +8,21 @@ http://semver.org/
 ## Installation
 1. Install all dependencies
 ```
-$ npm i
+npm i
 ```
-- Install all command line tools
+2. Install all command line tools for development
 ```
-$ npm i -g nodemon mocha
+npm i -g nodemon mocha
 ```
-- Define all environment variables
-  - .env
+3. Define all environment variables
+  - Create file *./.env* with contents:
 ```
-DB_HOST=localhost
-DB_NAME=appStore
-DB_PASS=root
-DB_PORT=8889
-DB_SCHEMA=mysql
-DB_USER=root
+DB_HOST=
+DB_NAME=
+DB_PASS=
+DB_PORT=
+DB_SCHEMA=
+DB_USER=
 ```
 
 
@@ -41,15 +41,26 @@ $ npm start
 - Displays debug messages in the console
 - Logs debug messages to /logs/console.log
 ```
-$ DEBUG=true nodemon ./src/server.js
+$ DEBUG=true nodemon src/server.js
 ```
+
+#### Expected Debug Output
+
+###### Models
+- <timestamp>
+- <message>
+- <object>
+
+###### Routes
+- <timestamp>
+- <message>
 
 
 ---
 
 
-## Run the unit tests
-To run the unit test
+## Unit Testing
+Use to run the unit tests
 ```
 $ npm test
 ```
