@@ -22,10 +22,10 @@ const debug = (msg, obj = null, errLevel = 1, status = null) => {
 
     // Print to console
     process.stdout.write(`\n${chalk.bgBlue.dim(fDate)}`);
-    if (!errLevel) {
-      process.stdout.write(`\n${chalk.bgGreen(fMsg)}`);
-    } else {
+    if (errLevel) {
       process.stdout.write(`\n${chalk.bgRed(fMsg)}`);
+    } else {
+      process.stdout.write(`\n${chalk.bgGreen(fMsg)}`);
     }
     // Check if obj is not empty
     if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {

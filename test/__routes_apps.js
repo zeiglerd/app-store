@@ -1,9 +1,13 @@
+// expect { expect } from 'chai.expect';
+// import { request } from 'supertest';
 const expect = require('chai').expect;
 const request = require('supertest');
 
 describe('App Routes', () => {
-  var server;
-  var app;
+  let server;
+
+  // Hold test data throughout
+  let tstApp;
 
   beforeEach(() => {
     server = require('../src/server.js');
@@ -20,29 +24,29 @@ describe('App Routes', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
-        const apps = res.body;
+        const tmpApps = res.body;
 
         // Save one single app from the list to test on in later tests
-        this.app = apps[0]
+        this.tstApp = tmpApps[0];
 
-        expect(apps.length).to.be.above(0)
+        expect(tmpApps.length).to.be.above(0);
       })
-      .end(done)
+      .end(done);
   });
 
   // Test for a single app
-  it('GET /api/v1/apps/:id returns an app obj with id, title, description, and releaseDate properties', (done) => {
+  it('GET /api/v1/apps/:id returns an obj with id, title, description, and releaseDate', (done) => {
     request(server)
-      .get('/api/v1/apps/' + this.app.id)
+      .get('/api/v1/apps/' + this.tstApp.id)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
-        const app = res.body;
-        expect(app).to.have.property('id')
-        expect(app).to.have.property('title')
-        expect(app).to.have.property('description')
-      })
-      .end(done)
-  });
+        const tmpApp = res.body;
 
+        expect(tmpApp).to.have.property('id');
+        expect(tmpApp).to.have.property('title');
+        expect(tmpApp).to.have.property('description');
+      })
+      .end(done);
+  });
 });
