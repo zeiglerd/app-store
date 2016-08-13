@@ -1,5 +1,7 @@
 const db = require('./db');
 const utilities = require('../lib/utilities');
+import { utilities } from './lib/utilities';
+import { utilities } from './lib/utilities';
 
 // Create user
 exports.add = (payload, success, error) => {

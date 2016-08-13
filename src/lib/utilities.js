@@ -4,29 +4,34 @@ const fs = require('fs');
 const debug = (msg, obj = null, status = null) => {
   // Check that DEBUG is true
   if (process.env.DEBUG) {
-
     // Define date and relatives
-    const date = new Date(),
-        days = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat' ],
-        day = date.getDay(),
-        d = date.getDate(),
-        mo = date.getMonth() + 1,
-        y = date.getFullYear(),
-        h = date.getHours(),
-        min = date.getMinutes(),
-        s = date.getSeconds(),
-        ms = date.getMilliseconds(),
-        suf = h < 12 ? 'AM' : 'PM';
+    const date = new Date();
+    const days = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat' ];
+    const day = date.getDay();
+    const d = date.getDate();
+    const mo = date.getMonth() + 1;
+    const y = date.getFullYear();
+    const h = date.getHours();
+    const min = date.getMinutes();
+    const s = date.getSeconds();
+    const ms = date.getMilliseconds();
+    const suf = h < 12 ? 'AM' : 'PM';
 
     // Print to console
-    console.log();
-    console.log(chalk.bgBlue(chalk.dim(days[day] + ' ' + ((h + 11) % 12 + 1) + ':' + (min < 10 ? '0' : '') + min + ':' + (s < 10 ? '0' : '') + s + ' ' + suf)));
-    console.log(chalk.bgRed((status ? status + ' - ' : '') + chalk.bold(msg)));
+    process.stdout.write('\n');
+    process.stdout.write(
+      chalk.bgBlue(
+        chalk.dim(
+          days[day] + ' ' + ((h + 11) % 12 + 1) + ':' + (min < 10 ? '0' : '') + min + ':' + (s < 10 ? '0' : '') + s + ' ' + suf
+        )
+      )
+    );
+    process.stdout.write(chalk.bgRed((status ? status + ' - ' : '') + chalk.bold(msg)));
     // Check if obj is not empty
     if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {
-      console.log(chalk.bgYellow(chalk.black(JSON.stringify(obj, null, 2))));
+      process.stdout.write(chalk.bgYellow(chalk.black(JSON.stringify(obj, null, 2))));
     }
-    console.log();
+    process.stdout.write('\n');
 
     // Log to file
     let pretty = date + '\n';

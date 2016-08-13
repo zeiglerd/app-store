@@ -1,13 +1,17 @@
+import { express } from 'express';
+import { bodyParser } from 'body-parser';
+import { utilities } from './lib/utilities';
+
+export default express;
+
 const port = process.env.PORT || 3000;
 
-const express = require('express');
-const bodyParser = require('body-parser');
+
 const app = express();
-const utilities = require('./lib/utilities');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  'extended': true
+  extended: true,
 }));
 
 // Require routes, pass express

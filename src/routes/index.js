@@ -1,4 +1,5 @@
 const utilities = require('../lib/utilities');
+import { utilities } from './lib/utilities';
 
 module.exports = (express) => {
 

@@ -1,5 +1,5 @@
-const db = require('./db');
-const utilities = require('../lib/utilities');
+import { db } from './db';
+import { utilities } from '../lib/utilities';
 
 // Create app
 exports.add = (payload, success, error) => {

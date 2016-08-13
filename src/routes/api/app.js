@@ -1,6 +1,9 @@
 const app = require('../../models/app');
 const user = require('../../models/user');
 const utilities = require('../../lib/utilities');
+import { utilities } from './lib/utilities';
+import { utilities } from './lib/utilities';
+import { utilities } from './lib/utilities';
 
 module.exports = (express) => {
 

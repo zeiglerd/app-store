@@ -12,9 +12,13 @@ npm i
 ```
 2. Install all command line tools for development
 ```
-npm i -g nodemon mocha
+npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
 ```
-3. Define all environment variables
+3. Install eslint for Atom
+```
+apm install linter-eslint
+```
+4. Define all environment variables
   - Create file *./.env* with contents:
 ```
 DB_HOST=
