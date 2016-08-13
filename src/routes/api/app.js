@@ -1,15 +1,15 @@
+// import { app } from '../../models/app';
+// import { utils } from '../../lib/utilities';
 const app = require('../../models/app');
-const user = require('../../models/user');
-const utilities = require('../../lib/utilities');
+const utils = require('../../lib/utilities');
 
 module.exports = (express) => {
-
   const router = express.Router();
 
   router.get('/apps', (req, res) => {
-    utilities.debug('GET - /api/v1/apps');
+    utils.debug('GET - /api/v1/apps', null, 0);
     // Find all apps
-    app.all( (data) => {
+    app.all((data) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
         // Respond with JSON, status OK
@@ -17,19 +17,19 @@ module.exports = (express) => {
       } else {
         // Respond with JSON, status Not Found
         res.status(404).json({
-          'developerMessage': 'No apps exist'
+          developerMessage: 'No apps exist',
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
       res.status(500).json({
-        'developerMessage': error
+        developerMessage: error,
       });
     });
   });
 
   router.post('/apps', (req, res) => {
-    utilities.debug('POST - /api/v1/apps');
+    utils.debug('POST - /api/v1/apps', null, 0);
     // If app required data is set
     if (req.body.title && req.body.title.length > 0) {
       // Create app
@@ -41,25 +41,25 @@ module.exports = (express) => {
         } else {
           // Respond with JSON, status Internal Server Error
           res.status(500).json({
-            'developerMessage': 'The app could not be created'
+            developerMessage: 'The app could not be created',
           });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
         res.status(500).json({
-          'developerMessage': error
+          developerMessage: error,
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
       res.status(422).json({
-        'developerMessage': 'The app must have a name'
+        developerMessage: 'The app must have a name',
       });
     }
   });
 
   router.delete('/apps/:id', (req, res) => {
-    utilities.debug('DELETE - /api/v1/apps/' + req.params.id);
+    utils.debug('DELETE - /api/v1/apps/' + req.params.id, null, 0);
     // Delete app by id
     app.remove(req.params, (data) => {
       // If data exists
@@ -69,19 +69,19 @@ module.exports = (express) => {
       } else {
         // Respond with JSON, status Not Found
         res.status(404).json({
-          'developerMessage': 'The app does not exist'
+          developerMessage: 'The app does not exist',
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
       res.status(500).json({
-        'developerMessage': error
+        developerMessage: error,
       });
     });
   });
 
   router.get('/apps/:id', (req, res) => {
-    utilities.debug('GET - /api/v1/apps/' + req.params.id);
+    utils.debug('GET - /api/v1/apps/' + req.params.id, null, 0);
     // Find app by id
     app.one(req.params, (data) => {
       // If data exists
@@ -91,24 +91,25 @@ module.exports = (express) => {
       } else {
         // Respond with JSON, status Not Found
         res.status(404).json({
-          'developerMessage': 'The app does not exist'
+          developerMessage: 'The app does not exist',
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
       res.status(500).json({
-        'developerMessage': error
+        developerMessage: error,
       });
     });
   });
 
   router.post('/apps/:id', (req, res) => {
-    utilities.debug('POST - /api/v1/apps/' + req.params.id);
+    utils.debug('POST - /api/v1/apps/' + req.params.id, null, 0);
     // If app required data is set
     if (req.body.title && req.body.title.length > 0) {
-      req.body.id = req.params.id;
+      const tmpApp = req.body;
+      tmpApp.id = req.params.id;
       // Update app by id
-      app.update(req.body, (data) => {
+      app.update(tmpApp, (data) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK
@@ -116,25 +117,25 @@ module.exports = (express) => {
         } else {
           // Respond with JSON, status Not Found
           res.status(404).json({
-            'developerMessage': 'The app does not exist or could not be updated'
+            developerMessage: 'The app does not exist or could not be updated',
           });
         }
       }, (error) => {
         // Respond with JSON, status Internal Server Error
         res.status(500).json({
-          'developerMessage': error
+          developerMessage: error,
         });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
       res.status(422).json({
-        'developerMessage': 'The app must have a name'
+        developerMessage: 'The app must have a name',
       });
     }
   });
 
   router.get('/users/:id/apps', (req, res) => {
-    utilities.debug('GET - /api/v1/users/' + req.params.id + '/apps');
+    utils.debug('GET - /api/v1/users/' + req.params.id + '/apps', null, 0);
     // Find all apps for userId
     app.allByUserId(req.params, (data) => {
       // If data exists
@@ -144,17 +145,16 @@ module.exports = (express) => {
       } else {
         // Respond with JSON, status Not Found
         res.status(404).json({
-          'developerMessage': 'The user has no apps'
+          developerMessage: 'The user has no apps',
         });
       }
     }, (error) => {
       // Respond with JSON, status Internal Server Error
       res.status(500).json({
-        'developerMessage': error
+        developerMessage: error,
       });
     });
   });
 
   return router;
-
 };

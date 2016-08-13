@@ -1,13 +1,18 @@
+// expect { expect } from 'chai.expect';
+// import { request } from 'supertest';
+// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const request = require('supertest');
 const App = require('../src/models/app');
 
 describe('User Routes', () => {
-  var server;
-  var user;
+  let server;
+
+  // Hold test data throughout
+  let tstUser;
 
   beforeEach(() => {
-    server = require('../src/server.js');
+    server = require('../src/server');
   });
 
   afterEach(() => {
@@ -21,50 +26,50 @@ describe('User Routes', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
-        const users = res.body;
+        const tmpUsers = res.body;
 
         // Save one single user from the list to test on in later tests
-        this.user = users[0]
+        this.tstUser = tmpUsers[0];
 
-        expect(users.length).to.be.above(0)
+        expect(tmpUsers.length).to.be.above(0);
       })
-      .end(done)
+      .end(done);
   });
 
   // Test for a single user
   it('GET /api/v1/users/:id returns an user obj with a id and name property', (done) => {
     request(server)
-      .get('/api/v1/users/' + this.user.id)
+      .get('/api/v1/users/' + this.tstUser.id)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
-        const user = res.body;
-        expect(user).to.have.property('id')
-        expect(user).to.have.property('name')
+        const tmpUser = res.body;
+
+        expect(tmpUser).to.have.property('id');
+        expect(tmpUser).to.have.property('name');
       })
-      .end(done)
+      .end(done);
   });
 
   // Test for the Apps of a Specific user
   it('GET /api/v1/users/:id/apps should find all apps for a user', (done) => {
-
     const newApp = {
-      'id': 'testId',
-      'title': 'Best New Test App',
-      'description': 'none',
-      'userId': this.user.id
+      id: 'testId',
+      title: 'Best New Test App',
+      description: 'none',
+      userId: this.tstUser.id,
     };
 
     App.add(newApp, (appData) => {
       request(server)
-      .get('/api/v1/users/' + this.user.id + '/apps')
+      .get('/api/v1/users/' + this.tstUser.id + '/apps')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
-        const apps = res.body;
+        const tmpApps = res.body;
 
         // Save one single app from the list to test on in later tests
-        expect(apps.length).to.be.above(0)
+        expect(tmpApps.length).to.be.above(0);
       });
 
       App.remove(newApp, (data) => {
@@ -75,7 +80,7 @@ describe('User Routes', () => {
         } else {
           // Respond with JSON, status Not Found
         }
-      }, (error) => {
+      }, (err) => {
         // Respond with JSON, status Internal Server Error
       });
     });

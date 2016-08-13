@@ -5,17 +5,15 @@ http://semver.org/
 ---
 
 
-## Installation
-1. Install all dependencies
+## Installation Instructions
+
+#### Production Installation
+1. Install all dependencies.
 ```
-npm i
+$ npm i
 ```
-2. Install all command line tools for development
-```
-npm i -g nodemon mocha
-```
-3. Define all environment variables
-  - Create file *./.env* with contents:
+2. Define all environment variables.
+  - Create a file in the root of the project called, "*.env*" and populate it using this template:
 ```
 DB_HOST=
 DB_NAME=
@@ -25,21 +23,33 @@ DB_SCHEMA=
 DB_USER=
 ```
 
+#### Development Installation
+1. Follow the [Production Installation Instructions](#production-installation).
+2. Install all command line tools for development.
+```
+$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
+```
+3. Install eslint for Atom.
+```
+$ apm install linter-eslint
+```
+
 
 ---
 
 
 ## Usage
 
-#### Run the server in the default state
-- Suppress debug messages
+#### Run the server in default state
+- Suppress all debug messages (terminal and log).
 ```
 $ npm start
 ```
 
-#### Run the server for development and debugging
-- Displays debug messages in the console
-- Logs debug messages to /logs/console.log
+#### Run the server in debug state
+- Uses nodemon to listen for file updates and automatically refreshes the current cached build streamlining development.
+- Displays robust debug messages in terminal.
+- Logs debug messages to *./logs/console.log*.
 ```
 $ DEBUG=true nodemon src/server.js
 ```
@@ -64,7 +74,7 @@ $ DEBUG=true nodemon src/server.js
 
 
 ## Unit Testing
-Use to run the unit tests
+Use the following command to run the unit tests, located in the *./test/* directory.
 ```
 $ npm test
 ```
@@ -74,7 +84,6 @@ $ npm test
 
 
 ## Routes
-
 
 #### ToC
 | Link | Method | Route | Response |
