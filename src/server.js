@@ -1,13 +1,12 @@
-import { express } from 'express';
-import { bodyParser } from 'body-parser';
-import { utilities } from './lib/utilities';
-
-export default express;
-
-const port = process.env.PORT || 3000;
-
+// import { express } from 'express';
+// import { bodyParser } from 'body-parser';
+// import { utils } from './lib/utilities';
+const express = require('express');
+const bodyParser = require('body-parser');
+const utils = require('./lib/utilities');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -19,8 +18,8 @@ app.use('/', require('./routes')(express));
 
 // Start server
 const server = app.listen(port, () => {
-  // console.log('Running on Port:', port);
-  utilities.debug('Running on port: ' + port);
+  utils.debug('Running on port: ' + port, null, 0);
 });
 
+// export default server;
 module.exports = server;

@@ -1,4 +1,5 @@
-import { Sequelize } from 'sequelize';
+// import { Sequelize } from 'sequelize';
+const Sequelize = require('sequelize');
 
 require('dotenv').config();
 
@@ -16,62 +17,62 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 
 // App schema
 const App = sequelize.define('app', {
-  'id': {
-    'allowNull': false,
-    'defaultValue': Sequelize.UUIDV4,
-    'primaryKey': true,
-    'type': Sequelize.UUID,
-    'unique': true
+  id: {
+    allowNull: false,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+    type: Sequelize.UUID,
+    unique: true,
   },
-  'title': {
-    'allowNull': false,
-    'type': Sequelize.STRING,
-    'unique': true
+  title: {
+    allowNull: false,
+    type: Sequelize.STRING,
+    unique: true,
   },
-  'description': {
-    'type': Sequelize.STRING
+  description: {
+    type: Sequelize.STRING,
   },
-  'releaseDate': {
-    'allowNull': false,
-    'defaultValue': Sequelize.NOW,
-    'type': Sequelize.DATE
-  }
+  releaseDate: {
+    allowNull: false,
+    defaultValue: Sequelize.NOW,
+    type: Sequelize.DATE,
+  },
 });
 
 // User schema
 const User = sequelize.define('user', {
-  'id': {
-    'allowNull': false,
-    'defaultValue': Sequelize.UUIDV4,
-    'primaryKey': true,
-    'type': Sequelize.UUID,
-    'unique': true
+  id: {
+    allowNull: false,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+    type: Sequelize.UUID,
+    unique: true,
   },
-  'name': {
-    'allowNull': false,
-    'type': Sequelize.STRING
-  }
+  name: {
+    allowNull: false,
+    type: Sequelize.STRING,
+  },
 });
 // App/User relations
 User.hasMany(App, {
-  'foreignKey': 'userId'
+  foreignKey: 'userId',
 });
 App.belongsTo(User);
 
 // Art Assets schema
 const ArtAsset = sequelize.define('artAsset', {
-  'title': {
-    'allowNull': false,
-    'type': Sequelize.STRING
+  title: {
+    allowNull: false,
+    type: Sequelize.STRING,
   },
-  'srcLink': {
-    'allowNull': false,
-    'type': Sequelize.STRING
-  }
+  srcLink: {
+    allowNull: false,
+    type: Sequelize.STRING,
+  },
 });
 // App/Art Assets relations
 App.hasMany(ArtAsset, {
-  'foreignKey': 'appId'
+  foreignKey: 'appId',
 });
 
 // Build dbs

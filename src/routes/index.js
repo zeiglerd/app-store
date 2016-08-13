@@ -1,8 +1,7 @@
-const utilities = require('../lib/utilities');
-import { utilities } from './lib/utilities';
+// import { utils } from '../lib/utilities';
+const utils = require('../lib/utilities');
 
 module.exports = (express) => {
-
   const router = express.Router();
 
   // Require API routes, pass express
@@ -12,13 +11,12 @@ module.exports = (express) => {
   // Default route
   router.use((req, res) => {
     // Set a JSON response with a defined status
-    let msg = 'Route does not exist';
-    utilities.debug(msg);
+    const msg = 'Route does not exist';
+    utils.debug(msg);
     res.status(404).json({
-      'developerMessage': msg
+      developerMessage: msg,
     });
   });
 
   return router;
-
 };

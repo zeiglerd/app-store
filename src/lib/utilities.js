@@ -1,35 +1,35 @@
+// import { chalk } from 'chalk';
+// import { fs } from 'fs';
 const chalk = require('chalk');
 const fs = require('fs');
 
-const debug = (msg, obj = null, status = null) => {
+const debug = (msg, obj = null, errLevel = 1, status = null) => {
   // Check that DEBUG is true
   if (process.env.DEBUG) {
-    // Define date and relatives
+    // Define date
     const date = new Date();
-    const days = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat' ];
-    const day = date.getDay();
-    const d = date.getDate();
-    const mo = date.getMonth() + 1;
-    const y = date.getFullYear();
+    const ds = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    const d = date.getDay();
     const h = date.getHours();
-    const min = date.getMinutes();
+    const hr = ((h + 11) % 12) + 1;
+    const m = date.getMinutes();
     const s = date.getSeconds();
-    const ms = date.getMilliseconds();
     const suf = h < 12 ? 'AM' : 'PM';
 
+    // Make friendly date and message
+    const fDate = `${ds[d]} ${hr}:${m > 9 ? '' : '0'}${m}:${s > 9 ? '' : '0'}${s} ${suf}`;
+    const fMsg = `${status ? `${status} - ` : ''}${chalk.bold(msg)}`;
+
     // Print to console
-    process.stdout.write('\n');
-    process.stdout.write(
-      chalk.bgBlue(
-        chalk.dim(
-          days[day] + ' ' + ((h + 11) % 12 + 1) + ':' + (min < 10 ? '0' : '') + min + ':' + (s < 10 ? '0' : '') + s + ' ' + suf
-        )
-      )
-    );
-    process.stdout.write(chalk.bgRed((status ? status + ' - ' : '') + chalk.bold(msg)));
+    process.stdout.write(`\n${chalk.bgBlue.dim(fDate)}`);
+    if (!errLevel) {
+      process.stdout.write(`\n${chalk.bgGreen(fMsg)}`);
+    } else {
+      process.stdout.write(`\n${chalk.bgRed(fMsg)}`);
+    }
     // Check if obj is not empty
     if (obj && (obj.length > 0 || Object.keys(obj).length > 0)) {
-      process.stdout.write(chalk.bgYellow(chalk.black(JSON.stringify(obj, null, 2))));
+      process.stdout.write(chalk.bgYellow(`\n${chalk.black(JSON.stringify(obj, null, 2))}`));
     }
     process.stdout.write('\n');
 
@@ -43,17 +43,16 @@ const debug = (msg, obj = null, status = null) => {
     pretty += '\n';
     fs.appendFile('logs/console.log', pretty, (err) => {
       if (err) {
-        console.log(chalk.red(err));
+        process.stdout.write(`\n${chalk.red(err)}\n`);
       }
     });
-
   }
 };
 
 const isNumber = (n, cb) => {
   // Check that n is numeric
-  if ( ! isNaN(parseFloat(n)) && isFinite(n)) {
-    debug(n + ' is numeric');
+  if (!isNaN(parseFloat(n)) && isFinite(n)) {
+    debug(n + ' is numeric', null, 0);
     cb(true);
   } else {
     debug(n + ' is not numeric');
@@ -62,6 +61,6 @@ const isNumber = (n, cb) => {
 };
 
 module.exports = {
-  'debug': debug,
-  'isNumber': isNumber
+  debug,
+  isNumber,
 };
