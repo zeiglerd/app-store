@@ -110,7 +110,7 @@ $ mocha
 Display all Apps
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: [
   {
     "id": 1,
@@ -137,7 +137,7 @@ JSON Response: [
 Create an App
 ###### Example Response
 ```
-HTTP Response Status: 201
+HTTP Response Status Code: 201 Created
 JSON Response: {
   "id": 3,
   "name": "App 3",
@@ -156,7 +156,7 @@ JSON Response: {
 Delete App based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: 1
 ```
 
@@ -170,7 +170,7 @@ JSON Response: 1
 Display App based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
   "name": "App 2",
@@ -190,7 +190,7 @@ JSON Response: {
 Update App based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
   "name": "App 4",
@@ -209,7 +209,7 @@ JSON Response: {
 Find all apps for userId
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: [
   {
     "id": "0032c47b-4a7b-4232-9cc3-6af718244ea8",
@@ -257,7 +257,7 @@ JSON Response: [
 Display all Users
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: [
   {
     "id": 1,
@@ -288,7 +288,7 @@ JSON Response: [
 Create a User
 ###### Example Response
 ```
-HTTP Response Status: 201
+HTTP Response Status Code: 201 Created
 JSON Response: {
   "id": 3,
   "email": "user3@email.com",
@@ -308,7 +308,7 @@ JSON Response: {
 Delete User based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: 1
 ```
 
@@ -322,7 +322,7 @@ JSON Response: 1
 Display User based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
   "email": "user2@email.com",
@@ -343,7 +343,7 @@ JSON Response: {
 Update User based upon id
 ###### Example Response
 ```
-HTTP Response Status: 200
+HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
   "email": "user4@email.com",
