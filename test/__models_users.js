@@ -1,13 +1,10 @@
-// expect { expect } from 'chai.expect';
-// import { faker } from 'faker';
-// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const faker = require('faker');
 const User = require('../src/models/user');
 
 describe('User Model', () => {
   // Hold test data throughout
-  let tstUser;
+  let tstUserIgnored;
 
   // Find all users
   it('GET /api/v1/users - Find all users', (done) => {
@@ -16,7 +13,7 @@ describe('User Model', () => {
       expect(users.length).to.be.above(0);
 
       // Save the returned data for later use in tests
-      this.tstUser = users[0].dataValues;
+      this.tstUserIgnored = users[0].dataValues;
 
       done();
     }, (error) => {
@@ -27,11 +24,11 @@ describe('User Model', () => {
   // Find user by id
   it('GET /api/v1/users/:id - Find user by id', (done) => {
     // Call user model for finding
-    User.one(this.tstUser, (user) => {
+    User.one(this.tstUserIgnored, (user) => {
       const tmpUser = user.dataValues;
 
       // User.name should match fakeUser.name
-      expect(tmpUser.name).to.be.equal(this.tstUser.name);
+      expect(tmpUser.name).to.be.equal(this.tstUserIgnored.name);
 
       done();
     }, (error) => {
@@ -52,7 +49,7 @@ describe('User Model', () => {
       expect(tmpUser.name).to.be.equal(fakeUser.name);
 
       // Save the returned data for later use in tests
-      this.tstUser = tmpUser;
+      this.tstUserIgnored = tmpUser;
 
       done();
     }, (error) => {
@@ -63,17 +60,17 @@ describe('User Model', () => {
   // Update a User
   it('POST /api/v1/users/:id - Update a User', (done) => {
     // Update the name of the user
-    this.tstUser.name = 'Not A Real Name';
+    this.tstUserIgnored.name = 'Not A Real Name';
 
     // Call user model for updating
-    User.update(this.tstUser, (user) => {
+    User.update(this.tstUserIgnored, (user) => {
       const tmpUser = user.dataValues;
 
       // User.name should match tempUser.name
-      expect(tmpUser.name).to.be.equal(this.tstUser.name);
+      expect(tmpUser.name).to.be.equal(this.tstUserIgnored.name);
 
       // Save the returned data for later use in tests
-      this.tstUser = tmpUser;
+      this.tstUserIgnored = tmpUser;
 
       done();
     }, (error) => {
@@ -84,10 +81,10 @@ describe('User Model', () => {
   // Delete user by id
   it('DELETE /api/v1/users/:id - Delete user by id', (done) => {
     // Let Sequelize know to forcefully remove the value, if paranoid.
-    this.tstUser.force = true;
+    this.tstUserIgnored.force = true;
 
     // Call user model for updating
-    User.remove(this.tstUser, (response) => {
+    User.remove(this.tstUserIgnored, (response) => {
       // if successfully removed a 1 should be returned
       expect(response).to.be.equal(1);
 

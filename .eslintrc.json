@@ -9,7 +9,9 @@
 	"rules": {
 		"new-cap": 0,
 		"prefer-template": 0,
-		"global-require": 0
+		"global-require": 0,
+		"import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}],
+		"no-unused-vars": ["error", { "varsIgnorePattern": "[iI]gnored" }]
 	},
 	"globals": {
 		"describe": true,
