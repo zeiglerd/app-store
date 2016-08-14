@@ -8,11 +8,11 @@ http://semver.org/
 ## Installation Instructions
 
 #### Production Installation
-1. Install all dependencies.
+1. Install all required dependencies, for this project.
 ```
 $ npm i
 ```
-2. Define all environment variables.
+2. Define all environment variables, for this project.
   - Create a file in the root of the project called, "*.env*" and populate it using this template:
 ```
 DB_HOST=
@@ -31,7 +31,7 @@ $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a1
 ```
 3. Install eslint for Atom.
 ```
-$ apm install linter-eslint
+$ apm i linter-eslint
 ```
 
 
@@ -41,7 +41,7 @@ $ apm install linter-eslint
 ## Usage
 
 #### Run the server in default state
-- Suppress all debug messages (terminal and log).
+- Suppress all debug messages (console/terminal and *./logs/console.log*).
 ```
 $ npm start
 ```
@@ -68,15 +68,15 @@ $ DEBUG=true nodemon src/server.js
 - ###### Runtime
   - [timestamp]
   - [message/port]
-
-
----
-
-
-## Unit Testing
-Use the following command to run the unit tests, located in the *./test/* directory.
+  
+#### Unit Testing
+- Use the following command to run the unit tests, located in the *./test/* directory.
 ```
 $ npm test
+```
+*or*
+```
+$ mocha
 ```
 
 
