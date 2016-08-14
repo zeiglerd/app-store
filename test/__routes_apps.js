@@ -4,9 +4,6 @@ const request = require('supertest');
 describe('App Routes', () => {
   let server;
 
-  // Hold test data throughout
-  let tstAppIgnored;
-
   beforeEach(() => {
     server = require('../src/server');
   });
