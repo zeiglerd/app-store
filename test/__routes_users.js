@@ -1,6 +1,3 @@
-// expect { expect } from 'chai.expect';
-// import { request } from 'supertest';
-// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const request = require('supertest');
 const App = require('../src/models/app');
@@ -9,7 +6,7 @@ describe('User Routes', () => {
   let server;
 
   // Hold test data throughout
-  let tstUser;
+  let tstUserIgnored;
 
   beforeEach(() => {
     server = require('../src/server');
@@ -29,7 +26,7 @@ describe('User Routes', () => {
         const tmpUsers = res.body;
 
         // Save one single user from the list to test on in later tests
-        this.tstUser = tmpUsers[0];
+        this.tstUserIgnored = tmpUsers[0];
 
         expect(tmpUsers.length).to.be.above(0);
       })
@@ -39,7 +36,7 @@ describe('User Routes', () => {
   // Test for a single user
   it('GET /api/v1/users/:id returns an user obj with a id and name property', (done) => {
     request(server)
-      .get('/api/v1/users/' + this.tstUser.id)
+      .get('/api/v1/users/' + this.tstUserIgnored.id)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -57,12 +54,12 @@ describe('User Routes', () => {
       id: 'tstId',
       title: 'tstApp',
       description: 'tstDesc',
-      userId: this.tstUser.id,
+      userId: this.tstUserIgnored.id,
     };
 
-    App.add(newApp, (appData) => {
+    App.add(newApp, () => {
       request(server)
-      .get('/api/v1/users/' + this.tstUser.id + '/apps')
+      .get(`/api/v1/users/${this.tstUserIgnored.id}/apps`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -80,11 +77,7 @@ describe('User Routes', () => {
         } else {
           // Respond with JSON, status Not Found
         }
-      }, (err) => {
-        // Respond with JSON, status Internal Server Error
-      });
+      }, null);
     });
-  }, (err) => {
-
-  });
+  }, null);
 });

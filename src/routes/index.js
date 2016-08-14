@@ -1,4 +1,3 @@
-// import { utils } from '../lib/utilities';
 const utils = require('../lib/utilities');
 
 module.exports = (express) => {
@@ -12,7 +11,9 @@ module.exports = (express) => {
   router.use((req, res) => {
     // Set a JSON response with a defined status
     const msg = 'Route does not exist';
+
     utils.debug(msg);
+
     res.status(404).json({
       developerMessage: msg,
     });

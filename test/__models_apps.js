@@ -1,13 +1,10 @@
-// expect { expect } from 'chai.expect';
-// import { faker } from 'faker';
-// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const faker = require('faker');
 const App = require('../src/models/app');
 
 describe('App Model', () => {
   // Hold test data throughout
-  let tstApp;
+  let tstAppIgnored;
 
   // Find all apps
   it('GET /api/v1/apps - Find all apps', (done) => {
@@ -16,7 +13,7 @@ describe('App Model', () => {
       expect(apps.length).to.be.above(0);
 
       // Save the returned data for later use in tests
-      this.tstApp = apps[0].dataValues;
+      this.tstAppIgnored = apps[0].dataValues;
 
       done();
     }, (error) => {
@@ -27,11 +24,11 @@ describe('App Model', () => {
   // Find app by id
   it('GET /api/v1/apps/:id - Find app by id', (done) => {
     // Call app model for finding
-    App.one(this.tstApp, (pApp) => {
+    App.one(this.tstAppIgnored, (pApp) => {
       const app = pApp.dataValues;
 
       // App.title should match fakeApp.title
-      expect(app.title).to.be.equal(this.tstApp.title);
+      expect(app.title).to.be.equal(this.tstAppIgnored.title);
 
       done();
     }, (error) => {
@@ -52,7 +49,7 @@ describe('App Model', () => {
       expect(app.title).to.be.equal(fakeApp.title);
 
       // Save the returned data for later use in tests
-      this.tstApp = app;
+      this.tstAppIgnored = app;
 
       done();
     }, (error) => {
@@ -63,17 +60,17 @@ describe('App Model', () => {
   // Update a App
   it('POST /api/v1/apps/:id - Update a App', (done) => {
     // Update the title of the app
-    this.tstApp.title = 'Not A Real Name';
+    this.tstAppIgnored.title = 'Not A Real Name';
 
     // Call app model for updating
-    App.update(this.tstApp, (pApp) => {
+    App.update(this.tstAppIgnored, (pApp) => {
       const app = pApp.dataValues;
 
-      // App.title should match this.tstApp.title
-      expect(app.title).to.be.equal(this.tstApp.title);
+      // App.title should match this.tstAppIgnored.title
+      expect(app.title).to.be.equal(this.tstAppIgnored.title);
 
       // Save the returned data for later use in tests
-      this.tstApp = app;
+      this.tstAppIgnored = app;
 
       done();
     }, (error) => {
@@ -84,10 +81,10 @@ describe('App Model', () => {
   // Delete app by id
   it('DELETE /api/v1/apps/:id - Delete app by id', (done) => {
     // Let Sequelize know to forcefully remove the value, if paranoid.
-    this.tstApp.force = true;
+    this.tstAppIgnored.force = true;
 
     // Call app model for updating
-    App.remove(this.tstApp, (response) => {
+    App.remove(this.tstAppIgnored, (response) => {
       // if successfully removed a 1 should be returned
       expect(response).to.be.equal(1);
 

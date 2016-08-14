@@ -1,5 +1,3 @@
-// import { chalk } from 'chalk';
-// import { fs } from 'fs';
 const chalk = require('chalk');
 const fs = require('fs');
 

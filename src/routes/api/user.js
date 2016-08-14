@@ -1,5 +1,3 @@
-// import { user } from '../../models/user';
-// import { utils } from '../../lib/utilities';
 const user = require('../../models/user');
 const utils = require('../../lib/utilities');
 
@@ -8,6 +6,7 @@ module.exports = (express) => {
 
   router.get('/users', (req, res) => {
     utils.debug('GET - /api/v1/users', null, 0);
+
     // Find all users
     user.all((data) => {
       // If data exists and data (array) is longer than 0
@@ -30,6 +29,7 @@ module.exports = (express) => {
 
   router.post('/users', (req, res) => {
     utils.debug('POST - /api/v1/users', null, 0);
+
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
       // Create user
@@ -60,6 +60,7 @@ module.exports = (express) => {
 
   router.delete('/users/:id', (req, res) => {
     utils.debug('DELETE - /api/v1/users/' + req.params.id, null, 0);
+
     // Delete user by id
     user.remove(req.params, (data) => {
       // If data exists
@@ -82,6 +83,7 @@ module.exports = (express) => {
 
   router.get('/users/:id', (req, res) => {
     utils.debug('GET - /api/v1/users/' + req.params.id, null, 0);
+
     // Find user by id
     user.one(req.params, (data) => {
       // If data exists
@@ -104,10 +106,12 @@ module.exports = (express) => {
 
   router.post('/users/:id', (req, res) => {
     utils.debug('POST - /api/v1/users/' + req.params.id, null, 0);
+
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
       const tmpUser = req.body;
       tmpUser.id = req.params.id;
+
       // Update user by id
       user.update(tmpUser, (data) => {
         // If data exists
