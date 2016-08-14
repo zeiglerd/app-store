@@ -3,9 +3,6 @@ const faker = require('faker');
 const User = require('../src/models/user');
 
 describe('User Model', () => {
-  // Hold test data throughout
-  let tstUserIgnored;
-
   // Find all users
   it('GET /api/v1/users - Find all users', (done) => {
     User.all((users) => {
