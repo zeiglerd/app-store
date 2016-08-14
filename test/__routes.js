@@ -5,9 +5,6 @@ const App = require('../src/models/app');
 describe('User Routes', () => {
   let server;
 
-  // Hold test data throughout
-  let tstUserIgnored;
-
   beforeEach(() => {
     server = require('../src/server');
   });

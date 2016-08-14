@@ -3,9 +3,6 @@ const faker = require('faker');
 const App = require('../src/models/app');
 
 describe('App Model', () => {
-  // Hold test data throughout
-  let tstAppIgnored;
-
   // Find all apps
   it('GET /api/v1/apps - Find all apps', (done) => {
     App.all((apps) => {
