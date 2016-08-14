@@ -1,11 +1,10 @@
-// import { db } from './db';
-// import { utils } from '../lib/utilities';
 const db = require('./db');
 const utils = require('../lib/utilities');
 
 // Create user
 exports.add = (payload, success, error) => {
   const failMsg = 'Failed to add the user';
+
   db.User.create(payload)
   .then((data) => {
     if (data) {
@@ -13,9 +12,11 @@ exports.add = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -23,6 +24,7 @@ exports.add = (payload, success, error) => {
 // Delete user by id
 exports.remove = (payload, success, error) => {
   const failMsg = 'Failed to remove the user';
+
   db.User.destroy({
     where: {
       id: payload.id,
@@ -34,9 +36,11 @@ exports.remove = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -44,6 +48,7 @@ exports.remove = (payload, success, error) => {
 // Find user by id
 exports.one = (payload, success, error) => {
   const failMsg = 'Failed to find one user';
+
   db.User.find({
     where: {
       id: payload.id,
@@ -55,9 +60,11 @@ exports.one = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -65,6 +72,7 @@ exports.one = (payload, success, error) => {
 // Find all users
 exports.all = (success, error) => {
   const failMsg = 'Failed to find any users';
+
   db.User.findAll()
   .then((data) => {
     if (data) {
@@ -72,9 +80,11 @@ exports.all = (success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -82,6 +92,7 @@ exports.all = (success, error) => {
 // Update user by id
 exports.update = (payload, success, error) => {
   const failMsg = 'Failed to update the user';
+
   db.User.find({
     where: {
       id: payload.id,
@@ -94,13 +105,16 @@ exports.update = (payload, success, error) => {
       } else {
         utils.debug(failMsg, data);
       }
+
       success(data);
     }).catch((err) => {
       utils.debug(failMsg, err);
+
       error(err);
     });
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };

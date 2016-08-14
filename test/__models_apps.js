@@ -1,6 +1,3 @@
-// expect { expect } from 'chai.expect';
-// import { faker } from 'faker';
-// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const faker = require('faker');
 const App = require('../src/models/app');

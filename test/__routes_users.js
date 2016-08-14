@@ -1,6 +1,3 @@
-// expect { expect } from 'chai.expect';
-// import { request } from 'supertest';
-// import { App } from '../src/models/app';
 const expect = require('chai').expect;
 const request = require('supertest');
 const App = require('../src/models/app');
@@ -60,9 +57,9 @@ describe('User Routes', () => {
       userId: this.tstUser.id,
     };
 
-    App.add(newApp, (appData) => {
+    App.add(newApp, () => {
       request(server)
-      .get('/api/v1/users/' + this.tstUser.id + '/apps')
+      .get(`/api/v1/users/${this.tstUser.id}/apps`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -80,11 +77,7 @@ describe('User Routes', () => {
         } else {
           // Respond with JSON, status Not Found
         }
-      }, (err) => {
-        // Respond with JSON, status Internal Server Error
-      });
+      }, null);
     });
-  }, (err) => {
-
-  });
+  }, null);
 });

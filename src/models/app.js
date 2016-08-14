@@ -1,11 +1,10 @@
-// import { db } from './db';
-// import { utils } from '../lib/utilities';
 const db = require('./db');
 const utils = require('../lib/utilities');
 
 // Create app
 exports.add = (payload, success, error) => {
   const failMsg = 'Failed to add the app';
+
   db.App.create(payload)
   .then((data) => {
     if (data) {
@@ -13,9 +12,11 @@ exports.add = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -23,6 +24,7 @@ exports.add = (payload, success, error) => {
 // Delete app by id
 exports.remove = (payload, success, error) => {
   const failMsg = 'Failed to remove the app';
+
   db.App.destroy({
     where: {
       id: payload.id,
@@ -33,9 +35,11 @@ exports.remove = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -43,6 +47,7 @@ exports.remove = (payload, success, error) => {
 // Find app by id
 exports.one = (payload, success, error) => {
   const failMsg = 'Failed to find one app';
+
   db.App.find({
     where: {
       id: payload.id,
@@ -57,9 +62,11 @@ exports.one = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -67,6 +74,7 @@ exports.one = (payload, success, error) => {
 // Find all apps
 exports.all = (success, error) => {
   const failMsg = 'Failed to find any apps';
+
   db.App.findAll({
     include: [{
       all: true,
@@ -78,9 +86,11 @@ exports.all = (success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -88,6 +98,7 @@ exports.all = (success, error) => {
 // Find all apps by userId
 exports.allByUserId = (payload, success, error) => {
   const failMsg = 'Failed to find any apps by user id';
+
   db.App.findAll({
     where: {
       userId: payload.id,
@@ -102,9 +113,11 @@ exports.allByUserId = (payload, success, error) => {
     } else {
       utils.debug(failMsg, data);
     }
+
     success(data);
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };
@@ -112,6 +125,7 @@ exports.allByUserId = (payload, success, error) => {
 // Update app by id
 exports.update = (payload, success, error) => {
   const failMsg = 'Failed to update the app';
+
   db.App.find({
     where: {
       id: payload.id,
@@ -124,13 +138,16 @@ exports.update = (payload, success, error) => {
       } else {
         utils.debug(failMsg, data);
       }
+
       success(data);
     }).catch((err) => {
       utils.debug(failMsg, err);
+
       error(err);
     });
   }).catch((err) => {
     utils.debug(failMsg, err);
+
     error(err);
   });
 };

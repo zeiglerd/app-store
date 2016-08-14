@@ -1,5 +1,3 @@
-// expect { expect } from 'chai.expect';
-// import { request } from 'supertest';
 const expect = require('chai').expect;
 const request = require('supertest');
 

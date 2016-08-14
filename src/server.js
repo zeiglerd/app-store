@@ -1,6 +1,3 @@
-// import { express } from 'express';
-// import { bodyParser } from 'body-parser';
-// import { utils } from './lib/utilities';
 const express = require('express');
 const bodyParser = require('body-parser');
 const utils = require('./lib/utilities');
