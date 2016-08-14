@@ -1,10 +1,6 @@
 {
   "name": "appStore",
-<<<<<<< HEAD
   "version": "1.5.0",
-=======
-  "version": "1.4.4",
->>>>>>> master
   "description": "Deployment of Web Applications",
   "main": "src/server.js",
   "scripts": {
