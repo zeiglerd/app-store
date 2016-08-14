@@ -1,7 +1,7 @@
 {
   "name": "appStore",
-  "version": "1.4.2",
-  "description": "",
+  "version": "1.5.0",
+  "description": "Deployment of Web Applications",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
