@@ -5,7 +5,7 @@ describe('App Routes', () => {
   let server;
 
   // Hold test data throughout
-  let tstApp;
+  let tstAppIgnored;
 
   beforeEach(() => {
     server = require('../src/server');
@@ -25,7 +25,7 @@ describe('App Routes', () => {
         const tmpApps = res.body;
 
         // Save one single app from the list to test on in later tests
-        this.tstApp = tmpApps[0];
+        this.tstAppIgnored = tmpApps[0];
 
         expect(tmpApps.length).to.be.above(0);
       })
@@ -35,7 +35,7 @@ describe('App Routes', () => {
   // Test for a single app
   it('GET /api/v1/apps/:id returns an obj with id, title, description, and releaseDate', (done) => {
     request(server)
-      .get('/api/v1/apps/' + this.tstApp.id)
+      .get('/api/v1/apps/' + this.tstAppIgnored.id)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
