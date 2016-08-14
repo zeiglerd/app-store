@@ -110,23 +110,21 @@ $ mocha
 Display all Apps
 ###### Example Response
 ```
-{
-  "data": [
-    {
-      "id": 1,
-      "name": "App 1",
-      "createdAt": "2016-08-06T05:16:19.000Z",
-      "updatedAt": "2016-08-06T05:16:19.000Z"
-    },
-    {
-      "id": 2,
-      "name": "App 2",
-      "createdAt": "2016-08-06T05:16:22.000Z",
-      "updatedAt": "2016-08-06T05:16:22.000Z"
-    }
-  ],
-  "status": 200
-}
+HTTP Response Status: 200
+JSON Response: [
+  {
+    "id": 1,
+    "name": "App 1",
+    "createdAt": "2016-08-06T05:16:19.000Z",
+    "updatedAt": "2016-08-06T05:16:19.000Z"
+  },
+  {
+    "id": 2,
+    "name": "App 2",
+    "createdAt": "2016-08-06T05:16:22.000Z",
+    "updatedAt": "2016-08-06T05:16:22.000Z"
+  }
+]
 ```
 
 
@@ -139,14 +137,12 @@ Display all Apps
 Create an App
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 3,
-    "name": "App 3",
-    "updatedAt": "2016-08-06T05:16:52.000Z",
-    "createdAt": "2016-08-06T05:16:52.000Z"
-  },
-  "status": 200
+HTTP Response Status: 201
+JSON Response: {
+  "id": 3,
+  "name": "App 3",
+  "updatedAt": "2016-08-06T05:16:52.000Z",
+  "createdAt": "2016-08-06T05:16:52.000Z"
 }
 ```
 
@@ -160,10 +156,8 @@ Create an App
 Delete App based upon id
 ###### Example Response
 ```
-{
-  "data": 1,
-  "status": 200
-}
+HTTP Response Status: 200
+JSON Response: 1
 ```
 
 
@@ -176,15 +170,13 @@ Delete App based upon id
 Display App based upon id
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 2,
-    "name": "App 2",
-    "createdAt": "2016-08-06T05:16:22.000Z",
-    "updatedAt": "2016-08-06T05:16:22.000Z",
-    "users": []
-  },
-  "status": 200
+HTTP Response Status: 200
+JSON Response: {
+  "id": 2,
+  "name": "App 2",
+  "createdAt": "2016-08-06T05:16:22.000Z",
+  "updatedAt": "2016-08-06T05:16:22.000Z",
+  "users": []
 }
 ```
 
@@ -198,14 +190,12 @@ Display App based upon id
 Update App based upon id
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 2,
-    "name": "App 4",
-    "createdAt": "2016-08-06T05:16:22.000Z",
-    "updatedAt": "2016-08-06T05:17:37.000Z"
-  },
-  "status": 200
+HTTP Response Status: 200
+JSON Response: {
+  "id": 2,
+  "name": "App 4",
+  "createdAt": "2016-08-06T05:16:22.000Z",
+  "updatedAt": "2016-08-06T05:17:37.000Z"
 }
 ```
 
@@ -219,7 +209,8 @@ Update App based upon id
 Find all apps for userId
 ###### Example Response
 ```
-[
+HTTP Response Status: 200
+JSON Response: [
   {
     "id": "0032c47b-4a7b-4232-9cc3-6af718244ea8",
     "title": "Best App Ever",
@@ -266,27 +257,25 @@ Find all apps for userId
 Display all Users
 ###### Example Response
 ```
-{
-  "data": [
-    {
-      "id": 1,
-      "email": "user1@email.com",
-      "name": "User 1",
-      "createdAt": "2016-08-06T05:09:21.000Z",
-      "updatedAt": "2016-08-06T05:09:21.000Z",
-      "appId": null
-    },
-    {
-      "id": 2,
-      "email": "user2@email.com",
-      "name": "User 2",
-      "createdAt": "2016-08-06T05:09:35.000Z",
-      "updatedAt": "2016-08-06T05:09:35.000Z",
-      "appId": null
-    }
-  ],
-  "status": 200
-}
+HTTP Response Status: 200
+JSON Response: [
+  {
+    "id": 1,
+    "email": "user1@email.com",
+    "name": "User 1",
+    "createdAt": "2016-08-06T05:09:21.000Z",
+    "updatedAt": "2016-08-06T05:09:21.000Z",
+    "appId": null
+  },
+  {
+    "id": 2,
+    "email": "user2@email.com",
+    "name": "User 2",
+    "createdAt": "2016-08-06T05:09:35.000Z",
+    "updatedAt": "2016-08-06T05:09:35.000Z",
+    "appId": null
+  }
+]
 ```
 
 
@@ -299,15 +288,13 @@ Display all Users
 Create a User
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 3,
-    "email": "user3@email.com",
-    "name": "User 3",
-    "updatedAt": "2016-08-06T05:09:46.000Z",
-    "createdAt": "2016-08-06T05:09:46.000Z"
-  },
-  "status": 200
+HTTP Response Status: 201
+JSON Response: {
+  "id": 3,
+  "email": "user3@email.com",
+  "name": "User 3",
+  "updatedAt": "2016-08-06T05:09:46.000Z",
+  "createdAt": "2016-08-06T05:09:46.000Z"
 }
 ```
 
@@ -321,10 +308,8 @@ Create a User
 Delete User based upon id
 ###### Example Response
 ```
-{
-  "data": 1,
-  "status": 200
-}
+HTTP Response Status: 200
+JSON Response: 1
 ```
 
 
@@ -337,16 +322,14 @@ Delete User based upon id
 Display User based upon id
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 2,
-    "email": "user2@email.com",
-    "name": "User 2",
-    "createdAt": "2016-08-06T05:09:35.000Z",
-    "updatedAt": "2016-08-06T05:09:35.000Z",
-    "appId": null
-  },
-  "status": 200
+HTTP Response Status: 200
+JSON Response: {
+  "id": 2,
+  "email": "user2@email.com",
+  "name": "User 2",
+  "createdAt": "2016-08-06T05:09:35.000Z",
+  "updatedAt": "2016-08-06T05:09:35.000Z",
+  "appId": null
 }
 ```
 
@@ -360,15 +343,13 @@ Display User based upon id
 Update User based upon id
 ###### Example Response
 ```
-{
-  "data": {
-    "id": 2,
-    "email": "user4@email.com",
-    "name": "User 4",
-    "createdAt": "2016-08-06T05:09:35.000Z",
-    "updatedAt": "2016-08-06T05:15:25.000Z",
-    "appId": null
-  },
-  "status": 200
+HTTP Response Status: 200
+JSON Response: {
+  "id": 2,
+  "email": "user4@email.com",
+  "name": "User 4",
+  "createdAt": "2016-08-06T05:09:35.000Z",
+  "updatedAt": "2016-08-06T05:15:25.000Z",
+  "appId": null
 }
 ```

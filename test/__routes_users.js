@@ -54,9 +54,9 @@ describe('User Routes', () => {
   // Test for the Apps of a Specific user
   it('GET /api/v1/users/:id/apps should find all apps for a user', (done) => {
     const newApp = {
-      id: 'testId',
-      title: 'Best New Test App',
-      description: 'none',
+      id: 'tstId',
+      title: 'tstApp',
+      description: 'tstDesc',
       userId: this.tstUser.id,
     };
 
