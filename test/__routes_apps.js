@@ -8,7 +8,7 @@ describe('App Routes', () => {
   let tstApp;
 
   beforeEach(() => {
-    server = require('../src/server.js');
+    server = require('../src/server');
   });
 
   afterEach(() => {
