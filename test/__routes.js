@@ -1,12 +1,47 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-const App = require('../src/models/app');
+const app = require('../src/models/app');
+const utils = require('../src/lib/utilities');
+
+// Test for Multiple Users
+
+// Test for a single user
+
+let tstUser;
+
+const routes = [
+  {
+    cb: (res, done) => {
+      const tmpUsers = res.body;
+
+      // Save one single user from the list to test on in later tests
+      this.tstUser = tmpUsers[0];
+
+      expect(tmpUsers.length).to.be.above(0);
+
+      done();
+    },
+    desc: 'returns multiple users',
+    route: '/api/v1/users',
+    type: 'GET',
+  },
+  {
+    cb: (res, done) => {
+      const tmpUser = res.body;
+
+      expect(tmpUser).to.have.property('id');
+      expect(tmpUser).to.have.property('name');
+
+      done();
+    },
+    desc: 'returns an user obj with a id and name property',
+    route: `/api/v1/users/${this.tstUser.id}`,
+    type: 'GET',
+  },
+];
 
 describe('User Routes', () => {
   let server;
-
-  // Hold test data throughout
-  let tstUserIgnored;
 
   beforeEach(() => {
     server = require('../src/server');
@@ -16,68 +51,57 @@ describe('User Routes', () => {
     server.close();
   });
 
-  // Test for Multiple Users
-  it('GET /api/v1/users returns multiple users', (done) => {
-    request(server)
-      .get('/api/v1/users')
+  const doit = (i) => {
+    it(`${routes[i].type} ${routes[i].route} ${routes[i].desc}`, (done) => {
+      request(server)
+      .get(routes[i].route)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect((res) => {
-        const tmpUsers = res.body;
+      .expect(res => routes[i].cb(res, done));
+    });
+  };
 
-        // Save one single user from the list to test on in later tests
-        this.tstUserIgnored = tmpUsers[0];
+  for (let i = 0; i < routes.length; i++) {
+    console.log('asdf');
+    //doit(i);
+  }
 
-        expect(tmpUsers.length).to.be.above(0);
-      })
-      .end(done);
-  });
 
-  // Test for a single user
-  it('GET /api/v1/users/:id returns an user obj with a id and name property', (done) => {
-    request(server)
-      .get('/api/v1/users/' + this.tstUserIgnored.id)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect((res) => {
-        const tmpUser = res.body;
-
-        expect(tmpUser).to.have.property('id');
-        expect(tmpUser).to.have.property('name');
-      })
-      .end(done);
-  });
-
-  // Test for the Apps of a Specific user
-  it('GET /api/v1/users/:id/apps should find all apps for a user', (done) => {
+  // Add, find app(s) by user id and remove app
+  it('GET /api/v1/users/:id/apps Should add, find app(s) by user id and remove app.', (done) => {
     const newApp = {
       id: 'tstId',
       title: 'tstApp',
       description: 'tstDesc',
-      userId: this.tstUserIgnored.id,
+      userId: this.tstUser.id,
     };
 
-    App.add(newApp, () => {
+    app.add(newApp, () => {
       request(server)
-      .get(`/api/v1/users/${this.tstUserIgnored.id}/apps`)
+      .get(`/api/v1/users/${this.tstUser.id}/apps`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect((res) => {
         const tmpApps = res.body;
 
-        // Save one single app from the list to test on in later tests
+        // Expect tmpApps.length to be above 0, app(s) found for user id
         expect(tmpApps.length).to.be.above(0);
-      });
+      })
+      .end(() => {
+        app.remove(newApp, (data) => {
+          request(server)
+          .get(`/api/v1/apps/${newApp.id}`)
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect((res) => {
+            const tmpApp = res.body;
 
-      App.remove(newApp, (data) => {
-        // If data exists
-        if (data) {
-          // Respond with JSON, status OK
-          done();
-        } else {
-          // Respond with JSON, status Not Found
-        }
-      }, null);
+            // Expect tmpApp to return 1, app removed
+            expect(tmpApp).to.equal(1);
+          })
+          .end(done);
+        }, err => utils.debug(err));
+      });
     });
-  }, null);
+  }, err => utils.debug(err));
 });
