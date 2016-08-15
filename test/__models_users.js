@@ -2,8 +2,6 @@ const expect = require('chai').expect;
 const faker = require('faker');
 const User = require('../src/models/user');
 
-return;
-
 describe('User Model', () => {
   // Find all users
   it('GET /api/v1/users - Find all users', (done) => {

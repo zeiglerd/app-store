@@ -2,8 +2,6 @@ const expect = require('chai').expect;
 const faker = require('faker');
 const App = require('../src/models/app');
 
-return;
-
 describe('App Model', () => {
   // Find all apps
   it('GET /api/v1/apps - Find all apps', (done) => {
