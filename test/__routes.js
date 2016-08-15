@@ -7,9 +7,7 @@ const utils = require('../src/lib/utilities');
 
 // Test for a single user
 
-let tstUser;
-
-const routes = [
+const tests = [
   {
     cb: (res, done) => {
       const tmpUsers = res.body;
@@ -40,7 +38,7 @@ const routes = [
   },
 ];
 
-describe('User Routes', () => {
+describe('Routes', () => {
   let server;
 
   beforeEach(() => {
@@ -51,57 +49,13 @@ describe('User Routes', () => {
     server.close();
   });
 
-  const doit = (i) => {
-    it(`${routes[i].type} ${routes[i].route} ${routes[i].desc}`, (done) => {
+  tests.forEach((test) => {
+    it(`${test.type} ${test.route} ${test.desc}`, (done) => {
       request(server)
-      .get(routes[i].route)
+      .get(test.route)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(res => routes[i].cb(res, done));
+      .expect(res => test.cb(res, done));
     });
-  };
-
-  for (let i = 0; i < routes.length; i++) {
-    console.log('asdf');
-    //doit(i);
-  }
-
-
-  // Add, find app(s) by user id and remove app
-  it('GET /api/v1/users/:id/apps Should add, find app(s) by user id and remove app.', (done) => {
-    const newApp = {
-      id: 'tstId',
-      title: 'tstApp',
-      description: 'tstDesc',
-      userId: this.tstUser.id,
-    };
-
-    app.add(newApp, () => {
-      request(server)
-      .get(`/api/v1/users/${this.tstUser.id}/apps`)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect((res) => {
-        const tmpApps = res.body;
-
-        // Expect tmpApps.length to be above 0, app(s) found for user id
-        expect(tmpApps.length).to.be.above(0);
-      })
-      .end(() => {
-        app.remove(newApp, (data) => {
-          request(server)
-          .get(`/api/v1/apps/${newApp.id}`)
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect((res) => {
-            const tmpApp = res.body;
-
-            // Expect tmpApp to return 1, app removed
-            expect(tmpApp).to.equal(1);
-          })
-          .end(done);
-        }, err => utils.debug(err));
-      });
-    });
-  }, err => utils.debug(err));
+  });
 });
