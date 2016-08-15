@@ -22,6 +22,15 @@ const tests = [
     success: (res, done) => {
       setTstData(res.body);
 
+      // console.log(getTstData());
+      // Result:
+      // {
+      //   id: '4ab54efa-1f6b-41d5-a48e-e0470de20338',
+      //   name: 'tstName',
+      //   updatedAt: '2016-08-15T04:39:15.000Z',
+      //   createdAt: '2016-08-15T04:39:15.000Z'
+      // }
+
       expect(res.body).to.have.property('id');
       expect(res.body).to.have.property('name');
 
@@ -42,8 +51,7 @@ const tests = [
   {
     desc: 'Returns single user, should return obj with id and name.',
     method: 'GET',
-    // route: `/api/v1/users/${this.tstDataIgnore.id}`,
-    route: '/api/v1/users/' + getTstData().id,
+    route: `/api/v1/users/${getTstData().id}`, // getTstData() returns {}, see lines 23-32.
     statusCode: 200,
     success: (res, done) => {
       utils.debug(res.body);
