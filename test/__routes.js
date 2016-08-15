@@ -3,7 +3,7 @@ const request = require('supertest');
 // const app = require('../src/models/app');
 const utils = require('../src/lib/utilities');
 
-// var tstData = {};
+var tstData = {};
 
 const tests = [
   {
