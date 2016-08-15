@@ -1,13 +1,18 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-// const app = require('../src/models/app');
 const utils = require('../src/lib/utilities');
 
-var tstData = {};
+let tstData = {};
+function getTstData() {
+  return tstData;
+}
+function setTstData(data) {
+  tstData = data;
+}
 
 const tests = [
   {
-    desc: 'Add user, should return obj with id and name.',
+    desc: 'Adds a user, should return obj with id and name.',
     method: 'POST',
     payload: {
       name: 'tstName',
@@ -15,7 +20,7 @@ const tests = [
     route: '/api/v1/users',
     statusCode: 201,
     success: (res, done) => {
-      this.tstData = res.body;
+      setTstData(res.body);
 
       expect(res.body).to.have.property('id');
       expect(res.body).to.have.property('name');
@@ -24,7 +29,7 @@ const tests = [
     },
   },
   {
-    desc: 'returns multiple users',
+    desc: 'Returns multiple users, should be above 0.',
     method: 'GET',
     route: '/api/v1/users',
     statusCode: 200,
@@ -35,10 +40,10 @@ const tests = [
     },
   },
   {
-    desc: 'returns multiple users',
+    desc: 'Returns single user, should return obj with id and name.',
     method: 'GET',
-    // route: `/api/v1/users/${this.tstData.id}`,
-    route: '/api/v1/users/' + this.tstData.id,
+    // route: `/api/v1/users/${this.tstDataIgnore.id}`,
+    route: '/api/v1/users/' + getTstData().id,
     statusCode: 200,
     success: (res, done) => {
       utils.debug(res.body);
@@ -49,6 +54,34 @@ const tests = [
       done();
     },
   },
+  // {
+  //   desc: 'Adds an app, should return obj with id, title and description.',
+  //   method: 'POST',
+  //   payload: {
+  //     name: 'tstName',
+  //   },
+  //   route: '/api/v1/users',
+  //   statusCode: 201,
+  //   success: (res, done) => {
+  //     this.tstDataIgnore = res.body;
+  //
+  //     expect(res.body).to.have.property('id');
+  //     expect(res.body).to.have.property('name');
+  //
+  //     done();
+  //   },
+  // },
+  // {
+  //   desc: 'Returns multiple users, should be above 0.',
+  //   method: 'GET',
+  //   route: '/api/v1/users',
+  //   statusCode: 200,
+  //   success: (res, done) => {
+  //     expect(res.body.length).to.be.above(0);
+  //
+  //     done();
+  //   },
+  // },
 ];
 
 describe('Routes', () => {
