@@ -1,40 +1,53 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-const app = require('../src/models/app');
+// const app = require('../src/models/app');
 const utils = require('../src/lib/utilities');
 
-// Test for Multiple Users
-
-// Test for a single user
+// var tstData = {};
 
 const tests = [
   {
-    cb: (res, done) => {
-      const tmpUsers = res.body;
+    desc: 'Add user, should return obj with id and name.',
+    method: 'POST',
+    payload: {
+      name: 'tstName',
+    },
+    route: '/api/v1/users',
+    statusCode: 201,
+    success: (res, done) => {
+      this.tstData = res.body;
 
-      // Save one single user from the list to test on in later tests
-      this.tstUser = tmpUsers[0];
-
-      expect(tmpUsers.length).to.be.above(0);
+      expect(res.body).to.have.property('id');
+      expect(res.body).to.have.property('name');
 
       done();
     },
-    desc: 'returns multiple users',
-    route: '/api/v1/users',
-    type: 'GET',
   },
   {
-    cb: (res, done) => {
-      const tmpUser = res.body;
-
-      expect(tmpUser).to.have.property('id');
-      expect(tmpUser).to.have.property('name');
+    desc: 'returns multiple users',
+    method: 'GET',
+    route: '/api/v1/users',
+    statusCode: 200,
+    success: (res, done) => {
+      expect(res.body.length).to.be.above(0);
 
       done();
     },
-    desc: 'returns an user obj with a id and name property',
-    route: `/api/v1/users/${this.tstUser.id}`,
-    type: 'GET',
+  },
+  {
+    desc: 'returns multiple users',
+    method: 'GET',
+    // route: `/api/v1/users/${this.tstData.id}`,
+    route: '/api/v1/users/' + this.tstData.id,
+    statusCode: 200,
+    success: (res, done) => {
+      utils.debug(res.body);
+
+      expect(res.body).to.have.property('id');
+      expect(res.body).to.have.property('name');
+
+      done();
+    },
   },
 ];
 
@@ -50,12 +63,34 @@ describe('Routes', () => {
   });
 
   tests.forEach((test) => {
-    it(`${test.type} ${test.route} ${test.desc}`, (done) => {
-      request(server)
-      .get(test.route)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(res => test.cb(res, done));
+    it(`${test.method} ${test.route} ${test.desc}`, (done) => {
+      if (test.method === 'GET') {
+        request(server)
+        .get(test.route)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(test.statusCode)
+        .end((err, res) => {
+          if (err) {
+            utils.debug(err);
+          } else {
+            test.success(res, done);
+          }
+        });
+      } else if (test.method === 'POST') {
+        request(server)
+        .post(test.route)
+        .send(test.payload)
+        .expect(test.statusCode)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) {
+            utils.debug(err);
+          } else {
+            test.success(res, done);
+          }
+        });
+      }
     });
   });
 });
