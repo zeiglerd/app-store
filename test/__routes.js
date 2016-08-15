@@ -39,21 +39,21 @@ const tests = [
       done();
     },
   },
-  // {
-  //   desc: 'Returns single user, should return obj with id and name.',
-  //   method: 'GET',
-  //   // route: `/api/v1/users/${this.tstDataIgnore.id}`,
-  //   route: '/api/v1/users/' + getTstData().id,
-  //   statusCode: 200,
-  //   success: (res, done) => {
-  //     utils.debug(res.body);
-  //
-  //     expect(res.body).to.have.property('id');
-  //     expect(res.body).to.have.property('name');
-  //
-  //     done();
-  //   },
-  // },
+  {
+    desc: 'Returns single user, should return obj with id and name.',
+    method: 'GET',
+    // route: `/api/v1/users/${this.tstDataIgnore.id}`,
+    route: '/api/v1/users/' + getTstData().id,
+    statusCode: 200,
+    success: (res, done) => {
+      utils.debug(res.body);
+
+      expect(res.body).to.have.property('id');
+      expect(res.body).to.have.property('name');
+
+      done();
+    },
+  },
   // {
   //   desc: 'Adds an app, should return obj with id, title and description.',
   //   method: 'POST',
