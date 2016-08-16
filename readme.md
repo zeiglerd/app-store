@@ -8,12 +8,13 @@ http://semver.org/
 ## Installation Instructions
 
 #### Production Installation
-1. Install all required dependencies, for this project.
+1. Using console/terminal, navigate to the root of the project.
+2. Install all required dependencies, for this project.
 ```
 $ npm i
 ```
-2. Define all environment variables, for this project.
-  - Create a file in the root of the project called, "*.env*" and populate it using this template:
+3. Define all environment variables, for this project.
+  - Create a file -- in the root of the project -- called, "*./.env*" and populate it, using this template:
 ```
 DB_HOST=
 DB_NAME=
@@ -33,7 +34,31 @@ $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a1
 ```
 $ apm i linter-eslint
 ```
-
+4. Create the base *eslintrs* configuration file.
+  - Create a file -- in the root of the project -- called, "*./.eslintrc.json*" using this configuration:
+```
+{
+	"env": {
+		"node": true
+	},
+	"extends": "airbnb",
+	"plugins": [
+    "react"
+  ],
+	"rules": {
+		"new-cap": 0,
+		"prefer-template": 0,
+		"global-require": 0,
+		"import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
+	},
+	"globals": {
+		"describe": true,
+		"it": true,
+		"afterEach": true,
+		"beforeEach": true
+	}
+}
+```
 
 ---
 
@@ -73,10 +98,6 @@ $ DEBUG=true nodemon src/server.js
 - Use the following command to run the unit tests, located in the *./test/* directory.
 ```
 $ npm test
-```
-*or*
-```
-$ mocha
 ```
 
 
