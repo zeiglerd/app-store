@@ -36,8 +36,8 @@ module.exports = (express) => {
       app.add(req.body, (data) => {
         // If data exists
         if (data) {
-          // Respond with JSON, status OK
-          res.json(data);
+          // Respond with JSON, status Created
+          res.status(201).json(data);
         } else {
           // Respond with JSON, status Internal Server Error
           res.status(500).json({
