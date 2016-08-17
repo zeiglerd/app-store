@@ -31,24 +31,24 @@ DB_USER=
 ```
 {
   "env": {
-		"node": true
-	},
-	"extends": "airbnb",
-	"plugins": [
+    "node": true
+  },
+  "extends": "airbnb",
+  "plugins": [
     "react"
   ],
-	"rules": {
-		"new-cap": 0,
-		"prefer-template": 0,
-		"global-require": 0,
-		"import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
-	},
-	"globals": {
-		"describe": true,
-		"it": true,
-		"afterEach": true,
-		"beforeEach": true
-	}
+  "rules": {
+    "new-cap": 0,
+    "prefer-template": 0,
+    "global-require": 0,
+    "import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "afterEach": true,
+    "beforeEach": true
+  }
 }
 ```
 3. Install all command line tools for development.
