@@ -26,19 +26,11 @@ DB_USER=
 
 #### Development Installation
 1. Follow the [Production Installation Instructions](#production-installation).
-2. Install all command line tools for development.
-```
-$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
-```
-3. Install eslint for Atom.
-```
-$ apm i linter-eslint
-```
-4. Create the base *eslintrs* configuration file.
+2. Create the base *eslintrs* configuration file.
   - Create a file -- in the root of the project -- called, "*./.eslintrc.json*" using this configuration:
 ```
 {
-	"env": {
+  "env": {
 		"node": true
 	},
 	"extends": "airbnb",
@@ -58,6 +50,14 @@ $ apm i linter-eslint
 		"beforeEach": true
 	}
 }
+```
+3. Install all command line tools for development.
+```
+$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
+```
+4. Install eslint for Atom.
+```
+$ apm i linter-eslint
 ```
 
 ---
