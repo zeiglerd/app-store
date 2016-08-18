@@ -9,24 +9,24 @@ http://semver.org/
 
 #### Production
 1. Using command line, navigate to the root of the project.
-2. Install all required dependencies, for this project.
-```
-$ npm i
-```
-3. Define all environment variables, for this project.
-  - Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:
-```
-DB_HOST=
-DB_NAME=
-DB_PASS=
-DB_PORT=
-DB_SCHEMA=
-DB_USER=
-```
+2. Install all required dependencies, for this project:<br>
+  ```
+  $ npm i
+  ```
+3. Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:<br>
+  ```
+  DB_HOST=
+  DB_NAME=
+  DB_PASS=
+  DB_PORT=
+  DB_SCHEMA=
+  DB_USER=
+  ```
+4. Using the previous template, give each of the Environment Variables a value.
 
 #### Development
 1. Follow the [Production Installation](#production).
-2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:
+2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:<br>
   ```
   {
   	"env": {
@@ -50,11 +50,11 @@ DB_USER=
   	}
   }
   ```
-3. Install all command line tools.
+3. Install all command line tools:<br>
   ```
   $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
   ```
-4. Optional: Install eslint for Atom.
+4. Optional: Install eslint for Atom:<br>
   ```
   $ apm i linter-eslint
   ```
@@ -70,14 +70,14 @@ $ npm start
 ```
 
 #### Running the Server in the Preferred Development State
-- Use nodemon to listen for file updates:
+- Use nodemon to listen for file updates:<br>
   ```
   $ nodemon src/server.js
   ```
   
 #### Unit Testing
 - Use the following command to run each unit test:
-  - Unit tests are located in the *test* folder, in the root of the project.
+  - Unit tests are located in the *test* folder, in the root of the project.<br>
   ```
   $ npm test
   ```
