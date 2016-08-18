@@ -26,39 +26,38 @@ DB_USER=
 
 #### Development
 1. Follow the [Production Installation](#production).
-2. Create the base *eslintrs* configuration file.
-  - Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this:
-```
-{
-	"env": {
-		"node": true
-	},
-	"extends": "airbnb",
-	"plugins": [
-    "react"
-  ],
-	"rules": {
-		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
-		"global-require": 0,
-		"new-cap": 0,
-		"prefer-template": 0
-	},
-	"globals": {
-		"describe": true,
-		"it": true,
-		"afterEach": true,
-		"beforeEach": true
-	}
-}
-```
-3. Install all command line tools for development.
-```
-$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
-```
+2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:
+  ```
+  {
+  	"env": {
+  		"node": true
+  	},
+  	"extends": "airbnb",
+  	"plugins": [
+      "react"
+    ],
+  	"rules": {
+  		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
+  		"global-require": 0,
+  		"new-cap": 0,
+  		"prefer-template": 0
+  	},
+  	"globals": {
+  		"describe": true,
+  		"it": true,
+  		"afterEach": true,
+  		"beforeEach": true
+  	}
+  }
+  ```
+3. Install all command line tools.
+  ```
+  $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
+  ```
 4. Optional: Install eslint for Atom.
-```
-$ apm i linter-eslint
-```
+  ```
+  $ apm i linter-eslint
+  ```
 
 ---
 
@@ -71,31 +70,17 @@ $ npm start
 ```
 
 #### Running the Server in the Preferred Development State
-- Uses nodemon to listen for file updates and automatically refreshes the current cached build streamlining development.
-```
-$ nodemon src/server.js
-```
-
-#### Expected Debug Output
-
-- ###### Models
-  - [timestamp]
-  - [message]
-  - [object]
-
-- ###### Routes
-  - [timestamp]
-  - [message]
-
-- ###### Runtime
-  - [timestamp]
-  - [message/port]
+- Use nodemon to listen for file updates:
+  ```
+  $ nodemon src/server.js
+  ```
   
 #### Unit Testing
-- Use the following command to run each unit test, which are located in the *test* folder in the root of your project.
-```
-$ npm test
-```
+- Use the following command to run each unit test:
+  - Unit tests are located in the *test* folder, in the root of the project.
+  ```
+  $ npm test
+  ```
 
 
 ---
