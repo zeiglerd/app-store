@@ -27,7 +27,7 @@ http://semver.org/
 #### Development
 1. Follow the [Production Installation](#production).
 2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:<br>
-  ```
+  ```json
   {
   	"env": {
   		"node": true
