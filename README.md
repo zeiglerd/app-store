@@ -5,16 +5,16 @@ http://semver.org/
 ---
 
 
-## Installation Instructions
+## Installation
 
-#### Production Installation
-1. Using console/terminal, navigate to the root of the project.
+#### Production
+1. Using command line, navigate to the root of the project.
 2. Install all required dependencies, for this project.
 ```
 $ npm i
 ```
 3. Define all environment variables, for this project.
-  - Create a file -- in the root of the project -- called, "*./.env*" and populate it, using this template:
+  - Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:
 ```
 DB_HOST=
 DB_NAME=
@@ -24,18 +24,10 @@ DB_SCHEMA=
 DB_USER=
 ```
 
-#### Development Installation
-1. Follow the [Production Installation Instructions](#production-installation).
-2. Install all command line tools for development.
-```
-$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
-```
-3. Install eslint for Atom.
-```
-$ apm i linter-eslint
-```
-4. Create the base *eslintrs* configuration file.
-  - Create a file -- in the root of the project -- called, "*./.eslintrc.json*" using this configuration:
+#### Development
+1. Follow the [Production Installation](#production).
+2. Create the base *eslintrs* configuration file.
+  - Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this:
 ```
 {
 	"env": {
@@ -46,10 +38,10 @@ $ apm i linter-eslint
     "react"
   ],
 	"rules": {
-		"new-cap": 0,
-		"prefer-template": 0,
+		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
 		"global-require": 0,
-		"import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
+		"new-cap": 0,
+		"prefer-template": 0
 	},
 	"globals": {
 		"describe": true,
@@ -59,24 +51,29 @@ $ apm i linter-eslint
 	}
 }
 ```
+3. Install all command line tools for development.
+```
+$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
+```
+4. Optional: Install eslint for Atom.
+```
+$ apm i linter-eslint
+```
 
 ---
 
 
 ## Usage
 
-#### Run the server in default state
-- Suppress all debug messages (console/terminal and *./logs/console.log*).
+#### Running the Server in the Default Production State
 ```
 $ npm start
 ```
 
-#### Run the server in debug state
+#### Running the Server in the Preferred Development State
 - Uses nodemon to listen for file updates and automatically refreshes the current cached build streamlining development.
-- Displays robust debug messages in terminal.
-- Logs debug messages to *./logs/console.log*.
 ```
-$ DEBUG=true nodemon src/server.js
+$ nodemon src/server.js
 ```
 
 #### Expected Debug Output
@@ -95,7 +92,7 @@ $ DEBUG=true nodemon src/server.js
   - [message/port]
   
 #### Unit Testing
-- Use the following command to run the unit tests, located in the *./test/* directory.
+- Use the following command to run each unit test, which are located in the *test* folder in the root of your project.
 ```
 $ npm test
 ```
