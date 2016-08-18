@@ -30,25 +30,25 @@ DB_USER=
   - Create a file -- in the root of the project -- called, "*./.eslintrc.json*" using this configuration:
 ```
 {
-  "env": {
-    "node": true
-  },
-  "extends": "airbnb",
-  "plugins": [
+	"env": {
+		"node": true
+	},
+	"extends": "airbnb",
+	"plugins": [
     "react"
   ],
-  "rules": {
-    "new-cap": 0,
-    "prefer-template": 0,
-    "global-require": 0,
-    "import/no-extraneous-dependencies": ["error", {"optionalDependencies": false, "peerDependencies": false}]
-  },
-  "globals": {
-    "describe": true,
-    "it": true,
-    "afterEach": true,
-    "beforeEach": true
-  }
+	"rules": {
+		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
+		"global-require": 0,
+		"new-cap": 0,
+		"prefer-template": 0
+	},
+	"globals": {
+		"describe": true,
+		"it": true,
+		"afterEach": true,
+		"beforeEach": true
+	}
 }
 ```
 3. Install all command line tools for development.

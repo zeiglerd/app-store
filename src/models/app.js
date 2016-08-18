@@ -1,5 +1,5 @@
 const db = require('./db');
-const utils = require('../lib/utilities');
+const utilTool = require('utility-tool');
 
 // Create app
 exports.add = (payload, success, error) => {
@@ -8,14 +8,14 @@ exports.add = (payload, success, error) => {
   db.App.create(payload)
   .then((data) => {
     if (data) {
-      utils.debug('Successfully added the app', data, 0);
+      utilTool.debug('Successfully added the app', data, 0);
     } else {
-      utils.debug(failMsg, data);
+      utilTool.debug(failMsg, data);
     }
 
     success(data);
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -31,14 +31,14 @@ exports.remove = (payload, success, error) => {
     },
   }).then((data) => {
     if (data) {
-      utils.debug('Successfully removed the app', data, 0);
+      utilTool.debug('Successfully removed the app', data, 0);
     } else {
-      utils.debug(failMsg, data);
+      utilTool.debug(failMsg, data);
     }
 
     success(data);
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -58,14 +58,14 @@ exports.one = (payload, success, error) => {
     }],
   }).then((data) => {
     if (data) {
-      utils.debug('Successfully found one app', data, 0);
+      utilTool.debug('Successfully found one app', data, 0);
     } else {
-      utils.debug(failMsg, data);
+      utilTool.debug(failMsg, data);
     }
 
     success(data);
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -82,14 +82,14 @@ exports.all = (success, error) => {
     }],
   }).then((data) => {
     if (data) {
-      utils.debug('Successfully found all apps', data, 0);
+      utilTool.debug('Successfully found all apps', data, 0);
     } else {
-      utils.debug(failMsg, data);
+      utilTool.debug(failMsg, data);
     }
 
     success(data);
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -109,14 +109,14 @@ exports.allByUserId = (payload, success, error) => {
     }],
   }).then((data) => {
     if (data) {
-      utils.debug('Successfully found apps by user id', data, 0);
+      utilTool.debug('Successfully found apps by user id', data, 0);
     } else {
-      utils.debug(failMsg, data);
+      utilTool.debug(failMsg, data);
     }
 
     success(data);
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -134,19 +134,19 @@ exports.update = (payload, success, error) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data) {
-        utils.debug('Successfully updated the app', data, 0);
+        utilTool.debug('Successfully updated the app', data, 0);
       } else {
-        utils.debug(failMsg, data);
+        utilTool.debug(failMsg, data);
       }
 
       success(data);
     }).catch((err) => {
-      utils.debug(failMsg, err);
+      utilTool.debug(failMsg, err);
 
       error(err);
     });
   }).catch((err) => {
-    utils.debug(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
