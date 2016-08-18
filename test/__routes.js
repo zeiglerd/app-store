@@ -2,13 +2,15 @@ const expect = require('chai').expect;
 const request = require('supertest');
 const utilTool = require('utility-tool');
 
-let tstData = {};
-function getTstData() {
-  return tstData;
-}
-function setTstData(data) {
-  tstData = data;
-}
+// let tstData = {};
+
+// function getTstData() {
+//   return tstData;
+// }
+//
+// function setTstData(data) {
+//   tstData = data;
+// }
 
 describe('Routes', () => {
   let server;
@@ -21,27 +23,23 @@ describe('Routes', () => {
     server.close();
   });
 
-  it('POST /api/v1/users Adds a user, should return obj with id and name.', (done) => {
-    request(server)
-    .post('/api/v1/users')
-    .send({ name: 'tstName' })
-    .expect(201)
-    .expect('Content-Type', /json/)
-    .end((err, res) => {
-      if (err) {
-        utilTool.debug(err);
-      } else {
-        setTstData(res.body);
-
-        expect(res.body).to.have.property('id');
-        expect(res.body).to.have.property('name');
-
-        done();
-      }
-    });
-  });
-
   const tests = [{
+    desc: 'Adds a user, should return obj with id and name.',
+    method: 'POST',
+    payload: {
+      name: 'tstName',
+    },
+    route: '/api/v1/users',
+    statusCode: 201,
+    success: (res, done) => {
+      // setTstData(res.body);
+
+      expect(res.body).to.have.property('id');
+      expect(res.body).to.have.property('name');
+
+      done();
+    },
+  }, {
     desc: 'Returns multiple users, should be above 0.',
     method: 'GET',
     route: '/api/v1/users',
@@ -49,28 +47,19 @@ describe('Routes', () => {
     success: (res, done) => {
       expect(res.body.length).to.be.above(0);
 
-      // console.log(getTstData());
-      // Result:
-      // {
-      //   id: '4ab54efa-1f6b-41d5-a48e-e0470de20338',
-      //   name: 'tstName',
-      //   updatedAt: '2016-08-15T04:39:15.000Z',
-      //   createdAt: '2016-08-15T04:39:15.000Z'
-      // }
-
       done();
     },
-  }, {
-    desc: 'Returns single user, should return obj with id and name.',
-    method: 'GET',
-    route: `/api/v1/users/${getTstData().id}`, // getTstData() returns {}, see lines 23-32.
-    statusCode: 200,
-    success: (res, done) => {
-      expect(res.body).to.have.property('id');
-      expect(res.body).to.have.property('name');
-
-      done();
-    },
+  // }, {
+  //   desc: 'Returns single user, should return obj with id and name.',
+  //   method: 'GET',
+  //   route: `/api/v1/users/${getTstData().id}`, // getTstData() returns {}, see lines 23-32.
+  //   statusCode: 200,
+  //   success: (res, done) => {
+  //     expect(res.body).to.have.property('id');
+  //     expect(res.body).to.have.property('name');
+  //
+  //     done();
+  //   },
   }];
 
   tests.forEach((test) => {
