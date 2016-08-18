@@ -8,7 +8,7 @@ http://semver.org/
 ## Installation
 
 #### Production
-1. Using console/terminal, navigate to the root of the project.
+1. Using command line, navigate to the root of the project.
 2. Install all required dependencies, for this project.
 ```
 $ npm i
