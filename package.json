@@ -1,6 +1,6 @@
 {
-  "name": "appStore",
-  "version": "1.5.0",
+  "name": "app-store",
+  "version": "1.6.0",
   "description": "Deployment of Web Applications",
   "main": "src/server.js",
   "scripts": {
