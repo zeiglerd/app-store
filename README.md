@@ -9,12 +9,11 @@ http://semver.org/
 
 #### Production
 1. Using command line, navigate to the root of the project.
-2. Install all required dependencies, for this project.
+2. Install all required dependencies, for this project:<br>
 ```
 $ npm i
 ```
-3. Define all environment variables, for this project.
-  - Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:
+3. Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:<br>
 ```
 DB_HOST=
 DB_NAME=
@@ -23,12 +22,12 @@ DB_PORT=
 DB_SCHEMA=
 DB_USER=
 ```
+4. Using the previous template, give each of the Environment Variables a value.
 
 #### Development
 1. Follow the [Production Installation](#production).
-2. Create the base *eslintrs* configuration file.
-  - Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this:
-```
+2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:<br>
+```json
 {
 	"env": {
 		"node": true
@@ -51,11 +50,11 @@ DB_USER=
 	}
 }
 ```
-3. Install all command line tools for development.
+3. Install all command line tools:<br>
 ```
 $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
 ```
-4. Optional: Install eslint for Atom.
+4. Optional: Install eslint for Atom:<br>
 ```
 $ apm i linter-eslint
 ```
@@ -71,31 +70,25 @@ $ npm start
 ```
 
 #### Running the Server in the Preferred Development State
-- Uses nodemon to listen for file updates and automatically refreshes the current cached build streamlining development.
+- Use nodemon to listen for file updates:<br>
 ```
 $ nodemon src/server.js
 ```
-
-#### Expected Debug Output
-
-- ###### Models
-  - [timestamp]
-  - [message]
-  - [object]
-
-- ###### Routes
-  - [timestamp]
-  - [message]
-
-- ###### Runtime
-  - [timestamp]
-  - [message/port]
   
 #### Unit Testing
-- Use the following command to run each unit test, which are located in the *test* folder in the root of your project.
+- Use the following command to run each unit test:
+  - Unit tests are located in the *test* folder, in the root of the project.<br>
 ```
 $ npm test
 ```
+
+
+---
+
+
+## Deployment
+
+...
 
 
 ---
@@ -127,7 +120,7 @@ $ npm test
 ###### Description
 Display all Apps
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: [
   {
@@ -154,7 +147,7 @@ JSON Response: [
 ###### Description
 Create an App
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 201 Created
 JSON Response: {
   "id": 3,
@@ -173,7 +166,7 @@ JSON Response: {
 ###### Description
 Delete App based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: 1
 ```
@@ -187,7 +180,7 @@ JSON Response: 1
 ###### Description
 Display App based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
@@ -207,7 +200,7 @@ JSON Response: {
 ###### Description
 Update App based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
@@ -226,7 +219,7 @@ JSON Response: {
 ###### Description
 Find all apps for userId
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: [
   {
@@ -274,7 +267,7 @@ JSON Response: [
 ###### Description
 Display all Users
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: [
   {
@@ -305,7 +298,7 @@ JSON Response: [
 ###### Description
 Create a User
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 201 Created
 JSON Response: {
   "id": 3,
@@ -325,7 +318,7 @@ JSON Response: {
 ###### Description
 Delete User based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: 1
 ```
@@ -339,7 +332,7 @@ JSON Response: 1
 ###### Description
 Display User based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
@@ -360,7 +353,7 @@ JSON Response: {
 ###### Description
 Update User based upon id
 ###### Example Response
-```
+```json
 HTTP Response Status Code: 200 OK
 JSON Response: {
   "id": 2,
