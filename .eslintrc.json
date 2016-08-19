@@ -10,6 +10,8 @@
 		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
 		"global-require": 0,
 		"new-cap": 0,
+		"no-console": ["error", { "allow": ["log"] }],
+		"no-shadow": ["error", { "allow": ["doc", "docs", "err", "res"] }],
 		"prefer-template": 0
 	},
 	"globals": {
