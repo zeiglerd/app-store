@@ -3,7 +3,6 @@
 *.sh
 *.txt
 .DS_Store
-.env
 .env.json
 .eslintrc.json
 logs

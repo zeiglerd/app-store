@@ -19,6 +19,7 @@
     "faker": "^3.1.0",
     "localenvironment": "^1.0.2",
     "mocha": "^3.0.0",
+    "nodemon": "^1.10.2",
     "supertest": "^2.0.0"
   },
   "engines": {

@@ -2,19 +2,22 @@ const db = require('./db');
 // const utilTool = require('utility-tool');
 
 // Create app
-exports.add = (payload, success, error) => {
+exports.add = (payload, error, success) => {
   const failMsg = 'Failed to add the app';
 
-  db.App.create(payload)
+  db.App
+  .create(payload)
   .then((data) => {
-    if (data) {
+    console.log(data);
+    if (data.dataValues) {
       console.log('Successfully added the app', data, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
