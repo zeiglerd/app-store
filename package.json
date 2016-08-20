@@ -2,7 +2,6 @@
   "author": "Dustin Zeigler <email@zeiglerd.com> (zeiglerd.com)",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "mysql": "^2.11.1",
     "sequelize": "^3.23.6",
@@ -18,6 +17,7 @@
     "eslint-plugin-react": "^6.1.2",
     "expect": "^1.20.2",
     "faker": "^3.1.0",
+    "localenvironment": "^1.0.2",
     "mocha": "^3.0.0",
     "supertest": "^2.0.0"
   },
