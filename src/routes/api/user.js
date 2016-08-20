@@ -1,11 +1,11 @@
 const user = require('../../models/user');
-const utilTool = require('utility-tool');
+// const utilTool = require('utility-tool');
 
 module.exports = (express) => {
   const router = express.Router();
 
   router.get('/users', (req, res) => {
-    utilTool.debug('GET - /api/v1/users', null, 0);
+    console.log('GET - /api/v1/users', null, 0);
 
     // Find all users
     user.all((data) => {
@@ -28,7 +28,7 @@ module.exports = (express) => {
   });
 
   router.post('/users', (req, res) => {
-    utilTool.debug('POST - /api/v1/users', null, 0);
+    console.log('POST - /api/v1/users', null, 0);
 
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
@@ -59,7 +59,7 @@ module.exports = (express) => {
   });
 
   router.delete('/users/:id', (req, res) => {
-    utilTool.debug('DELETE - /api/v1/users/' + req.params.id, null, 0);
+    console.log('DELETE - /api/v1/users/' + req.params.id, null, 0);
 
     // Delete user by id
     user.remove(req.params, (data) => {
@@ -82,7 +82,7 @@ module.exports = (express) => {
   });
 
   router.get('/users/:id', (req, res) => {
-    utilTool.debug('GET - /api/v1/users/' + req.params.id, null, 0);
+    console.log('GET - /api/v1/users/' + req.params.id, null, 0);
 
     // Find user by id
     user.one(req.params, (data) => {
@@ -105,7 +105,7 @@ module.exports = (express) => {
   });
 
   router.post('/users/:id', (req, res) => {
-    utilTool.debug('POST - /api/v1/users/' + req.params.id, null, 0);
+    console.log('POST - /api/v1/users/' + req.params.id, null, 0);
 
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {

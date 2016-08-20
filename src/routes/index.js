@@ -1,4 +1,4 @@
-const utilTool = require('utility-tool');
+// const utilTool = require('utility-tool');
 
 module.exports = (express) => {
   const router = express.Router();
@@ -12,7 +12,7 @@ module.exports = (express) => {
     // Set a JSON response with a defined status
     const msg = 'Route does not exist';
 
-    utilTool.debug(msg);
+    console.log(msg);
 
     res.status(404).json({
       developerMessage: msg,
