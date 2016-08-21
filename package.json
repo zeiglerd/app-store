@@ -30,7 +30,7 @@
   "name": "app-store",
   "scripts": {
     "preinstall": "npm i -g pm2@latest",
-    "start": "node src/server.js",
+    "start": "pm2 src/server.js",
     "test": "mocha"
   },
   "version": "1.8.0"
