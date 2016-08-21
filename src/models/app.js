@@ -172,7 +172,7 @@ exports.update = (payload, error, success) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data.dataValues) {
-        console.log('Successfully updated the app', data, 0);
+        console.log('Successfully updated the app', data.dataValues, 0);
 
         success(data);
       } else {
