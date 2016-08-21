@@ -1,5 +1,24 @@
+#### Routes ToC
+| Sections |
+|---|
+| [Semantic Versioning](#semantic-versioning) |
+| [Installation](#installation) |
+| [Production Installation](#production-installation) |
+| [Development Installation](#development-installation) |
+| [Running the Server for Production](#running-the-server-for-production) |
+| [Running the Server for Development](#running-the-server-for-development) |
+| [Unit Testing](#unit-testing) |
+| [Deployment](#deployment) |
+| [Routes](#routes) |
+
+
+
+---
+
+
+
 ## Semantic Versioning
-http://semver.org/
+- If you're not familiar with semantic versioning; or, just need some brushing up, head on over to [http://semver.org/](http://semver.org/).
 
 
 
@@ -10,9 +29,12 @@ http://semver.org/
 ## Installation
 
 
-#### Production
 
-1. Using command line, navigate to the root of the project.
+#### Production Installation
+
+- Any of the following commands, that begin with a *$*, indicate the use of command line.
+
+1. Using your command line, navigate to the root of this project.
 
 2. Install all required dependencies, for this project:
 
@@ -26,7 +48,7 @@ $ npm i
 $ npm i -g pm2@latest
 ```
 
-4. Create a MySQL database named "*appStore*," you won't need to make any tables.
+4. Create a MySQL database named *appStore*, you won't need to make any tables.
 
 5. Create a file -- in the root of the project -- named, *env.json* and populate it, using this template as an example:
 
@@ -34,17 +56,18 @@ $ npm i -g pm2@latest
 {
   "DB_HOST": "localhost",
   "DB_NAME": "appStore",
-  "DB_PASS": "_your_username_here_",
+  "DB_PASS": "your_password_here",
   "DB_PORT": 3306,
   "DB_SCHEMA": "mysql",
-  "DB_USER": "_your_username_here_"
+  "DB_USER": "_our_username_here"
 }
 ```
 
 
-#### Development
 
-1. You must follow the [Production Installation](#production) in order to continue.
+#### Development Installation
+
+1. You must follow the [Production Installation](#production-installation) in order to continue.
 
 2. Create a file -- in the root of this project -- named, *.eslintrc.json* and populate it with this [eslint configuration](http://eslint.org/docs/user-guide/configuring).
 
@@ -93,14 +116,16 @@ $ apm i linter-eslint
 ## Usage
 
 
-#### Running the Server in the Preferred Production State
+
+#### Running the Server for Production
 
 ```
 $ npm start
 ```
 
 
-#### Running the Server in the Preferred Development State
+
+#### Running the Server for Development
 
 - Using pm2, the server will be able to automatically restart it's self when crashing and will also actively watch for file changes, similar to nodemon.
 
@@ -110,13 +135,15 @@ $ npm start
 $ DEBUG=true pm2 start src/server.js --watch ./
 ```
 
+
+
 #### Unit Testing
 
-- You must follow the [Development Installation](#development) in order to unit test.
+- Unit tests are located in the *test* folder, which is located in the root of this project.
 
-- Unit tests are located in the *test* folder, which is located in the root of the project.
+1. You must follow the [Development Installation](#development-installation) in order to unit test.
 
-- Use the following command to run the unit test(s):
+2. Use the following command to run the unit test(s):
 
 ```
 $ npm test
@@ -130,7 +157,35 @@ $ npm test
 
 ## Deployment
 
-...
+1. You must follow the [Production Installation](#production-installation) in order to deploy your code.
+
+2. Using a feature branch workflow, make the changes -- to the code base -- that you require.
+
+3. Once you have finished making your changes, confirm that the unit test(s) pass successfully.
+
+  - See [Unit Testing](#unit-testing).
+
+4. After the unit test(s) have passed successfully, use Git to add your changes to the index.
+
+```
+$ git add -A
+```
+
+5. Now that your changes have been added to the index, we can commit to the local Git repo.
+
+  - It is VERY important to leave a meaningful commit message. Doing so may help you or another developer solve an error faster, understand your train of thought or even give someone a laugh!
+
+```
+$ git commit -m '*a_meaningful_message_about_the_changes_you_have_made*'
+```
+
+6. Finally, using Git, we will push our changes to the master branch of the development server.
+
+```
+$ git push dev-server *your_feature_branch*:master
+```
+
+7. That is it, your changes should now be live at [http://45.55.234.186/](#http://45.55.234.186/)!
 
 
 
@@ -141,7 +196,7 @@ $ npm test
 ## Routes
 
 
-#### ToC
+#### Routes ToC
 | Link | Method | Route | Response |
 |---|---|---|---|
 | http://localhost:3000/api/v1/apps | POST | /api/v1/apps | [Response](#post-apps) |
@@ -161,7 +216,7 @@ $ npm test
 
 
 #### GET /apps
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Display all Apps
 ###### Example Response
@@ -188,7 +243,7 @@ JSON Response: [
 
 
 #### POST /apps
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Create an App
 ###### Example Response
@@ -207,7 +262,7 @@ JSON Response: {
 
 
 #### DELETE /apps/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Delete App based upon id
 ###### Example Response
@@ -221,7 +276,7 @@ JSON Response: 1
 
 
 #### GET /apps/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Display App based upon id
 ###### Example Response
@@ -241,7 +296,7 @@ JSON Response: {
 
 
 #### POST /apps/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Update App based upon id
 ###### Example Response
@@ -260,7 +315,7 @@ JSON Response: {
 
 
 #### GET /users/:id/apps
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Find all apps for userId
 ###### Example Response
@@ -308,7 +363,7 @@ JSON Response: [
 
 
 #### GET /users
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Display all Users
 ###### Example Response
@@ -339,7 +394,7 @@ JSON Response: [
 
 
 #### POST /users
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Create a User
 ###### Example Response
@@ -359,7 +414,7 @@ JSON Response: {
 
 
 #### DELETE /users/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Delete User based upon id
 ###### Example Response
@@ -373,7 +428,7 @@ JSON Response: 1
 
 
 #### GET /users/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Display User based upon id
 ###### Example Response
@@ -394,7 +449,7 @@ JSON Response: {
 
 
 #### POST /users/:id
-[Back to ToC](#toc)
+[Back to ToC](#routes-toc)
 ###### Description
 Update User based upon id
 ###### Example Response
