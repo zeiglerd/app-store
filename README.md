@@ -13,7 +13,8 @@ http://semver.org/
 ```
 $ npm i
 ```
-3. Create a file -- in the root of the project -- called, "*env.json*" (without the quotes) and populate it, using this template:<br>
+4. Create a MySQL database named "*appStore*," you won't need to make any tables.
+5. Create a file -- in the root of the project -- called, "*env.json*" (without the quotes) and populate it, using this template:<br>
 ```
 {
   "DB_HOST": "localhost",
@@ -24,7 +25,7 @@ $ npm i
   "DB_USER": "root"
 }
 ```
-4. Using the previous template, give each of the Environment Variables a value.
+6. Using the previous template, give each of the Environment Variables a value.
 
 #### Development
 1. Follow the [Production Installation](#production).
