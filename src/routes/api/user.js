@@ -1,14 +1,19 @@
 const user = require('../../models/user');
-// const utilTool = require('utility-tool');
+const utilTool = require('utility-tool');
 
 module.exports = (express) => {
   const router = express.Router();
 
   router.get('/users', (req, res) => {
-    console.log('GET - /api/v1/users', null, 0);
+    utilTool.debug('GET - /api/v1/users', null, 0);
 
     // Find all users
-    user.all((data) => {
+    user.all((error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        developerMessage: error,
+      });
+    }, (data) => {
       // If data exists and data (array) is longer than 0
       if (data && data.length > 0) {
         // Respond with JSON, status OK
@@ -19,21 +24,21 @@ module.exports = (express) => {
           developerMessage: 'No users exist',
         });
       }
-    }, (error) => {
-      // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        developerMessage: error,
-      });
     });
   });
 
   router.post('/users', (req, res) => {
-    console.log('POST - /api/v1/users', null, 0);
+    utilTool.debug('POST - /api/v1/users', null, 0);
 
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
       // Create user
-      user.add(req.body, (data) => {
+      user.add(req.body, (error) => {
+        // Respond with JSON, status Internal Server Error
+        res.status(500).json({
+          developerMessage: error,
+        });
+      }, (data) => {
         // If data exists
         if (data) {
           // Respond with JSON, status Created
@@ -44,11 +49,6 @@ module.exports = (express) => {
             developerMessage: 'The user could not be added',
           });
         }
-      }, (error) => {
-        // Respond with JSON, status Internal Server Error
-        res.status(500).json({
-          developerMessage: error,
-        });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity
@@ -59,10 +59,15 @@ module.exports = (express) => {
   });
 
   router.delete('/users/:id', (req, res) => {
-    console.log('DELETE - /api/v1/users/' + req.params.id, null, 0);
+    utilTool.debug(`DELETE - /api/v1/users/${req.params.id}`, null, 0);
 
     // Delete user by id
-    user.remove(req.params, (data) => {
+    user.remove(req.params, (error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        developerMessage: error,
+      });
+    }, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
@@ -73,19 +78,19 @@ module.exports = (express) => {
           developerMessage: 'The user does not exist',
         });
       }
-    }, (error) => {
-      // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        developerMessage: error,
-      });
     });
   });
 
   router.get('/users/:id', (req, res) => {
-    console.log('GET - /api/v1/users/' + req.params.id, null, 0);
+    utilTool.debug(`GET - /api/v1/users/${req.params.id}`, null, 0);
 
     // Find user by id
-    user.one(req.params, (data) => {
+    user.one(req.params, (error) => {
+      // Respond with JSON, status Internal Server Error
+      res.status(500).json({
+        developerMessage: error,
+      });
+    }, (data) => {
       // If data exists
       if (data) {
         // Respond with JSON, status OK
@@ -96,16 +101,11 @@ module.exports = (express) => {
           developerMessage: 'The user does not exist',
         });
       }
-    }, (error) => {
-      // Respond with JSON, status Internal Server Error
-      res.status(500).json({
-        developerMessage: error,
-      });
     });
   });
 
   router.post('/users/:id', (req, res) => {
-    console.log('POST - /api/v1/users/' + req.params.id, null, 0);
+    utilTool.debug(`POST - /api/v1/users/${req.params.id}`, null, 0);
 
     // If user required data is set
     if (req.body.name && req.body.name.length > 0) {
@@ -113,7 +113,12 @@ module.exports = (express) => {
       tmpUser.id = req.params.id;
 
       // Update user by id
-      user.update(tmpUser, (data) => {
+      user.update(tmpUser, (error) => {
+        // Respond with JSON, status Internal Server Error
+        res.status(500).json({
+          developerMessage: error,
+        });
+      }, (data) => {
         // If data exists
         if (data) {
           // Respond with JSON, status OK
@@ -124,11 +129,6 @@ module.exports = (express) => {
             developerMessage: 'The user does not exist or could not be updated',
           });
         }
-      }, (error) => {
-        // Respond with JSON, status Internal Server Error
-        res.status(500).json({
-          developerMessage: error,
-        });
       });
     } else {
       // Respond with JSON, status Unprocessable Entity

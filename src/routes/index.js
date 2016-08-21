@@ -9,13 +9,9 @@ module.exports = (express) => {
 
   // Default route
   router.use((req, res) => {
-    // Set a JSON response with a defined status
-    const msg = 'Route does not exist';
-
-    console.log(msg);
-
+    // Set a JSON response with a 404 - NOT FOUND
     res.status(404).json({
-      developerMessage: msg,
+      developerMessage: 'Route does not exist',
     });
   });
 

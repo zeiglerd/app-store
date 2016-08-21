@@ -1,119 +1,147 @@
 const db = require('./db');
-// const utilTool = require('utility-tool');
+const utilTool = require('utility-tool');
 
 // Create user
-exports.add = (payload, success, error) => {
+exports.add = (payload, error, success) => {
   const failMsg = 'Failed to add the user';
 
-  db.User.create(payload)
+  db.User
+  .create(payload)
   .then((data) => {
-    if (data) {
-      console.log('Successfully added the user', data, 0);
-    } else {
-      console.log(failMsg, data);
-    }
+    if (data.dataValues) {
+      utilTool.debug('Successfully added the user', data.dataValues, 0);
 
-    success(data);
-  }).catch((err) => {
-    console.log(failMsg, err);
+      success(data);
+    } else {
+      utilTool.debug(failMsg, data);
+
+      error(data);
+    }
+  })
+  .catch((err) => {
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
 };
 
 // Delete user by id
-exports.remove = (payload, success, error) => {
+exports.remove = (payload, error, success) => {
   const failMsg = 'Failed to remove the user';
 
-  db.User.destroy({
+  db.User
+  .destroy({
     where: {
       id: payload.id,
     },
   })
   .then((data) => {
     if (data) {
-      console.log('Successfully removed the user', data, 0);
-    } else {
-      console.log(failMsg, data);
-    }
+      utilTool.debug('Successfully removed the user', data, 0);
 
-    success(data);
-  }).catch((err) => {
-    console.log(failMsg, err);
+      success(data);
+    } else {
+      utilTool.debug(failMsg, data);
+
+      error(data);
+    }
+  })
+  .catch((err) => {
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
 };
 
 // Find user by id
-exports.one = (payload, success, error) => {
+exports.one = (payload, error, success) => {
   const failMsg = 'Failed to find one user';
 
-  db.User.find({
+  db.User
+  .find({
     where: {
       id: payload.id,
     },
   })
   .then((data) => {
-    if (data) {
-      console.log('Successfully found one user', data, 0);
-    } else {
-      console.log(failMsg, data);
-    }
+    if (data.dataValues) {
+      utilTool.debug('Successfully found one user', data.dataValues, 0);
 
-    success(data);
-  }).catch((err) => {
-    console.log(failMsg, err);
+      success(data);
+    } else {
+      utilTool.debug(failMsg, data);
+
+      error(data);
+    }
+  })
+  .catch((err) => {
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
 };
 
 // Find all users
-exports.all = (success, error) => {
+exports.all = (error, success) => {
   const failMsg = 'Failed to find any users';
 
-  db.User.findAll()
+  db.User
+  .findAll()
   .then((data) => {
-    if (data) {
-      console.log('Successfully found all users', data, 0);
-    } else {
-      console.log(failMsg, data);
-    }
+    if (data && data.length && data[0].dataValues) {
+      const users = [];
 
-    success(data);
-  }).catch((err) => {
-    console.log(failMsg, err);
+      for (const user of data) {
+        users.push(user.dataValues);
+      }
+
+      utilTool.debug('Successfully found all users', users, 0);
+
+      success(data);
+    } else {
+      utilTool.debug(failMsg, data);
+
+      error(data);
+    }
+  })
+  .catch((err) => {
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
 };
 
 // Update user by id
-exports.update = (payload, success, error) => {
+exports.update = (payload, error, success) => {
   const failMsg = 'Failed to update the user';
 
-  db.User.find({
+  db.User
+  .find({
     where: {
       id: payload.id,
     },
-  }).then((existingData) => {
+  })
+  .then((existingData) => {
     existingData.updateAttributes(payload)
     .then((data) => {
-      if (data) {
-        console.log('Successfully updated the user', data, 0);
-      } else {
-        console.log(failMsg, data);
-      }
+      if (data.dataValues) {
+        utilTool.debug('Successfully updated the user', data.dataValues, 0);
 
-      success(data);
-    }).catch((err) => {
-      console.log(failMsg, err);
+        success(data);
+      } else {
+        utilTool.debug(failMsg, data);
+
+        error(data);
+      }
+    })
+    .catch((err) => {
+      utilTool.debug(failMsg, err);
 
       error(err);
     });
-  }).catch((err) => {
-    console.log(failMsg, err);
+  })
+  .catch((err) => {
+    utilTool.debug(failMsg, err);
 
     error(err);
   });

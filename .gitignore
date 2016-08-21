@@ -3,8 +3,7 @@
 *.sh
 *.txt
 .DS_Store
-.env
-.env.json
+env.json
 .eslintrc.json
 logs
 node_modules
