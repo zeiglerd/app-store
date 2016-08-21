@@ -1,11 +1,11 @@
 const app = require('../../models/app');
-// const utilTool = require('utility-tool');
+const utilTool = require('utility-tool');
 
 module.exports = (express) => {
   const router = express.Router();
 
   router.get('/apps', (req, res) => {
-    console.log('GET - /api/v1/apps', null, 0);
+    utilTool.debug('GET - /api/v1/apps', null, 0);
 
     // Find all apps
     app.all((error) => {
@@ -28,7 +28,7 @@ module.exports = (express) => {
   });
 
   router.post('/apps', (req, res) => {
-    console.log('POST - /api/v1/apps', null, 0);
+    utilTool.debug('POST - /api/v1/apps', null, 0);
 
     // If app required data is set
     if (req.body.title && req.body.title.length > 0) {
@@ -59,7 +59,7 @@ module.exports = (express) => {
   });
 
   router.delete('/apps/:id', (req, res) => {
-    console.log(`DELETE - /api/v1/users/${req.params.id}`, null, 0);
+    utilTool.debug(`DELETE - /api/v1/users/${req.params.id}`, null, 0);
 
     // Delete app by id
     app.remove(req.params, (error) => {
@@ -82,7 +82,7 @@ module.exports = (express) => {
   });
 
   router.get('/apps/:id', (req, res) => {
-    console.log(`GET - /api/v1/apps/${req.params.id}`, null, 0);
+    utilTool.debug(`GET - /api/v1/apps/${req.params.id}`, null, 0);
 
     // Find app by id
     app.one(req.params, (error) => {
@@ -105,7 +105,7 @@ module.exports = (express) => {
   });
 
   router.post('/apps/:id', (req, res) => {
-    console.log(`POST - /api/v1/apps/${req.params.id}`, null, 0);
+    utilTool.debug(`POST - /api/v1/apps/${req.params.id}`, null, 0);
 
     // If app required data is set
     if (req.body.title && req.body.title.length > 0) {
@@ -139,7 +139,7 @@ module.exports = (express) => {
   });
 
   router.get('/users/:id/apps', (req, res) => {
-    console.log(`GET - /api/v1/users/${req.params.id}/apps`, null, 0);
+    utilTool.debug(`GET - /api/v1/users/${req.params.id}/apps`, null, 0);
 
     // Find all apps for userId
     app.allByUserId(req.params, (error) => {

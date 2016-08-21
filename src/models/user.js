@@ -1,5 +1,5 @@
 const db = require('./db');
-// const utilTool = require('utility-tool');
+const utilTool = require('utility-tool');
 
 // Create user
 exports.add = (payload, error, success) => {
@@ -9,17 +9,17 @@ exports.add = (payload, error, success) => {
   .create(payload)
   .then((data) => {
     if (data.dataValues) {
-      console.log('Successfully added the user', data.dataValues, 0);
+      utilTool.debug('Successfully added the user', data.dataValues, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -37,17 +37,17 @@ exports.remove = (payload, error, success) => {
   })
   .then((data) => {
     if (data) {
-      console.log('Successfully removed the user', data, 0);
+      utilTool.debug('Successfully removed the user', data, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -65,17 +65,17 @@ exports.one = (payload, error, success) => {
   })
   .then((data) => {
     if (data.dataValues) {
-      console.log('Successfully found one user', data.dataValues, 0);
+      utilTool.debug('Successfully found one user', data.dataValues, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -95,17 +95,17 @@ exports.all = (error, success) => {
         users.push(user.dataValues);
       }
 
-      console.log('Successfully found all users', users, 0);
+      utilTool.debug('Successfully found all users', users, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -125,23 +125,23 @@ exports.update = (payload, error, success) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data.dataValues) {
-        console.log('Successfully updated the user', data.dataValues, 0);
+        utilTool.debug('Successfully updated the user', data.dataValues, 0);
 
         success(data);
       } else {
-        console.log(failMsg, data);
+        utilTool.debug(failMsg, data);
 
         error(data);
       }
     })
     .catch((err) => {
-      console.log(failMsg, err);
+      utilTool.debug(failMsg, err);
 
       error(err);
     });
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });

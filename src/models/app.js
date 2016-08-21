@@ -1,5 +1,5 @@
 const db = require('./db');
-// const utilTool = require('utility-tool');
+const utilTool = require('utility-tool');
 
 // Create app
 exports.add = (payload, error, success) => {
@@ -9,17 +9,17 @@ exports.add = (payload, error, success) => {
   .create(payload)
   .then((data) => {
     if (data.dataValues) {
-      console.log('Successfully added the app', data.dataValues, 0);
+      utilTool.debug('Successfully added the app', data.dataValues, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -37,17 +37,17 @@ exports.remove = (payload, error, success) => {
   })
   .then((data) => {
     if (data) {
-      console.log('Successfully removed the app', data, 0);
+      utilTool.debug('Successfully removed the app', data, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -69,17 +69,17 @@ exports.one = (payload, error, success) => {
   })
   .then((data) => {
     if (data.dataValues) {
-      console.log('Successfully found one app', data.dataValues, 0);
+      utilTool.debug('Successfully found one app', data.dataValues, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -104,17 +104,17 @@ exports.all = (error, success) => {
         apps.push(app.dataValues);
       }
 
-      console.log('Successfully found all apps', apps, 0);
+      utilTool.debug('Successfully found all apps', apps, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -142,17 +142,17 @@ exports.allByUserId = (payload, error, success) => {
         apps.push(app.dataValues);
       }
 
-      console.log('Successfully found apps by user id', apps, 0);
+      utilTool.debug('Successfully found apps by user id', apps, 0);
 
       success(data);
     } else {
-      console.log(failMsg, data);
+      utilTool.debug(failMsg, data);
 
       error(data);
     }
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });
@@ -172,23 +172,23 @@ exports.update = (payload, error, success) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data.dataValues) {
-        console.log('Successfully updated the app', data.dataValues, 0);
+        utilTool.debug('Successfully updated the app', data.dataValues, 0);
 
         success(data);
       } else {
-        console.log(failMsg, data);
+        utilTool.debug(failMsg, data);
 
         error(data);
       }
     })
     .catch((err) => {
-      console.log(failMsg, err);
+      utilTool.debug(failMsg, err);
 
       error(err);
     });
   })
   .catch((err) => {
-    console.log(failMsg, err);
+    utilTool.debug(failMsg, err);
 
     error(err);
   });

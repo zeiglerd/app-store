@@ -1,11 +1,14 @@
 const expect = require('chai').expect;
 const faker = require('faker');
 const App = require('../src/models/app');
+// const utilTool = require('utility-tool');
 
 describe('App Model', () => {
   // Find all apps
   it('GET /api/v1/apps - Find all apps', (done) => {
-    App.all((apps) => {
+    App.all((error) => {
+      throw new Error(error);
+    }, (apps) => {
       // Apps (Array) should be a length greater than 0
       expect(apps.length).to.be.above(0);
 
@@ -13,23 +16,21 @@ describe('App Model', () => {
       this.tstAppIgnored = apps[0].dataValues;
 
       done();
-    }, (error) => {
-      throw new Error(error);
     });
   });
 
   // Find app by id
   it('GET /api/v1/apps/:id - Find app by id', (done) => {
     // Call app model for finding
-    App.one(this.tstAppIgnored, (pApp) => {
+    App.one(this.tstAppIgnored, (error) => {
+      throw new Error(error);
+    }, (pApp) => {
       const app = pApp.dataValues;
 
       // App.title should match fakeApp.title
       expect(app.title).to.be.equal(this.tstAppIgnored.title);
 
       done();
-    }, (error) => {
-      throw new Error(error);
     });
   });
 
@@ -39,7 +40,9 @@ describe('App Model', () => {
     const fakeApp = { title: faker.name.firstName() };
 
     // Call app model for adding
-    App.add(fakeApp, (pApp) => {
+    App.add(fakeApp, (error) => {
+      throw new Error(error);
+    }, (pApp) => {
       const app = pApp.dataValues;
 
       // App.title should match fakeApp.title
@@ -49,8 +52,6 @@ describe('App Model', () => {
       this.tstAppIgnored = app;
 
       done();
-    }, (error) => {
-      throw new Error(error);
     });
   });
 
@@ -60,7 +61,9 @@ describe('App Model', () => {
     this.tstAppIgnored.title = 'Not A Real Name';
 
     // Call app model for updating
-    App.update(this.tstAppIgnored, (pApp) => {
+    App.update(this.tstAppIgnored, (error) => {
+      throw new Error(error);
+    }, (pApp) => {
       const app = pApp.dataValues;
 
       // App.title should match this.tstAppIgnored.title
@@ -70,8 +73,6 @@ describe('App Model', () => {
       this.tstAppIgnored = app;
 
       done();
-    }, (error) => {
-      throw new Error(error);
     });
   });
 
@@ -81,13 +82,13 @@ describe('App Model', () => {
     this.tstAppIgnored.force = true;
 
     // Call app model for updating
-    App.remove(this.tstAppIgnored, (response) => {
+    App.remove(this.tstAppIgnored, (error) => {
+      throw new Error(error);
+    }, (response) => {
       // if successfully removed a 1 should be returned
       expect(response).to.be.equal(1);
 
       done();
-    }, (error) => {
-      throw new Error(error);
     });
   });
 });
