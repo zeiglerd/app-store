@@ -161,6 +161,8 @@ $ npm test
 
 2. Using a feature branch workflow, make the changes -- to the code base -- that you require.
 
+  - Create a new branch for each feature you contribute to the code base.
+
 3. Once you have finished making your changes, confirm that the unit test(s) pass successfully.
 
   - See [Unit Testing](#unit-testing).

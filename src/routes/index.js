@@ -11,7 +11,7 @@ module.exports = (express) => {
   router.use((req, res) => {
     // Set a JSON response with a 404 - NOT FOUND
     res.status(404).json({
-      developerMessage: 'We can deploy straight to our dev server!',
+      developerMessage: 'Route does not exist',
     });
   });
 
