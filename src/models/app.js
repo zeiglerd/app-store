@@ -97,7 +97,7 @@ exports.all = (error, success) => {
     }],
   })
   .then((data) => {
-    if (data && data[0].dataValues) {
+    if (data && data.length && data[0].dataValues) {
       const apps = [];
 
       for (const app of data) {
@@ -135,7 +135,7 @@ exports.allByUserId = (payload, error, success) => {
     }],
   })
   .then((data) => {
-    if (data && data[0].dataValues) {
+    if (data && data.length && data[0].dataValues) {
       const apps = [];
 
       for (const app of data) {

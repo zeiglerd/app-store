@@ -88,7 +88,7 @@ exports.all = (error, success) => {
   db.User
   .findAll()
   .then((data) => {
-    if (data && data[0].dataValues) {
+    if (data && data.length && data[0].dataValues) {
       const users = [];
 
       for (const user of data) {
