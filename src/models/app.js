@@ -8,13 +8,15 @@ exports.add = (payload, error, success) => {
   db.App
   .create(payload)
   .then((data) => {
-    if (data) {
+    if (data.dataValues) {
       console.log('Successfully added the app', data.dataValues, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -36,11 +38,13 @@ exports.remove = (payload, error, success) => {
   .then((data) => {
     if (data) {
       console.log('Successfully removed the app', data, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -64,13 +68,15 @@ exports.one = (payload, error, success) => {
     }],
   })
   .then((data) => {
-    if (data) {
+    if (data.dataValues) {
       console.log('Successfully found one app', data.dataValues, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -91,7 +97,7 @@ exports.all = (error, success) => {
     }],
   })
   .then((data) => {
-    if (data) {
+    if (data && data[0].dataValues) {
       const apps = [];
 
       for (const app of data) {
@@ -99,11 +105,13 @@ exports.all = (error, success) => {
       }
 
       console.log('Successfully found all apps', apps, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -127,13 +135,21 @@ exports.allByUserId = (payload, error, success) => {
     }],
   })
   .then((data) => {
-    if (data) {
-      console.log('Successfully found apps by user id', data, 0);
+    if (data && data[0].dataValues) {
+      const apps = [];
+
+      for (const app of data) {
+        apps.push(app.dataValues);
+      }
+
+      console.log('Successfully found apps by user id', apps, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -155,13 +171,15 @@ exports.update = (payload, error, success) => {
   .then((existingData) => {
     existingData.updateAttributes(payload)
     .then((data) => {
-      if (data) {
+      if (data.dataValues) {
         console.log('Successfully updated the app', data, 0);
+
+        success(data);
       } else {
         console.log(failMsg, data);
-      }
 
-      success(data);
+        error(data);
+      }
     })
     .catch((err) => {
       console.log(failMsg, err);

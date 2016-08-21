@@ -8,13 +8,15 @@ exports.add = (payload, error, success) => {
   db.User
   .create(payload)
   .then((data) => {
-    if (data) {
+    if (data.dataValues) {
       console.log('Successfully added the user', data.dataValues, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -36,11 +38,13 @@ exports.remove = (payload, error, success) => {
   .then((data) => {
     if (data) {
       console.log('Successfully removed the user', data, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -60,13 +64,15 @@ exports.one = (payload, error, success) => {
     },
   })
   .then((data) => {
-    if (data) {
+    if (data.dataValues) {
       console.log('Successfully found one user', data.dataValues, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -82,7 +88,7 @@ exports.all = (error, success) => {
   db.User
   .findAll()
   .then((data) => {
-    if (data) {
+    if (data && data[0].dataValues) {
       const users = [];
 
       for (const user of data) {
@@ -90,11 +96,13 @@ exports.all = (error, success) => {
       }
 
       console.log('Successfully found all users', users, 0);
+
+      success(data);
     } else {
       console.log(failMsg, data);
-    }
 
-    success(data);
+      error(data);
+    }
   })
   .catch((err) => {
     console.log(failMsg, err);
@@ -116,13 +124,15 @@ exports.update = (payload, error, success) => {
   .then((existingData) => {
     existingData.updateAttributes(payload)
     .then((data) => {
-      if (data) {
-        console.log('Successfully updated the user', data, 0);
+      if (data.dataValues) {
+        console.log('Successfully updated the user', data.dataValues, 0);
+
+        success(data);
       } else {
         console.log(failMsg, data);
-      }
 
-      success(data);
+        error(data);
+      }
     })
     .catch((err) => {
       console.log(failMsg, err);
