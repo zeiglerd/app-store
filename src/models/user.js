@@ -2,19 +2,21 @@ const db = require('./db');
 // const utilTool = require('utility-tool');
 
 // Create user
-exports.add = (payload, success, error) => {
+exports.add = (payload, error, success) => {
   const failMsg = 'Failed to add the user';
 
-  db.User.create(payload)
+  db.User
+  .create(payload)
   .then((data) => {
     if (data) {
-      console.log('Successfully added the user', data, 0);
+      console.log('Successfully added the user', data.dataValues, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -22,10 +24,11 @@ exports.add = (payload, success, error) => {
 };
 
 // Delete user by id
-exports.remove = (payload, success, error) => {
+exports.remove = (payload, error, success) => {
   const failMsg = 'Failed to remove the user';
 
-  db.User.destroy({
+  db.User
+  .destroy({
     where: {
       id: payload.id,
     },
@@ -38,7 +41,8 @@ exports.remove = (payload, success, error) => {
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -46,23 +50,25 @@ exports.remove = (payload, success, error) => {
 };
 
 // Find user by id
-exports.one = (payload, success, error) => {
+exports.one = (payload, error, success) => {
   const failMsg = 'Failed to find one user';
 
-  db.User.find({
+  db.User
+  .find({
     where: {
       id: payload.id,
     },
   })
   .then((data) => {
     if (data) {
-      console.log('Successfully found one user', data, 0);
+      console.log('Successfully found one user', data.dataValues, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -70,19 +76,27 @@ exports.one = (payload, success, error) => {
 };
 
 // Find all users
-exports.all = (success, error) => {
+exports.all = (error, success) => {
   const failMsg = 'Failed to find any users';
 
-  db.User.findAll()
+  db.User
+  .findAll()
   .then((data) => {
     if (data) {
-      console.log('Successfully found all users', data, 0);
+      const users = [];
+
+      for (const user of data) {
+        users.push(user.dataValues);
+      }
+
+      console.log('Successfully found all users', users, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -90,14 +104,16 @@ exports.all = (success, error) => {
 };
 
 // Update user by id
-exports.update = (payload, success, error) => {
+exports.update = (payload, error, success) => {
   const failMsg = 'Failed to update the user';
 
-  db.User.find({
+  db.User
+  .find({
     where: {
       id: payload.id,
     },
-  }).then((existingData) => {
+  })
+  .then((existingData) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data) {
@@ -107,12 +123,14 @@ exports.update = (payload, success, error) => {
       }
 
       success(data);
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(failMsg, err);
 
       error(err);
     });
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);

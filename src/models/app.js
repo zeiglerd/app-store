@@ -8,9 +8,8 @@ exports.add = (payload, error, success) => {
   db.App
   .create(payload)
   .then((data) => {
-    console.log(data);
-    if (data.dataValues) {
-      console.log('Successfully added the app', data, 0);
+    if (data) {
+      console.log('Successfully added the app', data.dataValues, 0);
     } else {
       console.log(failMsg, data);
     }
@@ -25,14 +24,16 @@ exports.add = (payload, error, success) => {
 };
 
 // Delete app by id
-exports.remove = (payload, success, error) => {
+exports.remove = (payload, error, success) => {
   const failMsg = 'Failed to remove the app';
 
-  db.App.destroy({
+  db.App
+  .destroy({
     where: {
       id: payload.id,
     },
-  }).then((data) => {
+  })
+  .then((data) => {
     if (data) {
       console.log('Successfully removed the app', data, 0);
     } else {
@@ -40,7 +41,8 @@ exports.remove = (payload, success, error) => {
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -48,10 +50,11 @@ exports.remove = (payload, success, error) => {
 };
 
 // Find app by id
-exports.one = (payload, success, error) => {
+exports.one = (payload, error, success) => {
   const failMsg = 'Failed to find one app';
 
-  db.App.find({
+  db.App
+  .find({
     where: {
       id: payload.id,
     },
@@ -59,15 +62,17 @@ exports.one = (payload, success, error) => {
       all: true,
       nested: true,
     }],
-  }).then((data) => {
+  })
+  .then((data) => {
     if (data) {
-      console.log('Successfully found one app', data, 0);
+      console.log('Successfully found one app', data.dataValues, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -75,23 +80,32 @@ exports.one = (payload, success, error) => {
 };
 
 // Find all apps
-exports.all = (success, error) => {
+exports.all = (error, success) => {
   const failMsg = 'Failed to find any apps';
 
-  db.App.findAll({
+  db.App
+  .findAll({
     include: [{
       all: true,
       nested: true,
     }],
-  }).then((data) => {
+  })
+  .then((data) => {
     if (data) {
-      console.log('Successfully found all apps', data, 0);
+      const apps = [];
+
+      for (const app of data) {
+        apps.push(app.dataValues);
+      }
+
+      console.log('Successfully found all apps', apps, 0);
     } else {
       console.log(failMsg, data);
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -99,10 +113,11 @@ exports.all = (success, error) => {
 };
 
 // Find all apps by userId
-exports.allByUserId = (payload, success, error) => {
+exports.allByUserId = (payload, error, success) => {
   const failMsg = 'Failed to find any apps by user id';
 
-  db.App.findAll({
+  db.App
+  .findAll({
     where: {
       userId: payload.id,
     },
@@ -110,7 +125,8 @@ exports.allByUserId = (payload, success, error) => {
       all: true,
       nested: true,
     }],
-  }).then((data) => {
+  })
+  .then((data) => {
     if (data) {
       console.log('Successfully found apps by user id', data, 0);
     } else {
@@ -118,7 +134,8 @@ exports.allByUserId = (payload, success, error) => {
     }
 
     success(data);
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
@@ -126,14 +143,16 @@ exports.allByUserId = (payload, success, error) => {
 };
 
 // Update app by id
-exports.update = (payload, success, error) => {
+exports.update = (payload, error, success) => {
   const failMsg = 'Failed to update the app';
 
-  db.App.find({
+  db.App
+  .find({
     where: {
       id: payload.id,
     },
-  }).then((existingData) => {
+  })
+  .then((existingData) => {
     existingData.updateAttributes(payload)
     .then((data) => {
       if (data) {
@@ -143,12 +162,14 @@ exports.update = (payload, success, error) => {
       }
 
       success(data);
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(failMsg, err);
 
       error(err);
     });
-  }).catch((err) => {
+  })
+  .catch((err) => {
     console.log(failMsg, err);
 
     error(err);
