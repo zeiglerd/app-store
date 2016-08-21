@@ -163,6 +163,10 @@ $ npm test
 
   - Create a new branch for each feature you contribute to the code base.
 
+```
+$ git checkout -b *your_feature_branch*
+```
+
 3. Once you have finished making your changes, confirm that the unit test(s) pass successfully.
 
   - See [Unit Testing](#unit-testing).
