@@ -32,5 +32,5 @@
     "start": "pm2 start src/server.js",
     "test": "mocha"
   },
-  "version": "1.8.0"
+  "version": "1.7.0"
 }
