@@ -2,34 +2,52 @@
 http://semver.org/
 
 
+
 ---
+
 
 
 ## Installation
 
+
 #### Production
+
 1. Using command line, navigate to the root of the project.
-2. Install all required dependencies, for this project:<br>
+
+2. Install all required dependencies, for this project:
+
 ```
 $ npm i
 ```
+
+3. Install all production command line tools:
+
+```
+$ npm i -g pm2@latest
+```
+
 4. Create a MySQL database named "*appStore*," you won't need to make any tables.
-5. Create a file -- in the root of the project -- called, "*env.json*" (without the quotes) and populate it, using this template:<br>
+
+5. Create a file -- in the root of the project -- named, *env.json* and populate it, using this template as an example:
+
 ```
 {
   "DB_HOST": "localhost",
   "DB_NAME": "appStore",
-  "DB_PASS": "root",
-  "DB_PORT": 8889,
+  "DB_PASS": "_your_username_here_",
+  "DB_PORT": 3306,
   "DB_SCHEMA": "mysql",
-  "DB_USER": "root"
+  "DB_USER": "_your_username_here_"
 }
 ```
-6. Using the previous template, give each of the Environment Variables a value.
+
 
 #### Development
-1. Follow the [Production Installation](#production).
-2. Create a file -- in the root of the project -- called, "*.eslintrc.json*" (without the quotes) and populate it with this configuration:<br>
+
+1. You must follow the [Production Installation](#production) in order to continue.
+
+2. Create a file -- in the root of this project -- named, *.eslintrc.json* and populate it with this [eslint configuration](http://eslint.org/docs/user-guide/configuring).
+
 ```json
 {
 	"env": {
@@ -53,40 +71,61 @@ $ npm i
 	}
 }
 ```
-3. Install all command line tools:<br>
+
+3. Install all development command line tools:
+
 ```
-$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react nodemon mocha
+$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react mocha
 ```
-4. Optional: Install eslint for Atom:<br>
+
+4. Optional: Install eslint as an extension for [Atom](https://atom.io/):
+
 ```
 $ apm i linter-eslint
 ```
 
+
+
 ---
+
 
 
 ## Usage
 
-#### Running the Server in the Default Production State
+
+#### Running the Server in the Preferred Production State
+
 ```
 $ npm start
 ```
 
+
 #### Running the Server in the Preferred Development State
-- Use nodemon to listen for file updates:<br>
+
+- Using pm2, the server will be able to automatically restart it's self when crashing and will also actively watch for file changes, similar to nodemon.
+
+- We also set the environment variable *DEBUG* to *true*. This enables debugging messages to the command line, using our custom debug functionality.
+
 ```
-$ nodemon src/server.js
+$ DEBUG=true pm2 start src/server.js --watch ./
 ```
-  
+
 #### Unit Testing
-- Use the following command to run each unit test:
-  - Unit tests are located in the *test* folder, in the root of the project.<br>
+
+- You must follow the [Development Installation](#development) in order to unit test.
+
+- Unit tests are located in the *test* folder, which is located in the root of the project.
+
+- Use the following command to run the unit test(s):
+
 ```
 $ npm test
 ```
 
 
+
 ---
+
 
 
 ## Deployment
@@ -94,10 +133,13 @@ $ npm test
 ...
 
 
+
 ---
 
 
+
 ## Routes
+
 
 #### ToC
 | Link | Method | Route | Response |
