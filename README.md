@@ -2,12 +2,12 @@
 | Sections |
 |---|
 | [Semantic Versioning](#semantic-versioning) |
-| [Installation](#installation) |
 | [Production Installation](#production-installation) |
 | [Development Installation](#development-installation) |
 | [Running the Server for Production](#running-the-server-for-production) |
 | [Running the Server for Development](#running-the-server-for-development) |
 | [Unit Testing](#unit-testing) |
+| [Workflow](#workflow) |
 | [Deployment](#deployment) |
 | [Routes](#routes) |
 
