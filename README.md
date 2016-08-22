@@ -155,9 +155,9 @@ $ npm test
 
 
 
-## Deployment
+## Workflow
 
-1. You must follow the [Production Installation](#production-installation) in order to deploy your code.
+1. You must follow the [Production Installation](#production-installation) to use this workflow; however, you should also follow the [Development Installation](#development-installation)!
 
 2. Using a feature branch workflow, make the changes -- to the code base -- that you require.
 
@@ -185,13 +185,51 @@ $ git add -A
 $ git commit -m '*a_meaningful_message_about_the_changes_you_have_made*'
 ```
 
-6. Finally, using Git, we will push our changes to the master branch of the development server.
+6. Next, using Git, we will push our changes to GitHub.
+
+```
+$ git push origin *your_feature_branch*
+```
+
+7. Using GitHub, make a pull request to merge your feature branch with the master branch.
+
+8. Once your pull request has been completed, make a tag, for your feature!
+
+  - You can check the current tags for this project using Git's tag command.
+
+  ```
+  $ git tag
+  ```
+
+  - After deciding what your tag will be named (e.x. v1.8.0), you can create it with Git.
+
+  ```
+  $ git tag *tag_name*
+  ```
+
+9. With your newly created tag, we can finally make a release for staging!
+
+```
+$ git push origin -u *your_feature_branch*:release
+```
+
+
+
+---
+
+
+
+## Deployment
+
+1. You must follow the [Workflow](#workflow) in order to deploy your feature branch(es).
+
+2. Using Git, we will push our feature branch(es), to the master branch, of the development server.
 
 ```
 $ git push dev-server *your_feature_branch*:master
 ```
 
-7. That is it, your changes should now be live at [http://45.55.234.186/](#http://45.55.234.186/)!
+3. That is it, your changes should now be live at [http://45.55.234.186/](#http://45.55.234.186/)!
 
 
 
