@@ -1,4 +1,4 @@
-#### Routes ToC
+#### ToC
 | Sections |
 |---|
 | [Semantic Versioning](#semantic-versioning) |
@@ -18,6 +18,8 @@
 
 
 ## Semantic Versioning
+[Back to ToC](#toc)
+
 - If you're not familiar with semantic versioning; or, just need some brushing up, head on over to [http://semver.org/](http://semver.org/).
 
 
@@ -31,6 +33,7 @@
 
 
 #### Production Installation
+[Back to ToC](#toc)
 
 - Any of the following commands, that begin with a *$*, indicate the use of command line.
 
@@ -66,6 +69,7 @@ $ npm i -g pm2@latest
 
 
 #### Development Installation
+[Back to ToC](#toc)
 
 1. You must follow the [Production Installation](#production-installation) in order to continue.
 
@@ -118,6 +122,7 @@ $ apm i linter-eslint
 
 
 #### Running the Server for Production
+[Back to ToC](#toc)
 
 ```
 $ npm start
@@ -126,6 +131,7 @@ $ npm start
 
 
 #### Running the Server for Development
+[Back to ToC](#toc)
 
 - Using pm2, the server will be able to automatically restart it's self when crashing and will also actively watch for file changes, similar to nodemon.
 
@@ -138,6 +144,7 @@ $ DEBUG=true pm2 start src/server.js --watch ./
 
 
 #### Unit Testing
+[Back to ToC](#toc)
 
 - Unit tests are located in the *test* folder, which is located in the root of this project.
 
@@ -156,6 +163,7 @@ $ npm test
 
 
 ## Workflow
+[Back to ToC](#toc)
 
 1. You must follow the [Production Installation](#production-installation) to use this workflow; however, you should also follow the [Development Installation](#development-installation)!
 
@@ -220,6 +228,7 @@ $ git push origin -u *your_feature_branch*:release
 
 
 ## Deployment
+[Back to ToC](#toc)
 
 1. You must follow the [Workflow](#workflow) in order to deploy your feature branch(es).
 
@@ -238,6 +247,7 @@ $ git push dev-server *your_feature_branch*:master
 
 
 ## Routes
+[Back to ToC](#toc)
 
 
 #### Routes ToC
@@ -260,7 +270,7 @@ $ git push dev-server *your_feature_branch*:master
 
 
 #### GET /apps
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Display all Apps
 ###### Example Response
@@ -287,7 +297,7 @@ JSON Response: [
 
 
 #### POST /apps
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Create an App
 ###### Example Response
@@ -306,7 +316,7 @@ JSON Response: {
 
 
 #### DELETE /apps/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Delete App based upon id
 ###### Example Response
@@ -320,7 +330,7 @@ JSON Response: 1
 
 
 #### GET /apps/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Display App based upon id
 ###### Example Response
@@ -340,7 +350,7 @@ JSON Response: {
 
 
 #### POST /apps/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Update App based upon id
 ###### Example Response
@@ -359,7 +369,7 @@ JSON Response: {
 
 
 #### GET /users/:id/apps
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Find all apps for userId
 ###### Example Response
@@ -407,7 +417,7 @@ JSON Response: [
 
 
 #### GET /users
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Display all Users
 ###### Example Response
@@ -438,7 +448,7 @@ JSON Response: [
 
 
 #### POST /users
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Create a User
 ###### Example Response
@@ -458,7 +468,7 @@ JSON Response: {
 
 
 #### DELETE /users/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Delete User based upon id
 ###### Example Response
@@ -472,7 +482,7 @@ JSON Response: 1
 
 
 #### GET /users/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Display User based upon id
 ###### Example Response
@@ -493,7 +503,7 @@ JSON Response: {
 
 
 #### POST /users/:id
-[Back to ToC](#routes-toc)
+[Back to Routes ToC](#routes-toc)
 ###### Description
 Update User based upon id
 ###### Example Response
