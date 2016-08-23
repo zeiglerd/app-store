@@ -22,6 +22,10 @@ DB_PORT=
 DB_SCHEMA=
 DB_USER=
 ```
+3. Create a directory -- in the root of this project -- in which log files will be stored.
+```
+$ mkdir logs
+```
 
 #### Development Installation
 1. Follow the [Production Installation Instructions](#production-installation).
@@ -68,7 +72,7 @@ $ DEBUG=true nodemon src/server.js
 - ###### Runtime
   - [timestamp]
   - [message/port]
-  
+
 #### Unit Testing
 - Use the following command to run the unit tests, located in the *./test/* directory.
 ```
