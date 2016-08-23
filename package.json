@@ -18,6 +18,7 @@
     "eslint-plugin-react": "^6.1.2",
     "expect": "^1.20.2",
     "faker": "^3.1.0",
+    "gulp": "^3.9.1",
     "mocha": "^3.0.0",
     "supertest": "^2.0.0"
   },
@@ -33,5 +34,21 @@
     "start": "pm2 start src/server.js",
     "test": "mocha"
   },
-  "version": "1.7.0"
+  "version": "1.10.0",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeiglerd/app-store.git"
+  },
+  "keywords": [
+    "zeiglerd",
+    "app",
+    "store"
+  ],
+  "bugs": {
+    "url": "https://github.com/zeiglerd/app-store/issues"
+  },
+  "homepage": "https://github.com/zeiglerd/app-store#readme"
 }
