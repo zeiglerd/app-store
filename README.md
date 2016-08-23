@@ -13,7 +13,11 @@ http://semver.org/
 ```
 $ npm i
 ```
-3. Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:<br>
+3. Create a directory -- in the root of this project -- in which log files will be stored.
+```
+$ mkdir logs
+```
+4. Create a file -- in the root of the project -- called, "*.env*" (without the quotes) and populate it, using this template:<br>
 ```
 DB_HOST=
 DB_NAME=
@@ -22,7 +26,7 @@ DB_PORT=
 DB_SCHEMA=
 DB_USER=
 ```
-4. Using the previous template, give each of the Environment Variables a value.
+5. Using the previous template, give each of the Environment Variables a value.
 
 #### Development
 1. Follow the [Production Installation](#production).
@@ -74,7 +78,7 @@ $ npm start
 ```
 $ nodemon src/server.js
 ```
-  
+
 #### Unit Testing
 - Use the following command to run each unit test:
   - Unit tests are located in the *test* folder, in the root of the project.<br>
