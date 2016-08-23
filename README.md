@@ -49,15 +49,21 @@
 $ npm i
 ```
 
-3. Install all production command line tools:
+3. Create a directory -- in the root of this project -- in which log files will be stored.
+
+```
+$ mkdir logs
+```
+
+4. Install all production command line tools:
 
 ```
 $ npm i -g pm2@latest
 ```
 
-4. Create a MySQL database named *appStore*, you won't need to make any tables.
+5. Create a MySQL database named *appStore*, you won't need to make any tables.
 
-5. Create a file -- in the root of the project -- named, *env.json* and populate it, using this template as an example:
+6. Create a file -- in the root of the project -- named, *env.json* and populate it, using this template as an example:
 
 ```
 {
