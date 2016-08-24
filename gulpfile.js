@@ -1,14 +1,19 @@
+const git = require('gulp-git');
 const gulp = require('gulp');
 const utilTool = require('utility-tool');
 
-gulp.task('default', () => {
-  utilTool.debug('This is a default task...', null, 0);
+gulp.task('gitAdd', () => {
+  utilTool.debug('Doing a Git add:', null, 0);
+
+  return gulp.src('./')
+    .pipe(git.add());
 });
 
-gulp.task('server', () => {
-  utilTool.debug('Starting the server...', null, 0);
+gulp.task('gitCommit', () => {
+  utilTool.debug('Doing a Git commit:', null, 0);
+
+  return gulp.src('./')
+    .pipe(git.commit('auto commit message...'));
 });
 
-gulp.task('minifi', () => {
-  utilTool.debug('Minifi the JS files', null, 0);
-});
+gulp.task('commitAll', ['gitAdd', 'gitCommit']);
