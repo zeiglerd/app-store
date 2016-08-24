@@ -6,7 +6,7 @@
     "localenvironment": "^1.0.2",
     "mysql": "^2.11.1",
     "sequelize": "^3.23.6",
-    "utility-tool": "^1.0.4"
+    "utility-tool": "^1.0.9"
   },
   "description": "Deployment of Web Applications",
   "devDependencies": {
@@ -20,6 +20,7 @@
     "faker": "^3.1.0",
     "gulp": "^3.9.1",
     "gulp-git": "^1.11.0",
+    "jsonfile": "^2.3.1",
     "mocha": "^3.0.0",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
@@ -34,7 +35,7 @@
   "main": "src/server.js",
   "name": "app-store",
   "scripts": {
-    "preinstall": "npm install pm2 -g",
+    "preinstall": "npm i -g pm2",
     "start": "pm2 start src/server.js",
     "test": "mocha"
   },
