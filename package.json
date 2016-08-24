@@ -19,6 +19,8 @@
     "expect": "^1.20.2",
     "faker": "^3.1.0",
     "mocha": "^3.0.0",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0",
     "supertest": "^2.0.0"
   },
   "engines": {
@@ -33,5 +35,5 @@
     "start": "pm2 start src/server.js",
     "test": "mocha"
   },
-  "version": "1.7.0"
+  "version": "1.10.0"
 }
