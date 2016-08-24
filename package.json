@@ -23,7 +23,8 @@
     "mocha": "^3.0.0",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.0",
+    "yargs": "^5.0.0"
   },
   "engines": {
     "node": "v6.4.0",

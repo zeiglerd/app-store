@@ -1,17 +1,16 @@
 const git = require('gulp-git');
 const gulp = require('gulp');
-const utilTool = require('utility-tool');
+const argv = require('yargs').argv;
+// const utilTool = require('utility-tool');
 
 gulp.task('gitAdd', () => {
-  utilTool.debug('Doing a Git add:', null, 0);
+  console.log(argv.major);
 
   return gulp.src('./')
     .pipe(git.add());
 });
 
 gulp.task('gitCommit', () => {
-  utilTool.debug('Doing a Git commit:', null, 0);
-
   return gulp.src('./')
     .pipe(git.commit('auto commit message...'));
 });
