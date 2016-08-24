@@ -112,10 +112,16 @@ $ npm i -g pm2@latest
 3. Install all development command line tools:
 
 ```
-$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react mocha
+$ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react gulp-cli mocha
 ```
 
-4. Optional: Install eslint as an extension for [Atom](https://atom.io/):
+4. Use the npm init command to rebuild your package.json:
+
+```
+$ npm init
+```
+
+5. Optional: Install eslint as an extension for [Atom](https://atom.io/):
 
 ```
 $ apm i linter-eslint
