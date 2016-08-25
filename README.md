@@ -36,12 +36,6 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
     $ npm i
     ```
 
-3. Install all production command line tools:
-
-    ```
-    $ npm i -g pm2@latest
-    ```
-
 4. Create a MySQL database named *appStore*, you won't need to make any tables.
 5. Create a file -- in the root of the project -- named, *env.json* and populate it, with some Environment Variables, using this template as an example:
   - It's worth mentioning that some services -- such as Heroku and CodeShip -- have an online control panel where you configure these Environment Variables.
@@ -53,7 +47,7 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
       "DB_PASS": "your_password_here",
       "DB_PORT": 3306,
       "DB_SCHEMA": "mysql",
-      "DB_USER": "_our_username_here"
+      "DB_USER": "your_username_here"
     }
     ```
 
@@ -66,7 +60,7 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
 2. Install all development command line tools:
 
     ```
-    $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react gulp-cli mocha
+    $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react gulp-cli mocha pm2
     ```
 
 3. Use the npm init command to rebuild your package.json:
@@ -88,10 +82,22 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
 #### Running the Server for Production
 [Back to ToC](#toc)
 
-1. Start up pm2 from command line, using npm start script:
+1. From the root of this project, you can start up node using the *npm start* script:
 
     ```
     $ npm start
+    ```
+
+#### Running the Server for Development
+[Back to ToC](#toc)
+
+1. pm2:
+  - A feature of pm2, the server will automatically restart upon crashing.
+  - Another feature of pm2, *--watch* denotes watching for file changes, similar to nodemon.
+  - Also, we must set the environment variable *DEBUG* to *true*. This enables debug messages in the command line, using *utility-tool*.
+
+    ```
+    $ DEBUG=true pm2 start src/server.js --watch
     ```
 
 2. If you need to view the server console, you will need to use pm2 logs.
@@ -101,16 +107,19 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
     $ pm2 logs server --lines=1000
     ```
 
-#### Running the Server for Development
-[Back to ToC](#toc)
-
-- A feature of pm2, the server will automatically restart upon crashing.
-- Another feature of pm2, *--watch* denotes watching for file changes, similar to nodemon.
-- Also, we must set the environment variable *DEBUG* to *true*. This enables debug messages in the command line, using *utility-tool*.
+3. If you need to shut down the pm2 instance of server, use this command:
 
     ```
-    $ pm2 start src/server.js --watch DEBUG=true
+    $ pm2 stop server
     ```
+
+*or*
+
+    ```
+    $ pm2 kill
+    ```
+
+4. Many more commands are available for pm2 [here](https://github.com/Unitech/pm2).
 
 #### Unit Testing
 [Back to ToC](#toc)

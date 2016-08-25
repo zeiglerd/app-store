@@ -99,9 +99,8 @@
     "url": "git+https://github.com/zeiglerd/app-store.git"
   },
   "scripts": {
-    "preinstall": "npm i -g pm2",
-    "start": "pm2 start src/server.js",
-    "test": "mocha"
+    "start": "node src/server.js",
+    "test": "DEBUG=true mocha"
   },
-  "version": "1.10.6"
+  "version": "1.11.0"
 }
