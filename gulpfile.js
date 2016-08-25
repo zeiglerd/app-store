@@ -62,7 +62,7 @@ gulp.task('version', () => {
           if (err) {
             utilTool.debug('Failed to update the version in package.json.');
           } else {
-            utilTool.debug('Successfully updated the version to' +
+            utilTool.debug('Successfully updated the version to ' +
             `${newObj.version} in package.json.`, null, 0);
           }
         });
