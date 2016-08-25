@@ -19,7 +19,7 @@ app.use('/', require('./routes')(express));
 
 // Initialize this server, listening on a defined port.
 const server = app.listen(port, () => {
-  utilTool.debug(`Running on port: ${port}z`, null, 0);
+  utilTool.debug(`Running on port: ${port}s`, null, 0);
 });
 
 // Export the server as a Node module.
