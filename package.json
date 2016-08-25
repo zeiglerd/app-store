@@ -9,7 +9,7 @@
     "localenvironment": "^1.0.2",
     "mysql": "^2.11.1",
     "sequelize": "^3.23.6",
-    "utility-tool": "^1.0.10"
+    "utility-tool": "^1.0.11"
   },
   "description": "Deployment of Web Applications",
   "devDependencies": {
