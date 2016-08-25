@@ -27,6 +27,7 @@ gulp.task('gitPush', () => {
   });
   return true;
 });
+
 gulp.task('gitPushRelease', () => {
   git.push('origin', `${argv.b}:release`, { args: '--tags -v' }, (err) => {
     if (err) throw err;
@@ -79,7 +80,7 @@ gulp.task('release', cb => {
   } else if (!argv.m || argv.m !== String(argv.m)) {
     utilTool.debug(gitCommitErr);
   } else {
-    runSequence('version', 'gitAdd', 'gitCommit', 'gitPush', cb);
+    runSequence('version', 'gitAdd', 'gitCommit', 'gitPushRelease', cb);
   }
 });
 
