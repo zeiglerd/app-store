@@ -2,6 +2,7 @@ const argv = require('yargs').argv;
 const git = require('gulp-git');
 const gulp = require('gulp');
 const jsonfile = require('jsonfile');
+const runSequence = require('run-sequence');
 const utilTool = require('utility-tool');
 
 gulp.task('gitAdd', () => {
@@ -71,4 +72,6 @@ gulp.task('version', () => {
   }
 });
 
-gulp.task('release', ['version', 'gitAdd', 'gitCommit', 'gitPush']);
+gulp.task('release', ['version'], cb => {
+  runSequence('gitAdd', 'gitCommit', 'gitPush', cb);
+});
