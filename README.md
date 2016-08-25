@@ -116,7 +116,7 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
 *or*
 
     ```
-    $ pm2 kill all
+    $ pm2 kill
     ```
 
 4. Many more commands are available for pm2 [here](https://github.com/Unitech/pm2).
