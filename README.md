@@ -83,45 +83,19 @@ $ npm i -g pm2@latest
 
 1. You must follow the [Production Installation](#production-installation) in order to continue.
 
-2. Create a file -- in the root of this project -- named, *.eslintrc.json* and populate it with this [eslint configuration](http://eslint.org/docs/user-guide/configuring).
-
-```json
-{
-	"env": {
-		"node": true
-	},
-	"extends": "airbnb",
-	"plugins": [
-    "react"
-  ],
-	"rules": {
-		"import/no-extraneous-dependencies": ["error", { "optionalDependencies": false, "peerDependencies": false }],
-		"global-require": 0,
-		"new-cap": 0,
-		"prefer-template": 0
-	},
-	"globals": {
-		"describe": true,
-		"it": true,
-		"afterEach": true,
-		"beforeEach": true
-	}
-}
-```
-
-3. Install all development command line tools:
+2. Install all development command line tools:
 
 ```
 $ npm i -g eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react gulp-cli mocha
 ```
 
-4. Use the npm init command to rebuild your package.json:
+3. Use the npm init command to rebuild your package.json:
 
 ```
 $ npm init
 ```
 
-5. Optional: Install eslint as an extension for [Atom](https://atom.io/):
+4. Optional: Install eslint as an extension for [Atom](https://atom.io/):
 
 ```
 $ apm i linter-eslint

@@ -7,15 +7,18 @@ const utilTool = require('utility-tool');
 gulp.task('gitAdd', () => {
   console.log();
 
-  return gulp.src('./')
+  return gulp.src('./*')
     .pipe(git.add());
 });
 
 gulp.task('gitCommit', () => {
   console.log();
-
-  return gulp.src('./')
-    .pipe(git.commit('auto commit message...'));
+  let message = 'No commit message was provided... =(';
+  if (argv.m) {
+    message = argv.m;
+  }
+  return gulp.src('./*')
+    .pipe(git.commit(message));
 });
 
 gulp.task('version', () => {
