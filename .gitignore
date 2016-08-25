@@ -4,6 +4,5 @@
 *.txt
 .DS_Store
 env.json
-.eslintrc.json
 logs
 node_modules

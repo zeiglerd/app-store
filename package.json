@@ -103,5 +103,21 @@
     "start": "pm2 start src/server.js",
     "test": "mocha"
   },
-  "version": "1.10.6"
+  "version": "1.10.0",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeiglerd/app-store.git"
+  },
+  "keywords": [
+    "zeiglerd",
+    "app",
+    "store"
+  ],
+  "bugs": {
+    "url": "https://github.com/zeiglerd/app-store/issues"
+  },
+  "homepage": "https://github.com/zeiglerd/app-store#readme"
 }
