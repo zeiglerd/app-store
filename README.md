@@ -36,20 +36,15 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
     $ npm i
     ```
 
-3. Create a directory -- in the root of this project -- in which log files will be stored.
-
-    ```
-    $ mkdir logs
-    ```
-
-4. Install all production command line tools:
+3. Install all production command line tools:
 
     ```
     $ npm i -g pm2@latest
     ```
 
-5. Create a MySQL database named *appStore*, you won't need to make any tables.
-6. Create a file -- in the root of the project -- named, *env.json* and populate it, using this template as an example:
+4. Create a MySQL database named *appStore*, you won't need to make any tables.
+5. Create a file -- in the root of the project -- named, *env.json* and populate it, with some Environment Variables, using this template as an example:
+  - It's worth mentioning that some services -- such as Heroku and CodeShip -- have an online control panel where you configure these Environment Variables.
 
     ```
     {
@@ -93,20 +88,29 @@ Any of the following commands, that begin with a *$*, indicate the use of comman
 #### Running the Server for Production
 [Back to ToC](#toc)
 
-```
-$ npm start
-```
+1. Start up pm2 from command line, using npm start script:
+
+    ```
+    $ npm start
+    ```
+
+2. If you need to view the server console, you will need to use pm2 logs.
+  - Using *--lines=1000*, you can view the last 1000 lines printed to the console, instead of 20.
+
+    ```
+    $ pm2 logs server --lines=1000
+    ```
 
 #### Running the Server for Development
 [Back to ToC](#toc)
 
-- Using pm2, the server will be able to automatically restart it's self when crashing.
-- Another feature of pm2 is --watch, which actively watches for file changes, similar to nodemon.
-- We also set the environment variable *DEBUG* to *true*. This enables debugging messages to the command line, using my custom debug functionality in utility-tool.
+- A feature of pm2, the server will automatically restart upon crashing.
+- Another feature of pm2, *--watch* denotes watching for file changes, similar to nodemon.
+- Also, we must set the environment variable *DEBUG* to *true*. This enables debug messages in the command line, using *utility-tool*.
 
-```
-$ DEBUG=true pm2 start src/server.js --watch ./
-```
+    ```
+    $ pm2 start src/server.js --watch DEBUG=true
+    ```
 
 #### Unit Testing
 [Back to ToC](#toc)
@@ -130,33 +134,21 @@ $ DEBUG=true pm2 start src/server.js --watch ./
   - Create a new branch for each feature you contribute to the code base.
 
     ```
-    $ git checkout -b *your_feature_branch*
+    $ git checkout -b feature_branch
     ```
 
 3. Once you have finished making your changes, confirm that the unit test(s) pass successfully.
   - See [Unit Testing](#unit-testing).
 
-4. After the unit test(s) have passed successfully, use Git to add your changes to the index.
+4. After the unit test(s) are passing, use the Gulp task -- *git* -- to add all files to the working tree, commit changes and finally push to GitHub.
+  - Leaving a meaningful message to each commit will help you -- and other developers -- better interpret your changes.
 
     ```
-    $ git add -A
+    $ gulp git --b feature_branch --m "A meaningful message about the changes you have made."
     ```
 
-5. Now that your changes have been added to the index, we can commit to the local Git repo.
-  - It is VERY important to leave a meaningful commit message. Doing so may help you or another developer solve an error faster, understand your train of thought or even give someone a laugh!
-
-    ```
-    $ git commit -m '*a_meaningful_message_about_the_changes_you_have_made*'
-    ```
-
-6. Next, using Git, we will push our changes to GitHub.
-
-    ```
-    $ git push origin *your_feature_branch*
-    ```
-
-7. Using GitHub, make a pull request to merge your feature branch with the master branch.
-8. Once your pull request has been completed, make a tag, for your feature!
+5. Once you are satisfied with your changes, use GitHub to make a pull request, merging your feature branch(es) into the master branch of this project.
+6. Once your pull request has been completed, make a tag, for your feature!
   - You can check the current tags for this project using Git's tag command.
 
     ```
@@ -169,7 +161,7 @@ $ DEBUG=true pm2 start src/server.js --watch ./
     $ git tag *tag_name*
     ```
 
-9. With your newly created tag, we can finally make a release for staging!
+7. With your newly created tag, we can finally make a release for staging!
 
     ```
     $ git push origin -u *your_feature_branch*:release
@@ -184,7 +176,7 @@ $ DEBUG=true pm2 start src/server.js --watch ./
 2. Using Git, we will push our feature branch(es), to the master branch, of the development server.
 
     ```
-    $ git push dev-server *your_feature_branch*:master
+    $ git push dev-server *feature_branch*:master -f
     ```
 
 3. That is it, your changes should now be live at [http://45.55.234.186/](#http://45.55.234.186/)!
