@@ -5,20 +5,17 @@ const jsonfile = require('jsonfile');
 const utilTool = require('utility-tool');
 
 gulp.task('gitAdd', () => {
-  console.log();
-
   return gulp.src('./*')
     .pipe(git.add());
 });
 
 gulp.task('gitCommit', () => {
-  console.log();
-  let message = 'No commit message was provided... =(';
-  if (argv.m) {
-    message = argv.m;
+  if (!argv.m || argv.m !== String(argv.m)) {
+    utilTool.debug('Cannot use this script without: --m "a meaningful commit message"');
+    return false;
   }
   return gulp.src('./*')
-    .pipe(git.commit(message));
+  .pipe(git.commit(argv.m));
 });
 
 gulp.task('version', () => {
@@ -27,7 +24,7 @@ gulp.task('version', () => {
       utilTool.debug('Failed to read the current version from package.json.');
     } else if (!argv.major && !argv.minor && !argv.patch) {
       utilTool.debug('Cannot use this script without: --major, --minor or --patch');
-    } else if (!argv.m) {
+    } else if (!argv.m || argv.m !== String(argv.m)) {
       utilTool.debug('Cannot use this script without: --m "a meaningful commit message"');
     } else {
       let type;
