@@ -1,12 +1,15 @@
 {
   "author": "Dustin Zeigler <email@zeiglerd.com> (zeiglerd.com)",
+  "bugs": {
+    "url": "https://github.com/zeiglerd/app-store/issues"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "localenvironment": "^1.0.2",
     "mysql": "^2.11.1",
     "sequelize": "^3.23.6",
-    "utility-tool": "^1.0.4"
+    "utility-tool": "^1.0.10"
   },
   "description": "Deployment of Web Applications",
   "devDependencies": {
@@ -19,32 +22,86 @@
     "expect": "^1.20.2",
     "faker": "^3.1.0",
     "gulp": "^3.9.1",
+    "gulp-git": "^1.11.0",
+    "jsonfile": "^2.3.1",
     "mocha": "^3.0.0",
+    "run-sequence": "^1.2.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.0",
+    "yargs": "^5.0.0"
+  },
+  "directories": {
+    "test": "test"
   },
   "engines": {
     "node": "v6.4.0",
     "npm": "3.10.6"
   },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": "airbnb",
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "arrow-body-style": [
+        "error",
+        "always"
+      ],
+      "global-require": 0,
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
+      "new-cap": 0,
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "error",
+            "log",
+            "warn"
+          ]
+        }
+      ],
+      "no-shadow": [
+        "error",
+        {
+          "allow": [
+            "doc",
+            "docs",
+            "err",
+            "res"
+          ]
+        }
+      ],
+      "prefer-template": 0
+    },
+    "globals": {
+      "describe": true,
+      "it": true,
+      "afterEach": true,
+      "beforeEach": true
+    }
+  },
+  "homepage": "https://github.com/zeiglerd/app-store#readme",
   "license": "ISC",
   "main": "src/server.js",
   "name": "app-store",
-  "scripts": {
-    "start": "pm2 start src/server.js",
-    "test": "mocha"
-  },
-  "version": "1.10.0",
-  "directories": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zeiglerd/app-store.git"
   },
-  "bugs": {
-    "url": "https://github.com/zeiglerd/app-store/issues"
+  "scripts": {
+    "preinstall": "npm i -g pm2",
+    "start": "pm2 start src/server.js",
+    "test": "mocha"
   },
-  "homepage": "https://github.com/zeiglerd/app-store#readme"
+  "version": "1.10.4"
 }
